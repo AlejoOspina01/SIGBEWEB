@@ -41,9 +41,9 @@ class Usuarios
     */
     protected $saldo;
     /**
-     * @ORM\ManyToOne(targetEntity="Roles")
-     * @ORM\JoinColumn(name="roles", referencedColumnName="IdRol")
-    */
+	 * @ORM\ManyToOne(targetEntity="roles", inversedBy="usuarios", cascade={"persist", "remove" })
+	 * @ORM\JoinColumn(name="roles_id", referencedColumnName="IdRol",nullable=true)
+	 */
     protected $roles;
 
 
@@ -69,7 +69,7 @@ class Usuarios
 		return $this->saldo;
 	}
 	public function getIdRol(){
-		return $this->idRol;
+		return $this->roles;
 	}
 
 
@@ -96,6 +96,6 @@ class Usuarios
 		return $this->saldo = $sald;
 	}
 	public function setIdRol($rol){
-		return $this->idRol = $rol;
+		return $this->roles = $rol;
 	}
 }
