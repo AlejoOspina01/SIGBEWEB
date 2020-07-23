@@ -1,0 +1,21 @@
+<!-- config/xml/Roles.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+      <entity name="Convocatorias" table="convocatorias">
+          <id name="consecutivo_convocatoria" type="integer">
+           <generator strategy="AUTO" />
+          </id>
+          <field name="fecha_incio" type="datetime" />
+          <field name="fecha_fin" type="datetime" />
+          <field name="estado_convocatoria" type="string" />
+        <many-to-one field="becas" target-entity="Becas">
+            <join-column name="consecutivo_beca" referenced-column-name="id" />
+        </many-to-one>
+        <many-to-one field="periodosacademicos" target-entity="Periodos_academicos">
+            <join-column name="consecutivo_periodo" referenced-column-name="id" />
+        </many-to-one>
+      </entity>
+</doctrine-mapping>
