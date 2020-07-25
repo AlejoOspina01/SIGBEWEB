@@ -21,6 +21,20 @@ class Roles
     */
     protected $descripcion;
 
+     /**
+    * @ORM\OneToMany(targetEntity="usuarios", mappedBy="roles")
+    */
+    protected $usuarios;
+
+  public function __construct($IdRol, $descripcion)
+    {
+        
+        $this->IdRol = $IdRol;
+        $this->descripcion = $descripcion;
+        $this->usuarios = new ArrayCollection();
+    }
+    
+
     public function getIdRol()
     {
         return $this->IdRol;
@@ -31,8 +45,15 @@ class Roles
         return $this->descripcion;
     }
 
+        public function getusuarios()
+    {
+        return $this->usuarios;
+    }
+
     public function setdescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
     }
+
+
 }

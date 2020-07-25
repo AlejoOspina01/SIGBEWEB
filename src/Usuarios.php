@@ -46,6 +46,18 @@ class Usuarios
 	 */
     protected $roles;
 
+    public function __construct($identificacion, $nombre,$apellido,$correo,$codigoestudiante,$contrasena,$saldo,$roles)
+    {
+        $this->name = $identificacion;
+        $this->year = $nombre;
+        $this->name = $apellido;
+        $this->year = $correo;
+        $this->name = $codigoestudiante;
+        $this->year = $contrasena;
+        $this->name = $saldo;
+        $this->year = $roles;
+    }
+
 
 	public function getIdentifacion(){
 		return $this->identificacion;

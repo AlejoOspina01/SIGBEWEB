@@ -10,5 +10,9 @@
           </id>
 
           <field name="descripcion" type="string" />
+          <one-to-many field="usuarios"
+            target-entity="usuarios"
+            mapped-by="roles"
+        />
       </entity>
 </doctrine-mapping>
