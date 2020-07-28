@@ -1,7 +1,7 @@
 <?php
 // rol.php <name>
 require_once "../../../bootstrap.php";
-include_once"../../../src/Periodos_academicos.php";
+/* include_once"../../../src/Periodos_academicos.php"; */
 
 $newFechaInicio = $_GET["fechainicio"];
 $newFechaFin = $_GET["fechafin"];
@@ -15,9 +15,9 @@ if($encontrarBeca === null){
 }
 $newPeriodo = $_GET["periodo"];
 
-$encontrarPeriodo = $entityManager->find('Periodos_academicos', $newPeriodo);
+$encontrarPeriodo = $entityManager->find('Periodosacademicos', $newPeriodo);
 if($encontrarPeriodo === null){
-    $encontrarPeriodo = $entityManager->find('Periodos_academicos', 1);
+    $encontrarPeriodo = $entityManager->find('Periodosacademicos', 1);
 }
 
 $convocatorias = new Convocatorias();

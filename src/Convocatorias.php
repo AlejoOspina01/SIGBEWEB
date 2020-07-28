@@ -34,7 +34,7 @@ class Convocatorias
      */
     protected $becas;
     /**
-     * @ORM\ManyToOne(targetEntity="Periodos_academicos", inversedBy="periodosacademicos", cascade={"persist", "remove" })
+     * @ORM\ManyToOne(targetEntity="Periodosacademicos", inversedBy="periodosacademicos", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="periodosacademicos", referencedColumnName="consecutivo_periodo",nullable=true)
      */
     protected $periodosacademicos;
