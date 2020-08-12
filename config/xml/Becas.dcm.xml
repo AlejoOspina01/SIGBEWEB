@@ -4,15 +4,14 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-      <entity name="Roles" table="roles">
-          <id name="IdRol" type="integer">
-              <generator strategy="AUTO" />
+      <entity name="Becas" table="becas">
+          <id name="consecutivo_beca" type="integer">
           </id>
 
           <field name="descripcion" type="string" />
-          <one-to-many field="usuarios"
-            target-entity="usuarios"
-            mapped-by="roles"
-        />
+
+          <many-to-one field="tipobecas" target-entity="TipoBecas">
+            <join-column name="consecutivo_TipoBeca" referenced-column-name="id" />
+        </many-to-one>
       </entity>
 </doctrine-mapping>

@@ -4,15 +4,12 @@
       xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-      <entity name="Roles" table="roles">
-          <id name="IdRol" type="integer">
+      <entity name="Periodos_academicos" table="periodosacademicos">
+          <id name="consecutivo_periodo" type="integer">
               <generator strategy="AUTO" />
           </id>
 
-          <field name="descripcion" type="string" />
-          <one-to-many field="usuarios"
-            target-entity="usuarios"
-            mapped-by="roles"
-        />
+          <field name="fecha_incio" type="datetime" />
+          <field name="fecha_fin" type="datetime" />
       </entity>
 </doctrine-mapping>

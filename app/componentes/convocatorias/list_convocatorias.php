@@ -2,19 +2,21 @@
  header('Access-Control-Allow-Origin: *'); 
  header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-// show_roles.php <id>
-require_once "../../../bootstrap.php";
 
-$usuario = $entityManager->createQueryBuilder()
+ 
+require_once "../../../bootstrap.php";
+/* include_once"../../../src/Periodos_academicos.php"; */
+
+$convocatorias = $entityManager->createQueryBuilder()
 ->select('u')  // select * 
-->from('Usuarios', 'u') // from Usuarios u 
+->from('Convocatorias', 'u') // from Usuarios u 
 ->getQuery()
 ->getArrayResult();
 
-if ($usuario === null) {
-    echo "No usuario found.\n";
+if ($convocatorias === null) {
+    echo "No convomipana found.\n";
     exit(1);
 }
 
-echo json_encode($usuario);
+echo json_encode($convocatorias);
 header('Content-Type: application/json');

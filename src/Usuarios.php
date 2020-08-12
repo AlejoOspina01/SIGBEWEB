@@ -41,10 +41,22 @@ class Usuarios
     */
     protected $saldo;
     /**
-     * @ORM\ManyToOne(targetEntity="Roles")
-     * @ORM\JoinColumn(name="roles", referencedColumnName="IdRol")
-    */
+	 * @ORM\ManyToOne(targetEntity="roles", inversedBy="usuarios", cascade={"persist", "remove" })
+	 * @ORM\JoinColumn(name="roles_id", referencedColumnName="IdRol",nullable=true)
+	 */
     protected $roles;
+
+    /* public function __construct($identificacion, $nombre,$apellido,$correo,$codigoestudiante,$contrasena,$saldo,$roles)
+    {
+        $this->name = $identificacion;
+        $this->year = $nombre;
+        $this->name = $apellido;
+        $this->year = $correo;
+        $this->name = $codigoestudiante;
+        $this->year = $contrasena;
+        $this->name = $saldo;
+        $this->year = $roles;
+    } */
 
 
 	public function getIdentifacion(){
@@ -69,7 +81,7 @@ class Usuarios
 		return $this->saldo;
 	}
 	public function getIdRol(){
-		return $this->idRol;
+		return $this->roles;
 	}
 
 
@@ -96,6 +108,6 @@ class Usuarios
 		return $this->saldo = $sald;
 	}
 	public function setIdRol($rol){
-		return $this->idRol = $rol;
+		return $this->roles = $rol;
 	}
 }
