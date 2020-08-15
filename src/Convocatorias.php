@@ -28,6 +28,10 @@ class Convocatorias
      *@ORM\Column(type="string") 
      */
     protected $estado_convocatoria;
+     /** 
+     *@ORM\Column(type="integer") 
+     */
+    protected $cupo;
     /**
      * @ORM\ManyToOne(targetEntity="Becas", inversedBy="becas", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="becas", referencedColumnName="consecutivo_beca",nullable=true)
@@ -56,6 +60,9 @@ class Convocatorias
     {
         return $this->estado_convocatoria;
     }
+    public function getCupo(){
+      return $this->cupo;
+    }
     public function getConsecutivoBeca(){
 		return $this->consecutivo_beca;
     }
@@ -72,6 +79,9 @@ class Convocatorias
     }
     public function setFechaFin($fechaFin){
         $this->fecha_fin = $fechaFin;
+    }
+    public function setCupo($cupo){
+      $this->cupo = $cupo;
     }
     public function setConsecutivoBeca($consecutivoBeca){
 		return $this->becas = $consecutivoBeca;
