@@ -1,12 +1,11 @@
 <?php
 // rol.php <name>
 require_once "../../../bootstrap.php";
-/* include_once"../../../src/Periodos_academicos.php"; */
 
 $newFechaInicio = $_GET["fechainicio"];
 $newFechaFin = $_GET["fechafin"];
 $estadoconvocatoria = $_GET["estadoconvocatoria"];
-
+$cupo = $_GET["cupo"];
 $newBeca = $_GET["beca"];
 
 $encontrarBeca = $entityManager->find('Becas', $newBeca);
@@ -22,6 +21,7 @@ if($encontrarPeriodo === null){
 
 $convocatorias = new Convocatorias();
 $convocatorias->setEstadoConvocatoria($estadoconvocatoria);
+$convocatorias->setCupo($cupo);
 $convocatorias->setConsecutivoBeca($encontrarBeca);
 $convocatorias->setConsecutivoPeriodo($encontrarPeriodo);
 $convocatorias->setFechaInicio( new \DateTime('now'));
