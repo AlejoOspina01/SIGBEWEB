@@ -64,10 +64,10 @@ class Convocatorias
       return $this->cupo;
     }
     public function getConsecutivoBeca(){
-		return $this->consecutivo_beca;
+		return $this->becas;
     }
     public function getConsecutivoPeriodo(){
-		return $this->consecutivo_periodo;
+		return $this->periodosacademicos;
 	}
 
     //Establecer valores
