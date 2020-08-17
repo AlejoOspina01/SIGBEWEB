@@ -4,9 +4,11 @@
 // rol.php <name>
 require_once "../../../bootstrap.php";
 
-// $newPostu = $_POST["arregloPostu"];
+
+
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
+
 
 $stdPropPostu = get_object_vars($request);
 $propiedadesPostu = get_object_vars($stdPropPostu['data']);
