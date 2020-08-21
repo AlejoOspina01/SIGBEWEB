@@ -16,15 +16,17 @@ if ($convobuscada === null) {
 }
 
  $convoarray =  array(
+      'consecutivo_convocatoria'      => $convobuscada->getConsecutivoConvocatoria(),
       'fechainicio'     => $convobuscada->getFechaInicio()->format('Y-m-d H:i'),
       'fechafin'         => $convobuscada->getFechaFin()->format('Y-m-d H:i'),
       'estadoconvo'      => $convobuscada->getEstadoConvocatoria(),
       'cupo'         => $convobuscada->getCupo(),
-      'beca'          => $convobuscada->getConsecutivoBeca()->getDescripcion(),
-      'periodo'     =>  array('fechaInicioperiodo' => $convobuscada->getConsecutivoPeriodo()->getFechaInicio()->format('Y-m-d H:i'),
-        'fechaFinperiodo' => $convobuscada->getConsecutivoPeriodo()->getFechaFin()->format('Y-m-d H:i')
-    )
-    );
+      'beca'          => $convobuscada->getConsecutivoBeca()->getConsecutivo_beca(),
+      //'periodo'     =>  array('fechaInicioperiodo' => $convobuscada->getConsecutivoPeriodo()->getFechaInicio()->format('Y-m-d H:i'),
+      'periodosacademicos'     =>  $convobuscada->getConsecutivoPeriodo()->getConsecutivo_periodo()
+        //'fechaFinperiodo' => $convobuscada->getConsecutivoPeriodo()->getFechaFin()->format('Y-m-d H:i')
+ );
+    
 
 echo json_encode($convoarray);
 
