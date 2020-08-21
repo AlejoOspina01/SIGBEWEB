@@ -33,7 +33,7 @@ class Postulacion
      */
     protected $estrato;
     /** 
-     *@ORM\Column(type="integer") 
+     *@ORM\Column(type="string") 
      */
     protected $estado_postulacion;
 
