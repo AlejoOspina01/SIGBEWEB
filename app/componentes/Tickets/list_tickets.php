@@ -20,7 +20,7 @@ for($i=0; $i< sizeof($tickets); $i++){
       
 
 	if($tickets[$i]->getUsuario()->getIdentifacion() == $identificacion){
-      $arraytickets[$i] =  array(
+      $arraytickets[] =  array(
       	              'consecutivoticket' =>  $tickets[$i]->getConsecutivoTicket(),
                       'fecha_compra' => $tickets[$i]-> getFechaCompra(), 
                       'identificacion_estudiante' => $tickets[$i]->getUsuario()->getIdentifacion(),

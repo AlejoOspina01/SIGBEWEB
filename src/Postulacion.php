@@ -36,6 +36,10 @@ class Postulacion
      *@ORM\Column(type="string") 
      */
     protected $estado_postulacion;
+    /** 
+     *@ORM\Column(type="integer") 
+     */
+    protected $cantModificaciones;
 
     /**
      * @ORM\ManyToOne(targetEntity="usuarios", inversedBy="postulacion", cascade={"persist", "remove" })
@@ -75,6 +79,9 @@ class Postulacion
     public function getConvocatoria(){
         return $this->convocatoria;
     }
+    public function getCantmodificaciones(){
+        return $this->cantModificaciones;
+    }
 
     // Setters
 
@@ -101,6 +108,9 @@ class Postulacion
     }
     public function setConvocatoria($convocatoria){
         $this->convocatoria = $convocatoria;
+    }
+    public function setCantmodificaciones($cantModificaciones){
+        $this->cantModificaciones = $cantModificaciones;
     }
 
 
