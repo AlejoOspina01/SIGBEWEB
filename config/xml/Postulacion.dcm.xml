@@ -13,6 +13,7 @@
           <field name="semestre" type="integer" />
           <field name="estrato" type="integer" />
           <field name="estado_postulacion" type="integer" />
+          <field name="cantModificaciones" type="integer" />
 
           <many-to-one field="usuario" target-entity="Usuarios">
             <join-column name="identificacion" referenced-column-name="id" />
