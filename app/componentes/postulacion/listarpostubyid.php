@@ -30,4 +30,3 @@ if ($postulaciones === null) {
 }
 
 echo json_encode($postByIdConvo);
-header('Content-Type: application/json');
