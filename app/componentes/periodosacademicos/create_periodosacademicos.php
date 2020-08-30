@@ -4,14 +4,23 @@
 // rol.php <name>
 require_once "../../../bootstrap.php";
 
-$newDescripcion= $_GET["descripcion"];
-$newFechaInicio = $_GET["fechainicio"];
-$newFechaFin = $_GET["fechafin"];
+
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+
+
+$stdPropPeriodo = get_object_vars($request);
+$propiedadesPeriodo = get_object_vars($stdPropPeriodo['data']);
+
+$convertfechainicial = date('Y-m-d', strtotime(str_replace('-','/', $propiedadesPeriodo['fechainicial'])));
+$convertfechafin = date('Y-m-d', strtotime(str_replace('-','/', $propiedadesPeriodo['fechafin'])));
+$fechainicial = new \DateTime($convertfechainicial);;
+$fechafin = new \DateTime($convertfechafin);;
 
 $periodosacademicos = new Periodosacademicos();
-$periodosacademicos ->setDescripcion($newDescripcion);
-$periodosacademicos->setFechaInicio( new \DateTime('now'));
-$periodosacademicos->setFechaFin( new \DateTime('now'));
+$periodosacademicos ->setDescripcion($propiedadesPeriodo['descripcion']);
+$periodosacademicos->setFechaInicio( $fechainicial);
+$periodosacademicos->setFechaFin( $fechafin);
 
 
 $entityManager->persist($periodosacademicos);
