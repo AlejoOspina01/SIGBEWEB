@@ -8,7 +8,7 @@ require_once "../../../bootstrap.php";
 
 $periodo = $entityManager->createQueryBuilder()
 ->select('pa.consecutivo_periodo')  
-->from('periodosacademicos', 'pa') 
+->from('Periodosacademicos', 'pa') 
 ->getQuery()
 ->getArrayResult();
 
@@ -18,4 +18,3 @@ if ($periodo === null) {
 }
 
 echo json_encode($periodo);
-header('Content-Type: application/json'); 

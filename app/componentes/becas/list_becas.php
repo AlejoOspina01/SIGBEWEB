@@ -18,4 +18,3 @@ if ($becas === null) {
 }
 
 echo json_encode($becas);
-header('Content-Type: application/json');

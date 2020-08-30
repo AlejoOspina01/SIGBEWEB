@@ -1,4 +1,6 @@
 <?php
+ header('Access-Control-Allow-Origin: *'); 
+ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 // rol.php <name>
 require_once "../../../bootstrap.php";
 
@@ -10,5 +12,3 @@ $tipoBecas->setDescripcion($newDescripcionTipoBeca);
 
 $entityManager->persist($tipoBecas);
 $entityManager->flush();
-
-echo "Created TipoBeca with ID " .  $tipoBecas->getConsecutivo_tipoBeca() . "\n";

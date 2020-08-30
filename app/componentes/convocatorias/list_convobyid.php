@@ -26,8 +26,4 @@ if ($convobuscada === null) {
       'periodosacademicos'     =>  $convobuscada->getConsecutivoPeriodo()->getConsecutivo_periodo()
         //'fechaFinperiodo' => $convobuscada->getConsecutivoPeriodo()->getFechaFin()->format('Y-m-d H:i')
  );
-    
-
 echo json_encode($convoarray);
-
-header('Content-Type: application/json');

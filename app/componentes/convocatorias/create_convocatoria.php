@@ -24,8 +24,3 @@ $convocatorias->setFechaFin( new \DateTime('now'));
 
 $entityManager->persist($convocatorias);
 $entityManager->flush();
-
-echo "Created convocatorias with ID " .  $convocatorias->getConsecutivoConvocatoria() . "\n";
-
-
-

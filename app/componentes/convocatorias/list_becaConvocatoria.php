@@ -19,4 +19,3 @@ if ($convocatorias === null) {
 }
 
 echo json_encode($convocatorias);
-header('Content-Type: application/json');

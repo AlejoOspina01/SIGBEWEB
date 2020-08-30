@@ -15,7 +15,7 @@ $propiedadesConvo = get_object_vars($stdConvo['data']);
 //$newConsecutivoConvocatoria = $_GET["consecutivoconvocatoria"];
 
 $convocatoriaUpdate = $entityManager->createQueryBuilder();
-$query = $convocatoriaUpdate->update('convocatorias', 'c') 
+$query = $convocatoriaUpdate->update('Convocatorias', 'c') 
         ->set('c.cupo', '?1')
         ->set('c.becas', '?3')
         ->set('c.periodosacademicos', '?4')
@@ -51,6 +51,3 @@ if ($convocatoriaUpdate === null) {
     echo "Fallo";    
     exit(1);
 }
-echo "Actualizo";    
-echo json_encode($convocatoriaUpdate);
-header('Content-Type: application/json');

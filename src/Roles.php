@@ -22,7 +22,7 @@ class Roles
     protected $descripcion;
 
      /**
-    * @ORM\OneToMany(targetEntity="usuarios", mappedBy="roles")
+    * @ORM\OneToMany(targetEntity="Usuarios", mappedBy="Roles")
     */
     protected $usuarios;
 

@@ -12,7 +12,7 @@
  <field name="valor" type="integer" />  
  <field name="estadoticket" type="string" />
   <many-to-one field="usuario" target-entity="Usuarios">
-            <join-column name="identificacion" referenced-column-name="id" />
+            <join-column name="usuario_id" referenced-column-name="identificacion" />
         </many-to-one>   
 
         </entity>

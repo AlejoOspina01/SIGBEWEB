@@ -15,6 +15,4 @@ if ($usuario === null) {
     echo "No usuario found.\n";
     exit(1);
 }
-
 echo json_encode($usuario);
-header('Content-Type: application/json');

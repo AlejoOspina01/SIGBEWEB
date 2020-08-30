@@ -1,13 +1,11 @@
 <?php
  header('Access-Control-Allow-Origin: *'); 
  header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
  require_once "../../../bootstrap.php";
 
  $identificacion=$_GET["identificacion"];
 
- $tickets =$entityManager->createQuery('select u from tickets u where u = u')
+ $tickets =$entityManager->createQuery('select u from Tickets u where u = u')
 ->getResult();
 
 if ($tickets === null) {
@@ -34,10 +32,4 @@ for($i=0; $i< sizeof($tickets); $i++){
                     );
 }
 }
-
-
-
-
 echo json_encode($arraytickets);
-
-header('Content-Type: application/json');

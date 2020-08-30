@@ -33,13 +33,13 @@ class Convocatorias
      */
     protected $cupo;
     /**
-     * @ORM\ManyToOne(targetEntity="Becas", inversedBy="becas", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="becas", referencedColumnName="consecutivo_beca",nullable=true)
+     * @ORM\ManyToOne(targetEntity="Becas", inversedBy="Convocatorias", cascade={"persist", "remove" })
+     * @ORM\JoinColumn(name="becasid", referencedColumnName="consecutivo_beca",nullable=true)
      */
     protected $becas;
     /**
-     * @ORM\ManyToOne(targetEntity="Periodosacademicos", inversedBy="periodosacademicos", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="periodosacademicos", referencedColumnName="consecutivo_periodo",nullable=true)
+     * @ORM\ManyToOne(targetEntity="Periodosacademicos", inversedBy="Convocatorias", cascade={"persist", "remove" })
+     * @ORM\JoinColumn(name="periodosacademicosid", referencedColumnName="consecutivo_periodo",nullable=true)
      */
     protected $periodosacademicos;
 

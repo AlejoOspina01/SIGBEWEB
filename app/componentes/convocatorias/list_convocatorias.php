@@ -1,14 +1,11 @@
 <?php
  header('Access-Control-Allow-Origin: *'); 
  header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
- 
 require_once "../../../bootstrap.php";
 /* include_once"../../../src/Periodos_academicos.php"; */
 
 $convocatorias = $entityManager->createQuery('
-	select u from convocatorias u  where u = u');
+	select u from Convocatorias u where u = u');
 
 $convocator=$convocatorias->getResult();
 
@@ -30,4 +27,3 @@ if ($convocatorias === null) {
 }
 
 echo json_encode($convos);
-header('Content-Type: application/json');

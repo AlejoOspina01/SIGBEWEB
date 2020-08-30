@@ -28,4 +28,3 @@ if ($convocator === null) {
 }
 
 echo json_encode($convosActivas);
-header('Content-Type: application/json');

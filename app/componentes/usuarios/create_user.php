@@ -36,7 +36,3 @@ $usuario->setIdRol($roluser);
 
 $entityManager->persist($usuario);
 $entityManager->flush();
-
-
-
-header('Content-Type: application/json');

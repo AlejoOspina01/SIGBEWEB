@@ -27,7 +27,7 @@ class Tickets{
      */
     protected $estadoticket;
     /**
-	 * @ORM\ManyToOne(targetEntity="usuarios", inversedBy="tickets", cascade={"persist", "remove" })
+	 * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="Tickets", cascade={"persist", "remove" })
 	 * @ORM\JoinColumn(name="usuario_id", referencedColumnName="identificacion",nullable=true)
 	 */
 	 protected $usuario;

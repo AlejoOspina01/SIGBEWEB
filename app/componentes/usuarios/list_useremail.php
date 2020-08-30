@@ -1,5 +1,4 @@
 <?php
-
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 // show_roles.php <id>
@@ -27,5 +26,3 @@ if ($usuario === null) {
     );
 
 echo json_encode($userarray);
-
-header('Content-Type: application/json');

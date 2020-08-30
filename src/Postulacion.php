@@ -42,14 +42,14 @@ class Postulacion
     protected $cantModificaciones;
 
     /**
-     * @ORM\ManyToOne(targetEntity="usuarios", inversedBy="postulacion", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="usuario_iden", referencedColumnName="identificacion",nullable=true)
+     * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="Postulacion", cascade={"persist", "remove" })
+     * @ORM\JoinColumn(name="usuarioid", referencedColumnName="identificacion",nullable=true)
      */
     protected $usuario;
 
     /**
      * @ORM\ManyToOne(targetEntity="convocatorias", inversedBy="postulacion", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="consecutivo_convo", referencedColumnName="consecutivo_convocatoria",nullable=true)
+     * @ORM\JoinColumn(name="convocatoriaid", referencedColumnName="consecutivo_convocatoria",nullable=true)
      */
     protected $convocatoria;
 
