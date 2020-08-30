@@ -7,13 +7,13 @@
 require_once "../../../bootstrap.php";
 
 $periodo = $entityManager->createQueryBuilder()
-->select('pa.consecutivo_periodo')  
+->select('pa.consecutivo_periodo, pa.descripcion')  
 ->from('periodosacademicos', 'pa') 
 ->getQuery()
 ->getArrayResult();
 
 if ($periodo === null) {
-    echo "No convomipana found.\n";
+    echo "No found.\n";
     exit(1);
 }
 

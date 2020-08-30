@@ -8,7 +8,7 @@
           <id name="consecutivo_periodo" type="integer">
               <generator strategy="AUTO" />
           </id>
-
+          <field name="descripcion" type="string"/>
           <field name="fecha_incio" type="datetime" />
           <field name="fecha_fin" type="datetime" />
       </entity>
