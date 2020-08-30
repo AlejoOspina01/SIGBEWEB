@@ -7,7 +7,7 @@
 require_once "../../../bootstrap.php";
 
 $tipobeca = $entityManager->createQueryBuilder()
-->select('tb')  // select * 
+->select('tb.consecutivo_TipoBeca, tb.descripcion')  // select * 
 ->from('TipoBecas', 'tb') // from Usuarios u 
 ->getQuery()
 ->getArrayResult();
