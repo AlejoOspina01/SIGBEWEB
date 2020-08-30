@@ -26,6 +26,11 @@ class Tickets{
      *@ORM\Column(type="string") 
      */
     protected $estadoticket;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $tipoTicket;
+
     /**
 	 * @ORM\ManyToOne(targetEntity="usuarios", inversedBy="tickets", cascade={"persist", "remove" })
 	 * @ORM\JoinColumn(name="usuario_id", referencedColumnName="identificacion",nullable=true)
@@ -51,6 +56,10 @@ class Tickets{
 		return $this->estadoticket;
 	}
 
+    public function getTipoTicket(){
+        return $this->tipoTicket;
+    }
+
 	public function setConsecutivoTicket($consecutivoticket){
       $this->consecutivoticket = $consecutivoticket;
     } 
@@ -65,6 +74,14 @@ class Tickets{
 
     public function setEstado($estadoticket){
       $this->estadoticket = $estadoticket;
+    }
+
+    public function setUsuario($usuario){
+        $this->usuario = $usuario;
+    }
+
+    public function setTipoTicket($tipoTicket){
+        $this->tipoTicket = $tipoTicket;
     }
 
 }

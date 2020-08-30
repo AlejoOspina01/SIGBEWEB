@@ -11,8 +11,9 @@
  <field name="fechacompra" type="datatime" />  
  <field name="valor" type="integer" />  
  <field name="estadoticket" type="string" />
+<field name="tipoTicket" type="string" />
   <many-to-one field="usuario" target-entity="Usuarios">
-            <join-column name="identificacion" referenced-column-name="id" />
+            <join-column name="usuario_id" referenced-column-name="identificacion" />
         </many-to-one>   
 
         </entity>
