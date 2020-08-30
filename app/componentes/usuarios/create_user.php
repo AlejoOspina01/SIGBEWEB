@@ -17,15 +17,14 @@ $propiedadesUser = get_object_vars($stdPropUser['data']);
 
 
 $saldo=0;
-$rol=1;
-$roluser = $entityManager->find('Roles', $rol);
+$roluser = $entityManager->find('Roles', $propiedadesUser['roles']);
 if($roluser === null){
     $roluser = $entityManager->find('Roles', 1);
 }
 $usuario = new Usuarios();
 $usuario->setIdentifacion($propiedadesUser['identificacion']);
 $usuario->setNombre($propiedadesUser['nombre']);
-$usuario->setApellido($propiedadesUser['apellido']);
+$usuario->setApellido($propiedadesUser['apellido']);	
 $usuario->setCodigoEst($propiedadesUser['codigoestudiante']);
 $usuario->setCorreo($propiedadesUser['correo']);
 $usuario->setContrasena($propiedadesUser['contrasena']);
