@@ -10,5 +10,3 @@ $tipoBecas->setDescripcion($newDescripcionTipoBeca);
 
 $entityManager->persist($tipoBecas);
 $entityManager->flush();
-
-echo "Created TipoBeca with ID " .  $tipoBecas->getConsecutivo_tipoBeca() . "\n";

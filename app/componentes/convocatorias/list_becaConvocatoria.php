@@ -1,12 +1,7 @@
 <?php
  header('Access-Control-Allow-Origin: *'); 
  header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
- 
 require_once "../../../bootstrap.php";
-
-
 $convocatorias = $entityManager->createQueryBuilder()
 ->select('b.consecutivo_beca,b.descripcion')  
 ->from('Becas', 'b') 
@@ -19,4 +14,3 @@ if ($convocatorias === null) {
 }
 
 echo json_encode($convocatorias);
-header('Content-Type: application/json');

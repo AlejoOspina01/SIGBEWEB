@@ -41,7 +41,7 @@ class Usuarios
     */
     protected $saldo;
     /**
-	 * @ORM\ManyToOne(targetEntity="roles", inversedBy="usuarios", cascade={"persist", "remove" })
+	 * @ORM\ManyToOne(targetEntity="Roles", inversedBy="Usuarios", cascade={"persist", "remove" })
 	 * @ORM\JoinColumn(name="roles_id", referencedColumnName="IdRol",nullable=true)
 	 */
     protected $roles;

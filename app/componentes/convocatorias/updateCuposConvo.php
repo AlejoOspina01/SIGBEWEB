@@ -12,7 +12,7 @@ $propiedadesConvo = get_object_vars($stdConvo['data']);
 
 
 $convocatoriaUpdate = $entityManager->createQueryBuilder();
-$query = $convocatoriaUpdate->update('convocatorias', 'c') 
+$query = $convocatoriaUpdate->update('Convocatorias', 'c') 
         ->set('c.cupo', '?2')
         ->where('c.consecutivo_convocatoria = ?1')
         ->setParameter(1,$propiedadesConvo['idconvo'] )

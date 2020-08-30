@@ -11,8 +11,8 @@
 
           <field name="descripcion" type="string" />
           <one-to-many field="usuarios"
-            target-entity="usuarios"
-            mapped-by="roles"
+            target-entity="Usuarios"
+            mapped-by="Roles"
         />
       </entity>
 </doctrine-mapping>

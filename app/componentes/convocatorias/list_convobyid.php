@@ -29,5 +29,3 @@ if ($convobuscada === null) {
     
 
 echo json_encode($convoarray);
-
-header('Content-Type: application/json');

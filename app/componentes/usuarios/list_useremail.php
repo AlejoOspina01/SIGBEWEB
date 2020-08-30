@@ -27,5 +27,3 @@ if ($usuario === null) {
     );
 
 echo json_encode($userarray);
-
-header('Content-Type: application/json');

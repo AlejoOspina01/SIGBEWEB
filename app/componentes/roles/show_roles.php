@@ -9,5 +9,3 @@ if ($rol === null) {
     echo "No rol found.\n";
     exit(1);
 }
-
-echo sprintf("-%s\n", $rol->getdescripcion());

@@ -15,7 +15,7 @@
           <field name="contrasena" type="string" />
           <field name="saldo" type="integer" />
           <many-to-one field="roles" target-entity="Roles">
-            <join-column name="IdRol" referenced-column-name="id" />
+            <join-column name="roles_id" referenced-column-name="IdRol" />
         </many-to-one>
       </entity>
 </doctrine-mapping>

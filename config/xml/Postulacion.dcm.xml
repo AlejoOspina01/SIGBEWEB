@@ -16,11 +16,11 @@
           <field name="cantModificaciones" type="integer" />
 
           <many-to-one field="usuario" target-entity="Usuarios">
-            <join-column name="identificacion" referenced-column-name="id" />
+            <join-column name="usuario_iden" referenced-column-name="identificacion" />
         </many-to-one>
 
           <many-to-one field="convocatoria" target-entity="Convocatorias">
-            <join-column name="consecutivo_convocatoria" referenced-column-name="id" />
+            <join-column name="consecutivo_convo" referenced-column-name="consecutivo_convocatoria" />
         </many-to-one>
       </entity>
 </doctrine-mapping>

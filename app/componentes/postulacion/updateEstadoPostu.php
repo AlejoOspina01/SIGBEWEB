@@ -12,7 +12,7 @@ $propiedadesPostu = get_object_vars($stdConvo['data']);
 
 
 $postulacionUpdate = $entityManager->createQueryBuilder();
-$query = $postulacionUpdate->update('postulacion', 'p') 
+$query = $postulacionUpdate->update('Postulacion', 'p') 
         ->set('p.estado_postulacion', '?2')
         ->where('p.consecutivo_postulacion = ?1')
         ->setParameter(1,$propiedadesPostu['idpostu'] )

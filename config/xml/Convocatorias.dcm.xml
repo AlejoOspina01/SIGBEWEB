@@ -12,10 +12,10 @@
           <field name="fecha_fin" type="datetime" />
           <field name="estado_convocatoria" type="string" />
         <many-to-one field="becas" target-entity="Becas">
-            <join-column name="consecutivo_beca" referenced-column-name="id" />
+            <join-column name="becasid" referenced-column-name="consecutivo_beca" />
         </many-to-one>
-        <many-to-one field="periodosacademicos" target-entity="Periodos_academicos">
-            <join-column name="consecutivo_periodo" referenced-column-name="id" />
+        <many-to-one field="periodosacademicos" target-entity="Periodosacademicos">
+            <join-column name="periodosacademicosid" referenced-column-name="consecutivo_periodo" />
         </many-to-one>
       </entity>
 </doctrine-mapping>

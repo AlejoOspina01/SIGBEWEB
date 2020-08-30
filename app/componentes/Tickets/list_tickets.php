@@ -7,7 +7,7 @@
 
  $identificacion=$_GET["identificacion"];
 
- $tickets =$entityManager->createQuery('select u from tickets u where u = u')
+ $tickets =$entityManager->createQuery('select u from Tickets u')
 ->getResult();
 
 if ($tickets === null) {
@@ -34,10 +34,4 @@ for($i=0; $i< sizeof($tickets); $i++){
                     );
 }
 }
-
-
-
-
 echo json_encode($arraytickets);
-
-header('Content-Type: application/json');

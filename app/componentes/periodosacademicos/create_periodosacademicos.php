@@ -1,4 +1,6 @@
 <?php
+ header('Access-Control-Allow-Origin: *'); 
+ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 // rol.php <name>
 require_once "../../../bootstrap.php";
 
@@ -14,5 +16,3 @@ $periodosacademicos->setFechaFin( new \DateTime('now'));
 
 $entityManager->persist($periodosacademicos);
 $entityManager->flush();
-
-echo "Created Periodoacademico with ID " .  $periodosacademicos->getConsecutivo_periodo() . "\n";

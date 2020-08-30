@@ -14,7 +14,7 @@ $propiedadesSaldo = get_object_vars($stdSaldo['data']);
 $newId = $_GET["id"];*/
 
 $usuarioUpdate = $entityManager->createQueryBuilder();
-$query = $usuarioUpdate->update('usuarios', 'u') 
+$query = $usuarioUpdate->update('Usuarios', 'u') 
         ->set('u.saldo', '?1')
         ->set('u.correo', '?3')
         ->set('u.codigoestudiante', '?4')
@@ -35,5 +35,3 @@ if ($usuarioUpdate === null) {
     echo "Fallo";    
     exit(1);
 }
-
-header('Content-Type: application/json');

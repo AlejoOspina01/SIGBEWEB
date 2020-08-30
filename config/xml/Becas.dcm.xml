@@ -11,7 +11,7 @@
           <field name="descripcion" type="string" />
 
           <many-to-one field="tipobecas" target-entity="TipoBecas">
-            <join-column name="consecutivo_TipoBeca" referenced-column-name="id" />
+            <join-column name="tipobecaid" referenced-column-name="consecutivo_TipoBeca" />
         </many-to-one>
       </entity>
 </doctrine-mapping>

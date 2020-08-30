@@ -18,4 +18,3 @@ if ($tipobeca === null) {
 }
 
 echo json_encode($tipobeca);
-header('Content-Type: application/json');

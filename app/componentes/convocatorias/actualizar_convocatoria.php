@@ -15,7 +15,7 @@ $propiedadesConvo = get_object_vars($stdConvo['data']);
 //$newConsecutivoConvocatoria = $_GET["consecutivoconvocatoria"];
 
 $convocatoriaUpdate = $entityManager->createQueryBuilder();
-$query = $convocatoriaUpdate->update('convocatorias', 'c') 
+$query = $convocatoriaUpdate->update('Convocatorias', 'c') 
         ->set('c.cupo', '?1')
         ->set('c.becas', '?3')
         ->set('c.periodosacademicos', '?4')
@@ -33,24 +33,8 @@ $query = $convocatoriaUpdate->update('convocatorias', 'c')
         ->getQuery();
         $execute = $query->execute();
 
-        //->set('c.fecha_inicio', '?3')
-        //->set('u.correo', '?3')
-        //->set('u.codigoestudiante', '?4')
-        //->set('u.nombre', '?5')
-        //->set('u.apellido', '?6')
-        
-        //->setParameter(2, $propiedadesSaldo['identificacion'])
-        //->setParameter(3, $propiedadesSaldo['correo'])
-        //->setParameter(4, $propiedadesSaldo['codigoestudiante'])
-        //->setParameter(5, $propiedadesSaldo['nombre'])
-        //->setParameter(6, $propiedadesSaldo['apellido'])
-        
-
 if ($convocatoriaUpdate === null) {
     echo "No usuario found.\n";
     echo "Fallo";    
     exit(1);
 }
-echo "Actualizo";    
-echo json_encode($convocatoriaUpdate);
-header('Content-Type: application/json');

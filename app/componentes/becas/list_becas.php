@@ -1,9 +1,6 @@
 <?php
  header('Access-Control-Allow-Origin: *'); 
- header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
- 
+ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept"); 
 require_once "../../../bootstrap.php";
 
 $becas = $entityManager->createQueryBuilder()
@@ -18,4 +15,3 @@ if ($becas === null) {
 }
 
 echo json_encode($becas);
-header('Content-Type: application/json');

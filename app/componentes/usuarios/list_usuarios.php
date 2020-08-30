@@ -17,4 +17,3 @@ if ($usuario === null) {
 }
 
 echo json_encode($usuario);
-header('Content-Type: application/json');
