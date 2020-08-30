@@ -16,6 +16,10 @@ class Periodosacademicos
     *@ORM\GeneratedValue
 */
     protected $consecutivo_periodo;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $descripcion;
      /** 
     *@ORM\Column(type="datetime") 
     */
@@ -30,6 +34,10 @@ class Periodosacademicos
         return $this->consecutivo_periodo;
     }
 
+    public function getDescripcion(){
+        return $this->descripcion;
+    }
+
     public function getFechaInicio()
     {
         return $this->fecha_inicio;
@@ -38,7 +46,9 @@ class Periodosacademicos
     {
         return $this->fecha_fin;
     }
-
+    public function setDescripcion($descripcion){
+        $this->descripcion = $descripcion;
+    }
     public function setFechaInicio($fechaInicio)
     {
         $this->fecha_inicio = $fechaInicio;
