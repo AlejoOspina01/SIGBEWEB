@@ -24,6 +24,7 @@ $postulacion->setEstrato($propiedadesPostu['estrato']);
 $postulacion->setEstado_postulacion($propiedadesPostu['estado_postulacion']);
 $postulacion->setUsuario($encontrarUser);
 $postulacion->setConvocatoria($encontrarConvo);
+$postulacion->setCantmodificaciones(0);
 
 
 $entityManager->persist($postulacion);
