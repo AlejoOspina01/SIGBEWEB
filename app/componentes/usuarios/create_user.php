@@ -1,7 +1,7 @@
 <?php
 // rol.php <name>
 header('Access-Control-Allow-Origin: *'); 
- header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 require_once "../../../bootstrap.php";
 //agarra lo del post
 $postdata = file_get_contents("php://input");
@@ -31,6 +31,7 @@ $usuario->setContrasena($propiedadesUser['contrasena']);
 $usuario->setSaldo($saldo);
 //$usuario->setRol($roldeuser);
 $usuario->setIdRol($roluser);
+$usuario->setEstadouser($propiedadesUser['estadouser']);
 
 
 $entityManager->persist($usuario);
