@@ -23,7 +23,8 @@ if ($usuario === null) {
       'codigoestudiante'          => $usuario->getCodigoEst(),
       'contrasena'     => $usuario->getContrasena(),
       'saldo'     => $usuario->getSaldo(),
-      'roles'  => $usuario->getIdRol()->getIdRol()
+      'roles'  => $usuario->getIdRol()->getIdRol(),
+      'estadouser' => $usuario->getEstadouser()
     );
 
 echo json_encode($userarray);

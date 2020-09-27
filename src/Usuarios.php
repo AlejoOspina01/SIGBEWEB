@@ -45,6 +45,10 @@ class Usuarios
 	 * @ORM\JoinColumn(name="roles_id", referencedColumnName="IdRol",nullable=true)
 	 */
     protected $roles;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $estadouser;
 
     /* public function __construct($identificacion, $nombre,$apellido,$correo,$codigoestudiante,$contrasena,$saldo,$roles)
     {
@@ -61,6 +65,9 @@ class Usuarios
 
 	public function getIdentifacion(){
 		return $this->identificacion;
+	}
+	public function getEstadouser(){
+		return $this->estadouser;
 	}
 	public function getNombre(){
 		return $this->nombre;
@@ -109,5 +116,8 @@ class Usuarios
 	}
 	public function setIdRol($rol){
 		return $this->roles = $rol;
+	}
+	public function setEstadouser($estadouser){
+		$this->estadouser = $estadouser;
 	}
 }
