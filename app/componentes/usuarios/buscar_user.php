@@ -21,6 +21,7 @@ for($i=0; $i< sizeof($usuario); $i++){
       'apellido'      => $usuario[$i]->getApellido(),
       'correo'         => $usuario[$i]->getCorreo(),
       'codigoestudiante'          => $usuario[$i]->getCodigoEst(),
+      'saldo'          => $usuario[$i]->getSaldo(),
       'estadoestudiante'     => $usuario[$i]->getEstadouser(),
     );
 }
