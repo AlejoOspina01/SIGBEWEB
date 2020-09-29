@@ -8,18 +8,20 @@ require_once "../../../bootstrap.php";
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
-$stdSaldo = get_object_vars($request);
+$stdSaldoUpdate = get_object_vars($request);
+$propiedadesSaldoUpdate = get_object_vars($stdSaldoUpdate['data']);
 
 /*$newSaldo = $_GET["saldo"];
-$newId = $_GET["id"];*/
+$newId = $_GET["codigoestudiante"];*/
 
 $usuarioUpdate = $entityManager->createQueryBuilder();
+
 $query = $usuarioUpdate->update('Usuarios', 'u') 
         ->set('u.saldo', '?1')
-        ->where('u.identificacion = ?2')
-        ->setParameter(1, $stdSaldo['saldo'])
-        ->setParameter(2, $stdSaldo['idUser'])
-        ->getQuery();
+        ->where('u.codigoestudiante = ?2')
+        ->setParameter(1, $propiedadesSaldoUpdate['saldo'] )
+        ->setParameter(2, $propiedadesSaldoUpdate['codigoestudiante'])
+        ->getQuery();        
 $execute = $query->execute();
 
 if ($usuarioUpdate === null) {
