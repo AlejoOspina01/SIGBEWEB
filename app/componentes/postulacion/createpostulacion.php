@@ -21,7 +21,18 @@ $postulacion->setPromedio($propiedadesPostu['promedio']);
 $postulacion->setFechapostulacion( new \DateTime('now'));
 $postulacion->setSemestre($propiedadesPostu['semestre']);
 $postulacion->setEstrato($propiedadesPostu['estrato']);
-$postulacion->setEstado_postulacion($propiedadesPostu['estado_postulacion']);
+$postulacion->setEstado_postulacion('En espera');
+$postulacion->setComentPsicologa('');
+// Booleanos
+$postulacion->setD10(false);
+$postulacion->setFactservicio(false);
+$postulacion->setCartapeticion(false);
+$postulacion->setCarnetestudiante(false);
+$postulacion->setCedulaPadre(false);
+$postulacion->setCedulamadre(false);
+$postulacion->setPromedioacumulado(false);
+$postulacion->setTabulado(false);
+
 $postulacion->setUsuario($encontrarUser);
 $postulacion->setConvocatoria($encontrarConvo);
 $postulacion->setCantmodificaciones(0);
