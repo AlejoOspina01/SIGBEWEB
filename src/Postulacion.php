@@ -40,6 +40,42 @@ class Postulacion
      *@ORM\Column(type="integer") 
      */
     protected $cantModificaciones;
+    /** 
+     *@ORM\Column(type="boolean") 
+     */
+    protected $d10;
+    /** 
+     *@ORM\Column(type="boolean") 
+     */
+    protected $factservicio;
+    /** 
+     *@ORM\Column(type="boolean") 
+     */
+    protected $cartapeticion;
+    /** 
+     *@ORM\Column(type="boolean") 
+     */
+    protected $carnetestudiante;
+    /** 
+     *@ORM\Column(type="boolean") 
+     */
+    protected $cedulapadre;
+    /** 
+     *@ORM\Column(type="boolean") 
+     */
+    protected $cedulamadre;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $comentpsicologa;
+    /** 
+     *@ORM\Column(type="boolean") 
+     */
+    protected $promedioacumulado;
+    /** 
+     *@ORM\Column(type="boolean") 
+     */
+    protected $tabulado;
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="Postulacion", cascade={"persist", "remove" })
@@ -82,6 +118,37 @@ class Postulacion
     public function getCantmodificaciones(){
         return $this->cantModificaciones;
     }
+    public function getComentPsicologa(){
+        return $this->comentpsicologa;
+    }
+
+    // BOOLEANOS
+
+    public function getD10(){
+        return $this->d10;
+    }
+    public function getFactservicio(){
+        return $this->factservicio;
+    }
+    public function getCartapeticion(){
+        return $this->cartapeticion;
+    }
+    public function getCarnetestudiante(){
+        return $this->carnetestudiante;
+    }
+    public function getCedulaPadre(){
+        return $this->cedulapadre;
+    }
+    public function getCedulamadre(){
+        return $this->cedulamadre;
+    }
+    public function getPromedioacumulado(){
+        return $this->promedioacumulado;
+    }
+    public function getTabulado(){
+        return $this->tabulado;
+    }
+
 
     // Setters
 
@@ -111,6 +178,35 @@ class Postulacion
     }
     public function setCantmodificaciones($cantModificaciones){
         $this->cantModificaciones = $cantModificaciones;
+    }
+    public function setComentPsicologa($comentpsicologa){
+        $this->comentpsicologa = $comentpsicologa;
+    }
+
+    // BOOLEANOS SETTERS
+    public function setD10($d10){
+        $this->d10 =$d10;
+    }
+    public function setFactservicio($factservicio){
+        $this->factservicio = $factservicio;
+    }
+    public function setCartapeticion($cartapeticion){
+        $this->cartapeticion = $cartapeticion;
+    }
+    public function setCarnetestudiante($carnetestudiante){
+        $this->carnetestudiante = $carnetestudiante;
+    }
+    public function setCedulaPadre($cedulapadre){
+        $this->cedulapadre =$cedulapadre;
+    }
+    public function setCedulamadre($cedulamadre){
+        $this->cedulamadre = $cedulamadre;
+    }
+    public function setPromedioacumulado($promedioacumulado){
+        $this->promedioacumulado = $promedioacumulado;
+    }
+    public function setTabulado($tabulado){
+        $this->tabulado = $tabulado;
     }
 
 
