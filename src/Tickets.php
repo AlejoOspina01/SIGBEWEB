@@ -21,11 +21,11 @@ class Tickets{
 	  /** 
      *@ORM\Column(type="integer") 
      */
-    protected $valor;
+      protected $valor;
      /** 
      *@ORM\Column(type="string") 
      */
-    protected $estadoticket;
+     protected $estadoticket;
     /** 
      *@ORM\Column(type="string") 
      */
@@ -35,53 +35,68 @@ class Tickets{
 	 * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="Tickets", cascade={"persist", "remove" })
 	 * @ORM\JoinColumn(name="usuario_id", referencedColumnName="identificacion",nullable=true)
 	 */
-	 protected $usuario;
+    protected $usuario;
 
-	 public function getConsecutivoTicket(){
-		return $this->consecutivoticket;
-	}
+    /**
+     * @ORM\ManyToOne(targetEntity="CuposTickets", inversedBy="Tickets", cascade={"persist", "remove" })
+     * @ORM\JoinColumn(name="cupoticket_id", referencedColumnName="consecutivo_cupostickets",nullable=true)
+     */
+    protected $cupostickets;
 
-	public function getFechaCompra(){
-		return $this->fechacompra;
-	}
+    public function getConsecutivoTicket(){
+      return $this->consecutivoticket;
+  }
 
-	public function getUsuario(){
-		return $this->usuario;
-	}
-	public function getValor(){
-		return $this->valor;
-	}
+  public function getFechaCompra(){
+      return $this->fechacompra;
+  }
 
-	public function getEstado(){
-		return $this->estadoticket;
-	}
+  public function getUsuario(){
+      return $this->usuario;
+  }
+  public function getValor(){
+      return $this->valor;
+  }
 
-    public function getTipoTicket(){
-        return $this->tipoTicket;
-    }
+  public function getEstado(){
+      return $this->estadoticket;
+  }
 
-	public function setConsecutivoTicket($consecutivoticket){
-      $this->consecutivoticket = $consecutivoticket;
-    } 
+  public function getTipoTicket(){
+    return $this->tipoTicket;
+}
 
-    public function setFechaCompra($fechacompra){
-      $this->fechacompra = $fechacompra;
-    } 
-    
-    public function setValor($valor){
-      $this->valor = $valor;
-    }
+public function getCupostickets(){
+    return $this->cupostickets;
+}
 
-    public function setEstado($estadoticket){
-      $this->estadoticket = $estadoticket;
-    }
+    //Establecer valores 
+public function setConsecutivoTicket($consecutivoticket){
+  $this->consecutivoticket = $consecutivoticket;
+}
 
-    public function setUsuario($usuario){
-        $this->usuario = $usuario;
-    }
+public function setCupostickets($cupostickets){
+  $this->cupostickets = $cupostickets;
+}  
 
-    public function setTipoTicket($tipoTicket){
-        $this->tipoTicket = $tipoTicket;
-    }
+public function setFechaCompra($fechacompra){
+  $this->fechacompra = $fechacompra;
+} 
+
+public function setValor($valor){
+  $this->valor = $valor;
+}
+
+public function setEstado($estadoticket){
+  $this->estadoticket = $estadoticket;
+}
+
+public function setUsuario($usuario){
+    $this->usuario = $usuario;
+}
+
+public function setTipoTicket($tipoTicket){
+    $this->tipoTicket = $tipoTicket;
+}
 
 }

@@ -1,6 +1,7 @@
 <?php
- header('Access-Control-Allow-Origin: *'); 
- header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept"); 
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept"); 
 require_once "../../../bootstrap.php";
 
 $becas = $entityManager->createQueryBuilder()
@@ -10,8 +11,8 @@ $becas = $entityManager->createQueryBuilder()
 ->getArrayResult();
 
 if ($becas === null) {
-    echo "No hay becas found.\n";
-    exit(1);
+	echo "No hay becas found.\n";
+	exit(1);
 }
 
 echo json_encode($becas);
