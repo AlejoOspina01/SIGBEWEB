@@ -1,6 +1,6 @@
 <?php
- header('Access-Control-Allow-Origin: *'); 
- header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 require_once "../../../bootstrap.php";
 
 
@@ -9,20 +9,22 @@ $request = json_decode($postdata);
 
 
 $stdPropTickets = get_object_vars($request);
-//$propiedadesTickets = get_object_vars($stdPropTickets['data']);
+$propiedadesTickets = get_object_vars($stdPropTickets['data']);
 
-$encontrarUsr = $entityManager->find('Usuarios',$stdPropTickets['idUser']);
+$encontrarUsr = $entityManager->find('Usuarios',$propiedadesTickets['idUser']);
+$encontrarAsign = $entityManager->find('CuposTickets',$propiedadesTickets['idAsign']);
 
- $tickets = new Tickets();
- $tickets->setFechaCompra(new \DateTime( 'now',  new DateTimeZone( 'America/Bogota' ) ));
- $tickets->setValor($stdPropTickets['valorticket'] );
- $tickets->setTipoTicket($stdPropTickets['tipoTicket']);
- $tickets->setEstado('Sin usar');
- $tickets->setUsuario($encontrarUsr);
+$tickets = new Tickets();
+$tickets->setFechaCompra(new \DateTime( 'now',  new DateTimeZone( 'America/Bogota' ) ));
+$tickets->setValor($propiedadesTickets['valorticket'] );
+$tickets->setTipoTicket($propiedadesTickets['tipoTicket']);
+$tickets->setEstado('Sin usar');
+$tickets->setUsuario($encontrarUsr);
+$tickets->setCupostickets($encontrarAsign);
 
 
- $entityManager->persist($tickets);
- $entityManager->flush();
- 
- $resultadosuccess = array( "resultado" => "Creado exitosamente" );
- echo json_encode($resultadosuccess);
+$entityManager->persist($tickets);
+$entityManager->flush();
+
+$resultadosuccess = array( "resultado" => "Creado exitosamente" );
+echo json_encode($resultadosuccess);
