@@ -1,6 +1,6 @@
 <?php
- header('Access-Control-Allow-Origin: *'); 
- header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 // rol.php <name>
 require_once "../../../bootstrap.php";
 
@@ -21,6 +21,7 @@ $periodosacademicos = new Periodosacademicos();
 $periodosacademicos ->setDescripcion($propiedadesPeriodo['descripcion']);
 $periodosacademicos->setFechaInicio( $fechainicial);
 $periodosacademicos->setFechaFin( $fechafin);
+$periodosacademicos->setEstadoPeriodo(true);
 
 
 $entityManager->persist($periodosacademicos);
