@@ -24,19 +24,19 @@ $encontrarBeca = $entityManager->find('Becas',$propiedadesConvo['becas']);
 
 $fechainicial = new \DateTime($convertfechainicial);
 $fechafin = new \DateTime($convertfechafin);
-// $encontrarPeriodo = $entityManager->find('Periodosacademicos',$propiedadesConvo['periodo']);
+$encontrarPeriodo = $entityManager->find('Periodosacademicos',$propiedadesConvo['periodo']);
 
-// $convocatorias = new Convocatorias();
-// $convocatorias->setEstadoConvocatoria($propiedadesConvo['estadoconvocatoria']);
-// $convocatorias->setCupo($propiedadesConvo['cupo']);
-// $convocatorias->setConsecutivoBeca($encontrarBeca);
-// $convocatorias->setConsecutivoPeriodo($encontrarPeriodo);
-// $convocatorias->setFechaInicio( new \DateTime($convertfechainicial));
-// $convocatorias->setFechaFin( new \DateTime($convertfechafin));
+$convocatorias = new Convocatorias();
+$convocatorias->setEstadoConvocatoria($propiedadesConvo['estadoconvocatoria']);
+$convocatorias->setCupo($propiedadesConvo['cupo']);
+$convocatorias->setConsecutivoBeca($encontrarBeca);
+$convocatorias->setConsecutivoPeriodo($encontrarPeriodo);
+$convocatorias->setFechaInicio( new \DateTime($convertfechainicial));
+$convocatorias->setFechaFin( new \DateTime($convertfechafin));
 
 
-// $entityManager->persist($convocatorias);
-// $entityManager->flush();
+$entityManager->persist($convocatorias);
+$entityManager->flush();
 
 if($propiedadesConvo['enviarCorreo'] == 1){
 	$message = "<!DOCTYPE html>
