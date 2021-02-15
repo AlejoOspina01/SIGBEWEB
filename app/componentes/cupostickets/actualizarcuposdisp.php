@@ -13,13 +13,14 @@ $propiedadesSaldoUpdate = get_object_vars($stdCuposDisp['data']);
 
 /*$newSaldo = $_GET["saldo"];
 $newId = $_GET["codigoestudiante"];*/
-
 $cuposTicketsupdate = $entityManager->createQueryBuilder();
 
 $query = $cuposTicketsupdate->update('CuposTickets', 'u') 
-->set('u.cuposdisponibles', '?1')
-->where('u.consecutivo_cupostickets = ?2')
-->setParameter(1, $propiedadesSaldoUpdate['cuposnuevos'] )
-->setParameter(2, $propiedadesSaldoUpdate['conceasign'])
+->set('u.cuposdisponiblesalmuerzo', '?1')
+->set('u.cuposdisponiblesrefrigerio', '?2')
+->where('u.consecutivo_cupostickets = ?3')
+->setParameter(1, $propiedadesSaldoUpdate['cuposalmuerzo'] )
+->setParameter(2, $propiedadesSaldoUpdate['cuposrefrigerio'] )
+->setParameter(3, $propiedadesSaldoUpdate['conceasign'])
 ->getQuery();        
 $execute = $query->execute();

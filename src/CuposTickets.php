@@ -21,15 +21,15 @@ protected $consecutivo_cupostickets;
      */
     protected $fechaasignacion;
 
-     /** 
+    /** 
     *@ORM\Column(type="integer") 
     */
-     protected $cupostotal;
+    protected $cuposdisponiblesalmuerzo;    
 
     /** 
     *@ORM\Column(type="integer") 
     */
-    protected $cuposdisponibles;    
+    protected $cuposdisponiblesrefrigerio;  
 
 
     public function getConsecutivo_cupostickets(){
@@ -38,11 +38,11 @@ protected $consecutivo_cupostickets;
     public function getFechaAsignacion(){
     	return $this->fechaasignacion;
     }
-    public function getCuposTotales(){
-    	return $this->cupostotal;
+    public function getCuposDisponiblesAlmuerzos(){
+    	return $this->cuposdisponiblesalmuerzo;
     }
-    public function getCuposDisponibles(){
-    	return $this->cuposdisponibles;
+    public function getCuposDisponiblesRefrigerio(){
+        return $this->cuposdisponiblesrefrigerio;
     }
 
 	//Establecer valores
@@ -52,11 +52,11 @@ protected $consecutivo_cupostickets;
     public function setFechaAsignacion($fechaasignacion){
     	return $this->fechaasignacion = $fechaasignacion;
     }
-    public function setCuposTotales($cupostotal){
-    	$this->cupostotal = $cupostotal;
+    public function setCuposDisponiblesAlmuerzo($cuposdisponiblesalmuerzo){
+    	return $this->cuposdisponiblesalmuerzo = $cuposdisponiblesalmuerzo;
     }
-    public function setCuposDisponibles($cuposdisponibles){
-    	return $this->cuposdisponibles = $cuposdisponibles;
+    public function setCuposDisponiblesRefrigerio($cuposdisponiblesrefrigerio){
+        return $this->cuposdisponiblesrefrigerio = $cuposdisponiblesrefrigerio;
     }
 
 }

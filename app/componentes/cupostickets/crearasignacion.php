@@ -16,8 +16,8 @@ $fecha = new DateTime($propiedadesAsign['fecha']);
 
 $cupoTicket = new CuposTickets();
 $cupoTicket->setFechaAsignacion($fecha);
-$cupoTicket->setCuposTotales($propiedadesAsign['cupostotal']);
-$cupoTicket->setCuposDisponibles($propiedadesAsign['cupostotal']);
+$cupoTicket->setCuposDisponiblesAlmuerzo($propiedadesAsign['cuposalmuerzo']);
+$cupoTicket->setCuposDisponiblesRefrigerio($propiedadesAsign['cuposrefrigerio']);
 
 $entityManager->persist($cupoTicket);
 $entityManager->flush();
