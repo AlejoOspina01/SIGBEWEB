@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 require_once "../../../bootstrap.php";
 
 $asignaciones = $entityManager->createQueryBuilder()
-->select('asg.consecutivo_cupostickets, asg.fechaasignacion','asg.cupostotal','asg.cuposdisponibles')  // select * 
+->select('asg.consecutivo_cupostickets, asg.fechaasignacion','asg.cuposdisponiblesalmuerzo','asg.cuposdisponiblesrefrigerio')  // select * 
 ->from('CuposTickets', 'asg') // from Usuarios u 
 ->getQuery()
 ->getArrayResult();

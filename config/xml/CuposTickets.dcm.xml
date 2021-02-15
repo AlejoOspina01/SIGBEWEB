@@ -11,6 +11,7 @@
 
 		<field name="fechaasignacion" type="date" />
 		<field name="cupostotal" type="integer" />
-		<field name="cuposdisponibles" type="integer" />
+		<field name="cuposdisponiblesalmuerzo" type="integer" />
+		<field name="cuposdisponiblesrefrigerio" type="integer" />
 	</entity>
 </doctrine-mapping>

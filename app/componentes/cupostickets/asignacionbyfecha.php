@@ -19,8 +19,8 @@ if ($cupoasignacion === null) {
 $cupoticketfound =  array(
 	'concecutivo'     => $cupoasignacion->getConsecutivo_cupostickets(),
 	'fecha'         => $cupoasignacion->getFechaAsignacion(),
-	'cupostotal'      => $cupoasignacion->getCuposTotales(),
-	'cuposdisponibles'         => $cupoasignacion->getCuposDisponibles()
+	'cuposalmuerzo'      => $cupoasignacion->getCuposDisponiblesAlmuerzos(),
+	'cuposrefrigerio'         => $cupoasignacion->getCuposDisponiblesRefrigerio()
 );
 
 echo json_encode($cupoticketfound);
