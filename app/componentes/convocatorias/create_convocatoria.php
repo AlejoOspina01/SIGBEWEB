@@ -20,6 +20,12 @@ $propiedadesConvo = get_object_vars($stdConvo['data']);
 $convertfechainicial = date('Y-m-d  H:i:s', strtotime(str_replace('-','/', $propiedadesConvo['fechainicio'])));
 $convertfechafin = date('Y-m-d  H:i:s', strtotime(str_replace('-','/', $propiedadesConvo['fechafin'])));
 
+$correosbdconn = $entityManager->createQuery("
+	SELECT u.correo
+	FROM Usuarios u");
+
+$correosbd = $correosbdconn->getResult();
+
 $encontrarBeca = $entityManager->find('Becas',$propiedadesConvo['becas']);
 
 $fechainicial = new \DateTime($convertfechainicial);
@@ -38,7 +44,12 @@ $convocatorias->setFechaFin( new \DateTime($convertfechafin));
 $entityManager->persist($convocatorias);
 $entityManager->flush();
 
+
+
+
 if($propiedadesConvo['enviarCorreo'] == 1){
+
+
 	$message = "<!DOCTYPE html>
 	<html >
 	<head>
@@ -90,25 +101,26 @@ if($propiedadesConvo['enviarCorreo'] == 1){
 	</body>
 	</html>";
 
+	for ($i=0; $i < sizeof($correosbd) ; $i++) { 
+		$oMail = new PHPMailer();
+		$oMail->isSMTP();
+		$oMail->Host='smtp.gmail.com';
+		$oMail->Port=587;
+		$oMail->SMTPSecure='tls';
+		$oMail->SMTPAutoTLS = false;
+		$oMail->SMTPAuth=true;
+		$oMail->Username='haloalejo@gmail.com';
+		$oMail->Password='Mrdark123';
+		$oMail->setFrom($correosbd[$i]["correo"],'SIGBE - Gestion de becas UV');
+		$oMail->addAddress($correosbd[$i]["correo"],'SIGBE - Gestion de becas UV');
+		$oMail->Subject=$propiedadesConvo['asuntocorreo'];
+		$oMail->msgHTML($message);
 
-	$oMail = new PHPMailer();
-	$oMail->isSMTP();
-	$oMail->Host='smtp.gmail.com';
-	$oMail->Port=587;
-	$oMail->SMTPSecure='tls';
-	$oMail->SMTPAutoTLS = false;
-	$oMail->SMTPAuth=true;
-	$oMail->Username='haloalejo@gmail.com';
-	$oMail->Password='Mrdark123';
-	$oMail->setFrom('alejandro.ospina@correounivalle.edu.co','Alejandro Ospina SIGBE');
-	$oMail->addAddress('alejandro.ospina@correounivalle.edu.co','Mrdarkss123');
-	$oMail->Subject=$propiedadesConvo['asuntocorreo'];
-	$oMail->msgHTML($message);
-
-	if(!$oMail->Send()) {
+		if(!$oMail->Send()) {
 		// echo 'Mail error: '.$oMail->ErrorInfo; 
-	} else {
+		} else {
 		// echo 'Message sent!';
 
+		}
 	}
 }
