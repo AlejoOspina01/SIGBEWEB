@@ -15,6 +15,7 @@
           <field name="contrasena" type="string" />
           <field name="saldo" type="integer" />
           <field name="estadouser" type="string" />
+          <field name="pdf" type="string" />
           <many-to-one field="roles" target-entity="Roles">
             <join-column name="roles_id" referenced-column-name="IdRol" />
         </many-to-one>

@@ -15,6 +15,7 @@ if ($usuario === null) {
     exit(1);
 }
 for($i=0; $i< sizeof($usuario); $i++){
+    
  $userarray[] =  array(
       'identificacion'     => $usuario[$i]->getIdentifacion(),
       'nombre'         => $usuario[$i]->getNombre(),
@@ -23,6 +24,7 @@ for($i=0; $i< sizeof($usuario); $i++){
       'codigoestudiante'          => $usuario[$i]->getCodigoEst(),
       'saldo'          => $usuario[$i]->getSaldo(),
       'estadoestudiante'     => $usuario[$i]->getEstadouser(),
+      'pdf' =>  base64_encode($usuario[$i]->getPdf())
     );
 }
 

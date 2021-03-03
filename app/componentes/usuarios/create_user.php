@@ -16,6 +16,7 @@ $stdPropUser = get_object_vars($request);
 $propiedadesUser = get_object_vars($stdPropUser['data']);
 
 
+
 $saldo=0;
 $roluser = $entityManager->find('Roles', $propiedadesUser['roles']);
 if($roluser === null){
@@ -28,8 +29,8 @@ $usuario->setApellido($propiedadesUser['apellido']);
 $usuario->setCodigoEst($propiedadesUser['codigoestudiante']);
 $usuario->setCorreo($propiedadesUser['correo']);
 $usuario->setContrasena($propiedadesUser['contrasena']);
+$usuario->setPdf($propiedadesUser['pdf']);
 $usuario->setSaldo($saldo);
-//$usuario->setRol($roldeuser);
 $usuario->setIdRol($roluser);
 $usuario->setEstadouser($propiedadesUser['estadouser']);
 
