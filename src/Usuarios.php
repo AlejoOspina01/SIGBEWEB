@@ -49,6 +49,11 @@ class Usuarios
      *@ORM\Column(type="string") 
      */
     protected $estadouser;
+	/** 
+     *@ORM\Column(type="string") 
+     */
+    protected $pdf;
+
 
     /* public function __construct($identificacion, $nombre,$apellido,$correo,$codigoestudiante,$contrasena,$saldo,$roles)
     {
@@ -90,6 +95,9 @@ class Usuarios
 	public function getIdRol(){
 		return $this->roles;
 	}
+	public function getPdf(){
+		return $this->pdf;
+	}
 
 
 	//Establecer valores
@@ -110,6 +118,9 @@ class Usuarios
 	}
 	public function setContrasena($contra){
 		return $this->contrasena = $contra;
+	}
+	public function setPdf($subirpdf){
+		return $this->pdf = $subirpdf;
 	}
 	public function setSaldo($sald){
 		return $this->saldo = $sald;
