@@ -1,23 +1,28 @@
 <!-- config/xml/Roles.dcm.xml -->
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
-                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+  https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-      <entity name="Usuarios" table="usuarios">
-          <id name="identificacion" type="integer">
-          </id>
+  <entity name="Usuarios" table="usuarios">
+    <id name="identificacion" type="integer">
+    </id>
 
-          <field name="nombre" type="string" />
-          <field name="apellido" type="string" />
-          <field name="correo" type="string" />
-          <field name="codigoestudiante" type="integer" />
-          <field name="contrasena" type="string" />
-          <field name="saldo" type="integer" />
-          <field name="estadouser" type="string" />
-          <field name="pdf" type="string" />
-          <many-to-one field="roles" target-entity="Roles">
-            <join-column name="roles_id" referenced-column-name="IdRol" />
-        </many-to-one>
-      </entity>
+    <field name="nombre" type="string" />
+    <field name="apellido" type="string" />
+    <field name="correo" type="string" />
+    <field name="contrasena" type="string" />
+    <field name="saldo" type="integer" />
+    <field name="estadouser" type="string" />
+    <field name="pdf" type="string" />
+    <field name="fechanacimiento" type="date" />
+    <field name="zonaresidencial" type="string" />
+    <field name="estrato" type="integer" />
+    <many-to-one field="ciudad" target-entity="Ciudad">
+      <join-column name="ciudadid" referenced-column-name="idciudad" />
+    </many-to-one>
+    <many-to-one field="roles" target-entity="Roles">
+      <join-column name="roles_id" referenced-column-name="IdRol" />
+    </many-to-one>
+  </entity>
 </doctrine-mapping>

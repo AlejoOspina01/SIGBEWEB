@@ -1,12 +1,14 @@
 <?php
- header('Access-Control-Allow-Origin: *'); 
- header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
 
 $convocatorias = $entityManager->createQuery("
-    SELECT u
-    FROM Convocatorias u WHERE u.estado_convocatoria = 'Activo'");
+	SELECT u
+	FROM Convocatorias u WHERE u.estado_convocatoria = 'Activo'");
 
 $convocator = $convocatorias->getResult();
 
@@ -17,14 +19,14 @@ $convosActivas;
 
 for ($i=0; $i < sizeof($convocator); $i++) { 
 	$convosActivas[$i] =  array(
-	   'consecutivoconvo'     => $convocator[$i]->getConsecutivoConvocatoria(),
-       'beca'         => $convocator[$i]->getConsecutivoBeca()->getDescripcion());
+		'consecutivoconvo'     => $convocator[$i]->getConsecutivoConvocatoria(),
+		'beca'         => $convocator[$i]->getConsecutivoBeca()->getDescripcion());
 }
- 
+
 
 if ($convocator === null) {
-    echo "No convomipana found.\n";
-    exit(1);
+	echo "No convomipana found.\n";
+	exit(1);
 }
 
 echo json_encode($convosActivas);
