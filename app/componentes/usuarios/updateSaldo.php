@@ -19,9 +19,9 @@ $usuarioUpdate = $entityManager->createQueryBuilder();
 
 $query = $usuarioUpdate->update('Usuarios', 'u') 
 ->set('u.saldo', '?1')
-->where('u.codigoestudiante = ?2')
+->where('u.identificacion = ?2')
 ->setParameter(1, $propiedadesSaldoUpdate['saldo'] )
-->setParameter(2, $propiedadesSaldoUpdate['codigoestudiante'])
+->setParameter(2, $propiedadesSaldoUpdate['identificacion'])
 ->getQuery();        
 $execute = $query->execute();
 

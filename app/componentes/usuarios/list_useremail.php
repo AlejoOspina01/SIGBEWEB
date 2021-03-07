@@ -22,7 +22,6 @@ $userarray =  array(
   'nombre'         => $usuario->getNombre(),
   'apellido'      => $usuario->getApellido(),
   'correo'         => $usuario->getCorreo(),
-  'codigoestudiante'          => $usuario->getCodigoEst(),
   'contrasena'     => $usuario->getContrasena(),
   'saldo'     => $usuario->getSaldo(),
   'roles'  => $usuario->getIdRol()->getIdRol(),
