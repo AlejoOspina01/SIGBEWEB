@@ -1,9 +1,11 @@
 <?php
- header('Access-Control-Allow-Origin: *'); 
- header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
- 
 require_once "../../../bootstrap.php";
 
 $idConvo = $_GET['idconvo'];
@@ -15,8 +17,8 @@ $postByIdConvo;
 
 for ($i=0; $i < sizeof($Postulacionesresult); $i++) { 
 	$postByIdConvo[$i] =  array(
-	    'consecutivo_postulacion'     => $Postulacionesresult[$i]->getConsecutivo_postulacion(),
-        'promedio'         => $Postulacionesresult[$i]->getPromedio(),
+		'consecutivo_postulacion'     => $Postulacionesresult[$i]->getConsecutivo_postulacion(),
+		'promedio'         => $Postulacionesresult[$i]->getPromedio(),
 		'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d H:i'),
 		'semestre' =>$Postulacionesresult[$i]->getSemestre(),
 		'estrato' =>$Postulacionesresult[$i]->getEstrato() ,
@@ -25,8 +27,8 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 }
 
 if ($postulaciones === null) {
-    echo "No convomipana found.\n";
-    exit(1);
+	echo "No convomipana found.\n";
+	exit(1);
 }
 
 echo json_encode($postByIdConvo);

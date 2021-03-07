@@ -1,8 +1,10 @@
 <?php
-    header('Access-Control-Allow-Origin: *');
-    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    header('Access-Control-Allow-Methods: PUT');
-    require_once "../../../bootstrap.php";
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Access-Control-Allow-Methods: PUT');
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+require_once "../../../bootstrap.php";
     $json = file_get_contents('php://input'); // RECIBE EL JSON DE ANGULAR
     
     $params = json_decode($json); // DECODIFICA EL JSON Y LO GUARADA EN LA VARIABLE
@@ -13,23 +15,23 @@
     $archivo = base64_decode($archivo);
     
    /* $filePath = $_SERVER['DOCUMENT_ROOT']."/sigbeweb/".$nombreArchivo;
-    file_put_contents($filePath, $archivo);*/
+   file_put_contents($filePath, $archivo);*/
 
-    $usuarioUpdate = $entityManager->createQueryBuilder();
+   $usuarioUpdate = $entityManager->createQueryBuilder();
 
-    $query = $usuarioUpdate->update('Usuarios', 'u') 
-            ->set('u.pdf', '?1')
-            ->where('u.codigoestudiante = ?2')
-            ->setParameter(1, $archivo )
-            ->setParameter(2, 1234 )
-            ->getQuery();        
-    $execute = $query->execute();
-    
-    if ($usuarioUpdate === null) {
-        echo "No usuario found.\n";
-        echo "Fallo";    
-        exit(1);
-    }
+   $query = $usuarioUpdate->update('Usuarios', 'u') 
+   ->set('u.pdf', '?1')
+   ->where('u.codigoestudiante = ?2')
+   ->setParameter(1, $archivo )
+   ->setParameter(2, 1234 )
+   ->getQuery();        
+   $execute = $query->execute();
+   
+   if ($usuarioUpdate === null) {
+    echo "No usuario found.\n";
+    echo "Fallo";    
+    exit(1);
+}
 
 
 
@@ -38,10 +40,10 @@
     // class Result {}
     // // GENERA LOS DATOS DE RESPUESTA
     // $response = new Result();
-    
+
     // $response->resultado = 'OK';
     // $response->mensaje = 'SE SUBIO EXITOSAMENTE';
-    
-    header('Content-Type: application/json');
-    
+
+header('Content-Type: application/json');
+
 ?>

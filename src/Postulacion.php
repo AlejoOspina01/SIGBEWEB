@@ -29,10 +29,6 @@ class Postulacion
      */
     protected $semestre;
     /** 
-     *@ORM\Column(type="integer") 
-     */
-    protected $estrato;
-    /** 
      *@ORM\Column(type="string") 
      */
     protected $estado_postulacion;
@@ -40,28 +36,29 @@ class Postulacion
      *@ORM\Column(type="integer") 
      */
     protected $cantModificaciones;
+    //documentos
     /** 
-     *@ORM\Column(type="boolean") 
+     *@ORM\Column(type="string") 
      */
     protected $d10;
     /** 
-     *@ORM\Column(type="boolean") 
+     *@ORM\Column(type="string") 
      */
     protected $factservicio;
     /** 
-     *@ORM\Column(type="boolean") 
+     *@ORM\Column(type="string") 
      */
     protected $cartapeticion;
     /** 
-     *@ORM\Column(type="boolean") 
+     *@ORM\Column(type="string") 
      */
     protected $carnetestudiante;
     /** 
-     *@ORM\Column(type="boolean") 
+     *@ORM\Column(type="string") 
      */
     protected $cedulapadre;
     /** 
-     *@ORM\Column(type="boolean") 
+     *@ORM\Column(type="string") 
      */
     protected $cedulamadre;
     /** 
@@ -69,13 +66,46 @@ class Postulacion
      */
     protected $comentpsicologa;
     /** 
-     *@ORM\Column(type="boolean") 
+     *@ORM\Column(type="string") 
      */
     protected $promedioacumulado;
     /** 
-     *@ORM\Column(type="boolean") 
+     *@ORM\Column(type="string") 
      */
     protected $tabulado;
+    //nuevos
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $constanciaweb;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $certificadovencidad;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $documentoestudiante;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $documentoacudiente;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $formatosolicitudbeneficio;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $diagnosticomedico;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $recibopagomatricula;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $certificadoingresos;
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="Postulacion", cascade={"persist", "remove" })
@@ -103,9 +133,6 @@ class Postulacion
     public function getSemestre(){
         return $this->semestre;
     }
-    public function getEstrato(){
-        return $this->estrato;
-    }
     public function getEstado_postulacion(){
         return $this->estado_postulacion;
     }
@@ -121,6 +148,8 @@ class Postulacion
     public function getComentPsicologa(){
         return $this->comentpsicologa;
     }
+
+    //nuevos
 
     // BOOLEANOS
 
@@ -148,6 +177,31 @@ class Postulacion
     public function getTabulado(){
         return $this->tabulado;
     }
+    public function getConstanciaweb(){
+        return $this->constanciaweb;
+    }
+    public function getCertificadovencindad(){
+        return $this->certificadovencidad;
+    }
+    public function getDocumentoidentidad(){
+        return $this->documentoestudiante;
+    }
+    public function getDocumentoAcudiente(){
+        return $this->documentoacudiente;
+    }
+    public function getFormatosolicitud(){
+        return $this->formatosolicitudbeneficio;
+    }
+    public function getDiagnostico(){
+        return $this->diagnosticomedico;
+    }
+    public function getRecibomatricula(){
+        return $this->recibopagomatricula;
+    }
+    public function getCertificadoIngresos(){
+        return $this->certificadoingresos;
+    }
+
 
 
     // Setters
@@ -163,9 +217,6 @@ class Postulacion
     }
     public function setSemestre($semestre){
         $this->semestre = $semestre;
-    }
-    public function setEstrato($estrato){
-        $this->estrato = $estrato;
     }
     public function setEstado_postulacion($estado_postulacion){
         $this->estado_postulacion = $estado_postulacion;
@@ -208,6 +259,31 @@ class Postulacion
     public function setTabulado($tabulado){
         $this->tabulado = $tabulado;
     }
+    public function setConstanciaweb($constanciaweb){
+        $this->constanciaweb = $constanciaweb;
+    }
+    public function setCertificadovencindad($certificadovencidad){
+        $this->certificadovencidad = $certificadovencidad;
+    }
+    public function setDocumentoidentidad($documentoestudiante){
+        $this->documentoestudiante = $documentoestudiante;
+    }
+    public function setDocumentoAcudiente($documentoacudiente){
+        $this->documentoacudiente = $documentoacudiente;
+    }
+    public function setFormatosolicitud($formatosolicitudbeneficio){
+        $this->formatosolicitudbeneficio = $formatosolicitudbeneficio;
+    }
+    public function setDiagnostico($diagnosticomedico){
+        $this->diagnosticomedico = $diagnosticomedico;
+    }
+    public function setRecibomatricula($recibopagomatricula){
+        $this->recibopagomatricula = $recibopagomatricula;
+    }
+    public function setCertificadoIngresos($certificadoingresos){
+        $this->certificadoingresos = $certificadoingresos;
+    }
+    
 
 
 }
