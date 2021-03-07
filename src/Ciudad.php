@@ -17,13 +17,18 @@ class Ciudad
      *@ORM\Column(type="string") 
      */
     protected $nombre;
+    /** 
+     *@ORM\Column(type="integer") 
+     */
+    protected $codigociudad;
+
     /**
      * @ORM\ManyToOne(targetEntity="Departamento", inversedBy="Ciudad", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="departamentoid", referencedColumnName="iddepartamento",nullable=true)
      */
     protected $departamento;
 
-    public function getIdDepartamento()
+    public function getIdCiudad()
     {
     	return $this->idciudad;
     }
@@ -31,6 +36,10 @@ class Ciudad
     public function getNombre()
     {
     	return $this->nombre;
+    }
+    public function getCodigo()
+    {
+        return $this->codigociudad;
     }
     public function getDepartamento()
     {
