@@ -31,7 +31,7 @@ class Convocatorias
      /** 
      *@ORM\Column(type="integer") 
      */
-    protected $cupo;
+     protected $cupo;
     /**
      * @ORM\ManyToOne(targetEntity="Becas", inversedBy="Convocatorias", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="becasid", referencedColumnName="consecutivo_beca",nullable=true)
@@ -117,99 +117,99 @@ class Convocatorias
     //Datos Convocatoria
     public function getConsecutivoConvocatoria()
     {
-        return $this->consecutivo_convocatoria;
+      return $this->consecutivo_convocatoria;
     }
 
     public function getFechaInicio()
     {
-        return $this->fecha_inicio;
+      return $this->fecha_inicio;
     }
     public function getFechaFin()
     {
-        return $this->fecha_fin;
+      return $this->fecha_fin;
     }
     public function getEstadoConvocatoria()
     {
-        return $this->estado_convocatoria;
+      return $this->estado_convocatoria;
     }
     public function getCupo(){
       return $this->cupo;
     }
     public function getConsecutivoBeca(){
-		return $this->becas;
+      return $this->becas;
     }
     public function getConsecutivoPeriodo(){
-		return $this->periodosacademicos;
-	}
+      return $this->periodosacademicos;
+    }
     //get boolean
     public function getD10(){
       return $this->d10;
-  }
-  public function getFactservicio(){
+    }
+    public function getFactservicio(){
       return $this->factservicio;
-  }
-  public function getCartapeticion(){
+    }
+    public function getCartapeticion(){
       return $this->cartapeticion;
-  }
-  public function getCarnetestudiante(){
+    }
+    public function getCarnetestudiante(){
       return $this->carnetestudiante;
-  }
-  public function getCedulaPadre(){
+    }
+    public function getCedulaPadre(){
       return $this->cedulapadre;
-  }
-  public function getCedulamadre(){
+    }
+    public function getCedulamadre(){
       return $this->cedulamadre;
-  }
-  public function getPromedioacumulado(){
+    }
+    public function getPromedioacumulado(){
       return $this->promedioacumulado;
-  }
-  public function getTabulado(){
+    }
+    public function getTabulado(){
       return $this->tabulado;
-  }
-  public function getConstanciaweb(){
+    }
+    public function getConstanciaweb(){
       return $this->constanciaweb;
-  }
-  public function getCertificadovencindad(){
+    }
+    public function getCertificadovencindad(){
       return $this->certificadovencidad;
-  }
-  public function getDocumentoidentidad(){
+    }
+    public function getDocumentoidentidad(){
       return $this->documentoestudiante;
-  }
-  public function getDocumentoAcudiente(){
+    }
+    public function getDocumentoAcudiente(){
       return $this->documentoacudiente;
-  }
-  public function getFormatosolicitud(){
+    }
+    public function getFormatosolicitud(){
       return $this->formatosolicitudbeneficio;
-  }
-  public function getDiagnostico(){
+    }
+    public function getDiagnostico(){
       return $this->diagnosticomedico;
-  }
-  public function getRecibomatricula(){
+    }
+    public function getRecibomatricula(){
       return $this->recibopagomatricula;
-  }
-  public function getCertificadoIngresos(){
+    }
+    public function getCertificadoIngresos(){
       return $this->certificadoingresos;
-  }
+    }
 
     //Establecer valores
     public function setEstadoConvocatoria($estadoconvocatoria){
       $this->estado_convocatoria = $estadoconvocatoria;
-  }
+    }
     public function setFechaInicio($fechaInicio){
-        $this->fecha_inicio = $fechaInicio;
+      $this->fecha_inicio = $fechaInicio;
     }
     public function setFechaFin($fechaFin){
-        $this->fecha_fin = $fechaFin;
+      $this->fecha_fin = $fechaFin;
     }
     public function setCupo($cupo){
       $this->cupo = $cupo;
     }
     public function setConsecutivoBeca($consecutivoBeca){
-		return $this->becas = $consecutivoBeca;
+      return $this->becas = $consecutivoBeca;
     }
     public function setConsecutivoPeriodo($consecutivoPeriodo){
-		return $this->periodosacademicos = $consecutivoPeriodo;
-	}
+      return $this->periodosacademicos = $consecutivoPeriodo;
+    }
  // BOOLEANOS SETTERS
     public function setD10($d10){
       $this->d10 =$d10;
@@ -259,5 +259,5 @@ class Convocatorias
     public function setCertificadoIngresos($certificadoingresos){
       $this->certificadoingresos = $certificadoingresos;
     }
-        
-}
+    
+  }
