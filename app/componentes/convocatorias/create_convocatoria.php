@@ -44,7 +44,6 @@ $convocatorias->setConsecutivoBeca($encontrarBeca);
 $convocatorias->setConsecutivoPeriodo($encontrarPeriodo);
 $convocatorias->setFechaInicio( new \DateTime($convertfechainicial));
 $convocatorias->setFechaFin( new \DateTime($convertfechafin));
-//booleanos
 $convocatorias->setD10($propiedadesConvo['d10']);
 $convocatorias->setFactservicio($propiedadesConvo['factserv']);
 $convocatorias->setCartapeticion($propiedadesConvo['cartapeti']);
@@ -54,8 +53,8 @@ $convocatorias->setCedulamadre($propiedadesConvo['cedulamadre']);
 $convocatorias->setPromedioacumulado($propiedadesConvo['promedio']);
 $convocatorias->setTabulado($propiedadesConvo['tabulado']);
 $convocatorias->setConstanciaweb($propiedadesConvo['constanciaweb']);
-$convocatorias->setCertificadovencindad($propiedadesConvo['certificadovecindad']);
-$convocatorias->setDocumentoidentidad($propiedadesConvo['documentoidentí']);
+$convocatorias->setCertificadovencindad($propiedadesConvo['certificadovencidad']);
+$convocatorias->setDocumentoidentidad($propiedadesConvo['documentoidenti']);
 $convocatorias->setDocumentoAcudiente($propiedadesConvo['documentoacudiente']);
 $convocatorias->setFormatosolicitud($propiedadesConvo['formatosolicitud']);
 $convocatorias->setDiagnostico($propiedadesConvo['diagnostico']);

@@ -67,11 +67,7 @@ class Convocatorias
     /** 
      *@ORM\Column(type="boolean") 
      */
-    protected $cedulamadre;
-    /** 
-     *@ORM\Column(type="boolean") 
-     */
-    protected $comentpsicologa;
+    protected $cedulamadre;    
     /** 
      *@ORM\Column(type="boolean") 
      */
