@@ -14,7 +14,10 @@ $stdPropPostu = get_object_vars($request);
 $propiedadesPostu = get_object_vars($stdPropPostu['data']);
 
 
-$encontrarUser = $entityManager->find('Usuarios', $propiedadesPostu['usuario']);
+
+$encontrarUser = $entityManager->createQuery("SELECT  u FROM UsuariosCarreras u  WHERE u.codigoestudiante = ?1"    
+)->setParameter(1,$propiedadesPostu['usuario']);
+$Userfound = $encontrarUser->getSingleResult();
 $encontrarConvo = $entityManager->find('Convocatorias', $propiedadesPostu['convocatoria']);
 
 
@@ -42,7 +45,7 @@ $postulacion->setDiagnostico($propiedadesConvo['diagnostico']);
 $postulacion->setRecibomatricula($propiedadesConvo['recibomatricula']);
 $postulacion->setCertificadoIngresos($propiedadesConvo['certificadoingresos']);
 
-$postulacion->setUsuario($encontrarUser);
+$postulacion->setUsuarioCarrera($Userfound->getUsuario());
 $postulacion->setConvocatoria($encontrarConvo);
 $postulacion->setCantmodificaciones(0);
 
