@@ -10,14 +10,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UsuariosCarreras
 {
+
+    /** 
+     *@ORM\Id
+     *@ORM\Column(type="integer")
+     *@ORM\GeneratedValue
+    */
+    protected $idusuariocarrera;
+
     /**
-     * @ORM\Id 
      * @ORM\ManyToOne(targetEntity="Carreras", inversedBy="carreraHasUsuario")
      * @ORM\JoinColumn(name="carreraid", referencedColumnName="codigocarrera",nullable=false)
      */
     protected $carrera;
     /**
-     * @ORM\Id 
      * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="UsuariosCarreras", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="usuarioid", referencedColumnName="identificacion",nullable=false)
      */
@@ -36,6 +42,10 @@ class UsuariosCarreras
         }
     }
 
+    public function getIdUsuarioCarrera()
+    {
+        return $this->idusuariocarrera;
+    }
     public function getCarrera()
     {
         return $this->carrera;

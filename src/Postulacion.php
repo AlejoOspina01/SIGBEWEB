@@ -108,10 +108,10 @@ class Postulacion
     protected $certificadoingresos;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuarios", inversedBy="Postulacion", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="usuario_iden", referencedColumnName="identificacion",nullable=true)
+     * @ORM\ManyToOne(targetEntity="UsuariosCarreras", inversedBy="Postulacion", cascade={"persist", "remove" })
+     * @ORM\JoinColumn(name="usuariocarreraid", referencedColumnName="idusuariocarrera",nullable=true)
      */
-    protected $usuario;
+    protected $usuariocarrera;
 
     /**
      * @ORM\ManyToOne(targetEntity="Convocatorias", inversedBy="Postulacion", cascade={"persist", "remove" })
@@ -136,8 +136,8 @@ class Postulacion
     public function getEstado_postulacion(){
         return $this->estado_postulacion;
     }
-    public function getUsuario(){
-        return $this->usuario;
+    public function getUsuarioCarrera(){
+        return $this->usuariocarrera;
     }
     public function getConvocatoria(){
         return $this->convocatoria;
@@ -221,8 +221,8 @@ class Postulacion
     public function setEstado_postulacion($estado_postulacion){
         $this->estado_postulacion = $estado_postulacion;
     }
-    public function setUsuario($usuario){
-        $this->usuario = $usuario;
+    public function setUsuarioCarrera($usuariocarrera){
+        $this->usuariocarrera = $usuariocarrera;
     }
     public function setConvocatoria($convocatoria){
         $this->convocatoria = $convocatoria;

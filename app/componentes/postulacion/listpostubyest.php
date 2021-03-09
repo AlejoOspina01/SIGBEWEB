@@ -7,7 +7,9 @@ ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
 
 $idest = $_GET['idest'];
-$postulaciones = $entityManager->createQuery("SELECT p FROM Postulacion p WHERE p.usuario = ?1");
+$postulaciones = $entityManager->createQuery("SELECT p FROM Postulacion p, UsuariosCarreras uc, Usuarios u WHERE uc.usuario=u.identificacion AND uc.usuario=?1");
+//("SELECT p FROM Postulacion p, Usuarios u, UsuariosCarreras uc 
+//WHERE p.usuariocarrera=uc.idusuariocarrera AND uc.usuario = u.identificacion AND p.usuario = ?1");
 $postulaciones->setParameter(1,$idest);
 $Postulacionesresult = $postulaciones->getResult();
 
@@ -21,7 +23,7 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'promedio'         => $Postulacionesresult[$i]->getPromedio(),
 		'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d H:i'),
 		'semestre' =>$Postulacionesresult[$i]->getSemestre(),
-		'estrato' =>$Postulacionesresult[$i]->getEstrato() ,
+		'estrato' =>$Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getEstrato() ,
 		'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
 		'comentpsicologa' =>$Postulacionesresult[$i]->getComentPsicologa() , 
 		'cantmodificaciones' =>$Postulacionesresult[$i]->getCantmodificaciones() , 
@@ -35,10 +37,9 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 			'promedioacumulado' => $Postulacionesresult[$i]->getPromedioacumulado(),
 			'tabulado' => $Postulacionesresult[$i]->getTabulado()
 		),
-		'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuario()->getApellido() ,
-			'identificacion' => $Postulacionesresult[$i]->getUsuario()->getIdentifacion() ,
-			'codigoestudiante' => $Postulacionesresult[$i]->getUsuario()->getCodigoEst(),
-			'correoest' => $Postulacionesresult[$i]->getUsuario()->getCorreo()));
+		'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
+			'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion() ,
+			'correoest' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getCorreo()));
 }
 
 if ($postulaciones === null) {
