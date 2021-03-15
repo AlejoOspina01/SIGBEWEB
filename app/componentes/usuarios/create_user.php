@@ -17,14 +17,13 @@ $stdPropUser = get_object_vars($request);
 
 
 $propiedadesUser = get_object_vars($stdPropUser['data']);
-
-
+$convertfechainicial = new DateTime($propiedadesUser['fechanacimiento']);
 
 $saldo=0;
+$pdf="soy un pdf";
+
 $roluser = $entityManager->find('Roles', $propiedadesUser['roles']);
-if($roluser === null){
-	$roluser = $entityManager->find('Roles', 1);
-}
+$ciudad = $entityManager->find('ciudad' , $propiedadesUser['ciudad']);
 $usuario = new Usuarios();
 $usuario->setIdentifacion($propiedadesUser['identificacion']);
 $usuario->setNombre($propiedadesUser['nombre']);
@@ -32,14 +31,27 @@ $usuario->setApellido($propiedadesUser['apellido']);
 $usuario->setCorreo($propiedadesUser['correo']);
 $usuario->setContrasena($propiedadesUser['contrasena']);
 $usuario->setZonaresidencial($propiedadesUser['zonaresidencial']);
-$usuario->setCiudad($propiedadesUser['ciudad']);
-$usuario->setFechanacimiento($propiedadesUser['fechanacimiento']);
+$usuario->setCiudad($ciudad);
+$usuario->setFechanacimiento($convertfechainicial);
 $usuario->setEstrato($propiedadesUser['estrato']);
-$usuario->setPdf($propiedadesUser['pdf']);
-$usuario->setSaldo($saldo);
 $usuario->setIdRol($roluser);
 $usuario->setEstadouser($propiedadesUser['estadouser']);
+$usuario->setSaldo($saldo);
+$usuario->setPdf($pdf);
 
 
 $entityManager->persist($usuario);
+$entityManager->flush();
+$carreraencontrada =  $entityManager->find('Carreras', $propiedadesUser['codigocarrera']);
+$estudianteencontrod = $entityManager->find('Usuarios', $propiedadesUser['identificacion']);
+
+$usuariocarrera = new UsuariosCarreras();
+
+
+
+
+$usuariocarrera->setCarrera($carreraencontrada);
+$usuariocarrera->setUsuario($estudianteencontrod);
+$usuariocarrera->setCodigoEstudiante($propiedadesUser['codigo']);
+$entityManager->persist($usuariocarrera);
 $entityManager->flush();
