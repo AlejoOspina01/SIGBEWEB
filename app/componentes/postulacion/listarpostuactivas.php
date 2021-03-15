@@ -12,22 +12,19 @@ $postulaciones = $entityManager->createQuery("
 	"    
 );
 
-
 $postuactivas= $postulaciones-> getResult();
-
-
 
 $postulacionesActivas;
 
 
 for($i=0 ; $i< sizeof($postuactivas); $i++){
 
-	$postulacionesActivas[$i]= array('nombre' => $postuactivas[$i]->getUsuario()->getNombre(),
+	$postulacionesActivas[$i]= array('nombre' => $postuactivas[$i]->getUsuarioCarrera()->getUsuario()->getNombre(),
 		'consecutivo_postulacion' =>$postuactivas[$i]->getConsecutivo_postulacion(),
 		'promedio' => $postuactivas[$i]->getPromedio(),
 		'fechapostulacion' =>  $postuactivas[$i]->getFechapostulacion(),
 		'semestre' => $postuactivas[$i]->getSemestre(),
-		'estrato' =>  $postuactivas[$i]->getEstrato(),
+		'estrato' =>  $postuactivas[$i]->getUsuarioCarrera()->getUsuario()->getEstrato(),
 		'convocatoria' =>  $postuactivas[$i]-> getConvocatoria()->getConsecutivoBeca()->getDescripcion(),
 		'estado' => $postuactivas[$i]->getEstado_postulacion(),
 

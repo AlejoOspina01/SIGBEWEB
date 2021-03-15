@@ -17,7 +17,7 @@ $nombresfound = array();
 $arrayfull = array();
 $numberi = 0;
 for ($i=1; $i <= 68; $i++) { 
-	$postulacionescarreras = $entityManager->createQuery("SELECT COUNT(p) FROM Postulacion p, Convocatorias c, UsuariosCarreras u WHERE p.convocatoria = c.consecutivo_convocatoria AND p.usuario = u.usuario AND u.carrera = ?1 AND c.becas = ?2")
+	$postulacionescarreras = $entityManager->createQuery("SELECT COUNT(p) FROM Postulacion p, Convocatorias c, UsuariosCarreras u WHERE p.convocatoria = c.consecutivo_convocatoria AND p.usuariocarrera = u.idusuariocarrera AND u.carrera = ?1 AND c.becas = ?2")
 ->setParameter(1,$i)
 ->setParameter(2,$becasel);
 

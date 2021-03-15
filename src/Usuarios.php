@@ -36,6 +36,10 @@ protected $identificacion;
     *@ORM\Column(type="integer") 
     */
     protected $saldo;
+    /** 
+    *@ORM\Column(type="string") 
+    */
+    protected $direcciondomicilio;
     /**
 	 * @ORM\ManyToOne(targetEntity="Roles", inversedBy="Usuarios", cascade={"persist", "remove" })
 	 * @ORM\JoinColumn(name="roles_id", referencedColumnName="IdRol",nullable=true)
@@ -96,6 +100,9 @@ protected $identificacion;
     public function getSaldo(){
     	return $this->saldo;
     }
+    public function getDireccion(){
+        return $this->direcciondomicilio;
+    }
     public function getIdRol(){
     	return $this->roles;
     }
@@ -141,6 +148,9 @@ protected $identificacion;
     }
     public function setSaldo($sald){
     	return $this->saldo = $sald;
+    }
+    public function setDireccion($direcciondomicilio){
+        return $this->direcciondomicilio = $direcciondomicilio;
     }
     public function setIdRol($rol){
     	return $this->roles = $rol;

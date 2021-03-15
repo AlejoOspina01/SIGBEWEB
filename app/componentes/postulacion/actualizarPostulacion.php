@@ -16,13 +16,11 @@ $postulacionUpdate = $entityManager->createQueryBuilder();
 $query = $postulacionUpdate->update('Postulacion', 'p') 
 ->set('p.semestre', '?2')
 ->set('p.promedio', '?3')
-->set('p.estrato', '?4')
 ->set('p.cantModificaciones', '?5')
 ->where('p.consecutivo_postulacion = ?1')
 ->setParameter(1,$propiedadesPostu['idpostu'] )
 ->setParameter(2,$propiedadesPostu['semestre'] )
 ->setParameter(3,$propiedadesPostu['promedio'] )
-->setParameter(4,$propiedadesPostu['estrato'] )
 ->setParameter(5,$propiedadesPostu['cantmodificaciones'] )
 ->getQuery();
 $execute = $query->execute();

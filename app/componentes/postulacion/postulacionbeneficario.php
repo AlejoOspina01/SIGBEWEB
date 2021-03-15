@@ -25,16 +25,15 @@ if($tipoticket == 1){
 	->getSingleResult();
 }
 
-$postulacionesEncontradas = $entityManager->createQuery('SELECT p FROM Postulacion p WHERE p.convocatoria = ?1 AND p.usuario = ?2 AND p.estado_postulacion = ?3')
+$postulacionesEncontradas = $entityManager->createQuery('SELECT p FROM Postulacion p, Usuarios us, UsuariosCarreras uc WHERE p.convocatoria = ?1 AND p.usuariocarrera = uc.idusuariocarrera AND uc.usuario = ?2 AND p.estado_postulacion = ?3')
 ->setParameter(1, $convocatoriasEncontradas->getConsecutivoConvocatoria())
 ->setParameter(2, $useriden)
-->setParameter(3, 'Aprobado')
+->setParameter(3, "Aprobado")
 ->getSingleResult();
 
 $postulacionfound =  array(
 	'consecutivo_postulacion'     => $postulacionesEncontradas->getConsecutivo_postulacion(),
 	'fecha'         => $postulacionesEncontradas->getFechapostulacion(),
-	'estrato'    => $postulacionesEncontradas->getEstrato(),
 );
 
 

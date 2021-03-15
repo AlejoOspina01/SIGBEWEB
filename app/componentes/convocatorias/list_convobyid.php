@@ -24,8 +24,10 @@ $convoarray =  array(
   'estadoconvo'      => $convobuscada->getEstadoConvocatoria(),
   'cupo'         => $convobuscada->getCupo(),
   'beca'          => $convobuscada->getConsecutivoBeca()->getConsecutivo_beca(),
+  'descbeca'      => $convobuscada->getConsecutivoBeca()->getDescripcion(),
       //'periodo'     =>  array('fechaInicioperiodo' => $convobuscada->getConsecutivoPeriodo()->getFechaInicio()->format('Y-m-d H:i'),
-  'periodosacademicos'     =>  $convobuscada->getConsecutivoPeriodo()->getConsecutivo_periodo()
+  'periodosacademicos'     =>  $convobuscada->getConsecutivoPeriodo()->getConsecutivo_periodo(),
+  'descperiodo' =>  $convobuscada->getConsecutivoPeriodo()->getDescripcion()
         //'fechaFinperiodo' => $convobuscada->getConsecutivoPeriodo()->getFechaFin()->format('Y-m-d H:i')
 );
 

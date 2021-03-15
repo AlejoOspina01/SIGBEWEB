@@ -17,12 +17,10 @@ $newId = $_GET["id"];*/
 
 $usuarioUpdate = $entityManager->createQueryBuilder();
 $query = $usuarioUpdate->update('Usuarios', 'u') 
-->set('u.saldo', '?1')
 ->set('u.correo', '?3')
 ->set('u.nombre', '?5')
 ->set('u.apellido', '?6')
 ->where('u.identificacion = ?2')
-->setParameter(1, $propiedadesSaldo['saldo'])
 ->setParameter(2, $propiedadesSaldo['identificacion'])
 ->setParameter(3, $propiedadesSaldo['correo'])
 ->setParameter(5, $propiedadesSaldo['nombre'])
