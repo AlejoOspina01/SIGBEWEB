@@ -5,33 +5,34 @@ header('Access-Control-Allow-Methods: PUT');
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
-    $json = file_get_contents('php://input'); // RECIBE EL JSON DE ANGULAR
+    // $json = file_get_contents('php://input'); // RECIBE EL JSON DE ANGULAR
     
-    $params = json_decode($json); // DECODIFICA EL JSON Y LO GUARADA EN LA VARIABLE
+    // $params = json_decode($json); // DECODIFICA EL JSON Y LO GUARADA EN LA VARIABLE
     
-    $nombre = $params->nombre;
-    $nombreArchivo = $params->nombreArchivo;
-    $archivo = $params->base64textString;
-    $archivo = base64_decode($archivo);
+    // $nombre = $params->nombre;
+    // $nombreArchivo = $params->nombreArchivo;
+    // $archivo = $params->base64textString;
+    $archivo = base64_decode("QzpcZmFrZXBhdGhcMjk4MTE5MTYxNTM5MjYwNS5wZGY=");
+    var_dump($archivo);
     
    /* $filePath = $_SERVER['DOCUMENT_ROOT']."/sigbeweb/".$nombreArchivo;
    file_put_contents($filePath, $archivo);*/
 
-   $usuarioUpdate = $entityManager->createQueryBuilder();
+//    $usuarioUpdate = $entityManager->createQueryBuilder();
 
-   $query = $usuarioUpdate->update('Usuarios', 'u') 
-   ->set('u.pdf', '?1')
-   ->where('u.codigoestudiante = ?2')
-   ->setParameter(1, $archivo )
-   ->setParameter(2, 1234 )
-   ->getQuery();        
-   $execute = $query->execute();
+//    $query = $usuarioUpdate->update('Usuarios', 'u') 
+//    ->set('u.pdf', '?1')
+//    ->where('u.codigoestudiante = ?2')
+//    ->setParameter(1, $archivo )
+//    ->setParameter(2, 1234 )
+//    ->getQuery();        
+//    $execute = $query->execute();
    
-   if ($usuarioUpdate === null) {
-    echo "No usuario found.\n";
-    echo "Fallo";    
-    exit(1);
-}
+//    if ($usuarioUpdate === null) {
+//     echo "No usuario found.\n";
+//     echo "Fallo";    
+//     exit(1);
+// }
 
 
 
