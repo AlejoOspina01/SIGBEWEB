@@ -1,0 +1,37 @@
+<!-- config/xml/Roles.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+  https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+  <entity name="VisitaDomiciliaria" table="visitadomiciliaria">
+    <id name="idvisita" type="integer" >
+    <generator strategy="AUTO" />
+    </id>
+    <field name="estamento" type="string" />
+    <field name="barrio" type="string" />
+    <field name="comuna" type="string" />
+    <field name="nombreatencion" type="string" />
+    <field name="parentesco" type="string" />
+    <field name="obligacion" type="string" />
+    <field name="cualobligacion" type="string" />
+    <field name="estratodane" type="string" />
+    <field name="pagoarriendo" type="string" />
+    <field name="valorarriendo" type="integer" />
+    <field name="cubrearriendo" type="string" />
+    <field name="otroarriendo" type="string" />
+    <field name="fuenteingreso" type="string" />
+    <field name="cualfuente" type="string" />
+    <field name="tipocasa" type="string" />
+    <field name="aspectocasa" type="string" />
+    <field name="cualaspecto" type="date" />
+    <field name="serviciopublico" type="string" />
+    <field name="cuartosolicitante" type="string" />
+    <field name="cantidadpersonas" type="string" />
+    <field name="descripcionfinal" type="string" />
+    
+    <one-to-one field="postulacion" target-entity="Postulacion">
+      <join-column name="postulacionid" referenced-column-name="consecutivo_postulacion" />
+    </one-to-one>
+  </entity>
+</doctrine-mapping>
