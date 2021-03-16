@@ -4,3 +4,5 @@ horainicioVentaAlmuerzo|09:00
 horaFinVentaAlmuerzo|14:03
 horainicioVentaRefrigerio|16:00
 horaFinVentaRefrigerio|18:00
+valorticketalmuerzobeneficiario|1600
+valorticketrefrigeriobeneficiario|1000

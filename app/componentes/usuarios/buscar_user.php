@@ -7,9 +7,9 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
 
-$codigoestudiante = $_GET["codigoestudiante"];
-$usuario = $entityManager->createQuery('select u from Usuarios u where u.codigoestudiante = ?1')
-->setParameter(1, $codigoestudiante)
+$identificacion = $_GET["identificacion"];
+$usuario = $entityManager->createQuery('select u from Usuarios u where u.identificacion = ?1')
+->setParameter(1, $identificacion)
 ->getResult();
 
 if ($usuario === null) {
@@ -22,7 +22,7 @@ for($i=0; $i< sizeof($usuario); $i++){
   'identificacion'     => $usuario[$i]->getIdentifacion(),
   'nombre'         => $usuario[$i]->getNombre(),
   'apellido'      => $usuario[$i]->getApellido(),
-  'correo'         => $usuario[$i]->getCorreo()
+  'correo'         => $usuario[$i]->getCorreo(),
   'saldo'          => $usuario[$i]->getSaldo(),
   'estadoestudiante'     => $usuario[$i]->getEstadouser(),
   'pdf' =>  base64_encode($usuario[$i]->getPdf())
