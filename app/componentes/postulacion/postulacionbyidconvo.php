@@ -8,8 +8,11 @@ ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
 
 $idConvo = $_GET["idconvo"];
-$postubuscada = $entityManager->createQuery('SELECT p FROM Postulacion p WHERE p.convocatoria = ?1')
+$idUser = $_GET["iduser"];
+
+$postubuscada = $entityManager->createQuery('SELECT p FROM Postulacion p, UsuariosCarreras us WHERE p.usuariocarrera = us.idusuariocarrera AND us.usuario = ?2 AND p.convocatoria = ?1')
 ->setParameter(1, $idConvo)
+->setParameter(2, $idUser)
 ->getSingleResult();
 
 

@@ -23,7 +23,9 @@ $arrayResultante= array(
 	"horainicioVentaAlmuerzo" => $variables[2][1],
 	"horaFinVentaAlmuerzo" => $variables[3][1],
 	"horainicioVentaRefrigerio" => $variables[4][1],
-	"horaFinVentaRefrigerio" => $variables[5][1]
+	"horaFinVentaRefrigerio" => $variables[5][1],
+	"valorticketalmuerzobeneficiario" => $variables[6][1],
+	"valorticketrefrigeriobeneficiario" => $variables[7][1],
 );
 
 echo json_encode($arrayResultante);

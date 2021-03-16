@@ -16,8 +16,8 @@ $propiedadesEstu = get_object_vars($stdEstu['data']);
 $estudianteUpdate = $entityManager->createQueryBuilder();
 $query = $estudianteUpdate->update('Usuarios', 'u') 
 ->set('u.estadouser', '?2')
-->where('u.codigoestudiante = ?1')
-->setParameter(1,$propiedadesEstu['codigoestudiante'])
+->where('u.identificacion = ?1')
+->setParameter(1,$propiedadesEstu['identificacion'])
 ->setParameter(2,$propiedadesEstu['estadouser'])
 ->getQuery();
 $execute = $query->execute();

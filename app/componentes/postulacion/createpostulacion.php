@@ -16,7 +16,7 @@ $convoProperty = get_object_vars($propiedadesPostu['convocatoria']);
 
 
 $encontrarUser = $entityManager->createQuery("SELECT  u FROM UsuariosCarreras u  WHERE u.idusuariocarrera = ?1"    
-)->setParameter(1,1);
+)->setParameter(1,$propiedadesPostu['carrera']);
 $Userfound = $encontrarUser->getSingleResult();
 
 $encontrarConvo = $entityManager->find('Convocatorias', $convoProperty['consecutivoconvo']);

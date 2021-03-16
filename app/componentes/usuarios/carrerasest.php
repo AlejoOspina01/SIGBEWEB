@@ -17,6 +17,7 @@ $carrerasarray;
 for ($i=0; $i < sizeof($carrerasfound); $i++) { 
   $carrerasarray[$i] =  array(
     'carrera'     => $carrerasfound[$i]->getCarrera()->getNombrecarrera(),
+    'idusuariocarrera'     => $carrerasfound[$i]->getIdUsuarioCarrera(),
     'codigoestudiante'         => $carrerasfound[$i]->getCodigoEstudiante()
   );
 }

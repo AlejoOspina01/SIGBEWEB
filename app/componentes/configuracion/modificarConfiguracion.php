@@ -28,6 +28,8 @@ $variables[2]  = implode("|",$variables[2]);
 $variables[3]  = implode("|",$variables[3]);
 $variables[4]  = implode("|",$variables[4]);
 $variables[5]  = implode("|",$variables[5]);
+$variables[6]  = implode("|",$variables[6]);
+$variables[7]  = implode("|",$variables[7]);
 
   // Abrir el archivo:
 $archivo = fopen('config.txt', "w");
