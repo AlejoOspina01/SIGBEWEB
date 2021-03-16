@@ -1,0 +1,54 @@
+<?php
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+require_once "../../../bootstrap.php";
+
+$idVisita = $_GET['idvisita'];
+
+$visitasBuscada = $entityManager->createQuery('SELECT vd FROM VisitaDomiciliaria vd where  vd.idvisita = ?1')
+->setParameter(1, $idVisita)
+->getSingleResult();
+
+if ($visitasBuscada === null) {
+    echo "No visita found.\n";
+    exit(1);
+  }
+
+
+$visitaarray =  array(
+    'idvisita'      => $visitasBuscada->getIdVisita(),
+    'postulacionid'     => $visitasBuscada->getPostulacion()->getConsecutivo_postulacion(),
+    'estamento'     =>  $visitasBuscada->getEstamento(),
+    'barrio'         => $visitasBuscada->getBarrio(),
+    'comuna'         => $visitasBuscada->getComuna(),
+    'nombreatencion'         => $visitasBuscada->getNombreAtencion(),
+    'parentesco'      => $visitasBuscada->getParentesco(),
+    'obligacion'     =>  $visitasBuscada->getObligacion(),
+    'cualobligacion'     =>  $visitasBuscada->getCualObligacion(),
+    'estratodane'     =>  $visitasBuscada->getEstratoDane(),
+    'pagoarriendo'     =>  $visitasBuscada->getPagoArriendo(),
+    'valorarriendo'         => $visitasBuscada->getValorArriendo(),
+    'cubrearriendo'     =>  $visitasBuscada->getCubreArriendo(),
+    'otroarriendo'     =>  $visitasBuscada->getOtroArriendo(),
+    'fuenteingreso'     =>  $visitasBuscada->getFuenteIngreso(),
+    'cualfuente'     =>  $visitasBuscada->getCualFuente(),
+    'tipocasa'     =>  $visitasBuscada->getTipoCasa(),
+    'aspectocasa'     =>  $visitasBuscada->getAspectoCasa(),
+    'cualaspecto'     =>  $visitasBuscada->getCualAspecto(),
+    'serviciopublico'     =>  $visitasBuscada->getServicioPublico(),
+    'cuartosolicitante'     =>  $visitasBuscada->getCuartoSolicitante(),
+    'cantidadpersonas'          => $visitasBuscada->getCantidadPersonas(),
+    'descripcionfinal'     =>  $visitasBuscada->getDescripcionFinal(),
+    
+  
+    
+    
+  
+  );
+
+echo json_encode($visitaarray);
