@@ -10,12 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 */
 class Periodosacademicos
 {
-/** 
-    *@ORM\Id
-    *@ORM\Column(type="integer")
-    *@ORM\GeneratedValue
-*/
-protected $consecutivo_periodo;
+    /** 
+        *@ORM\Id
+        *@ORM\Column(type="integer")
+        *@ORM\GeneratedValue
+    */
+    protected $consecutivo_periodo;
     /** 
      *@ORM\Column(type="string") 
      */

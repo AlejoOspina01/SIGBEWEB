@@ -20,24 +20,7 @@ $convosActivas;
 for ($i=0; $i < sizeof($convocator); $i++) { 
 	$convosActivas[$i] =  array(
 		'consecutivoconvo'     => $convocator[$i]->getConsecutivoConvocatoria(),
-		'beca'         => $convocator[$i]->getConsecutivoBeca()->getDescripcion(),
-		
-		'd10' =>$convocator[$i]->getD10(),
-		'factservicio' =>$convocator[$i]->getFactservicio(),
-		'cartapeticion' =>$convocator[$i]->getCartapeticion(),
-		'carnetestudiante' =>$convocator[$i]->getCarnetestudiante(),
-		'cedulapadre' =>$convocator[$i]->getCedulaPadre(),
-		'cedulamadre' =>$convocator[$i]->getCedulamadre(),
-		'promedioacumulado' =>$convocator[$i]->getPromedioacumulado(),
-		'tabulado' =>$convocator[$i]->getTabulado(),
-		'constanciaweb' =>$convocator[$i]->getConstanciaweb(),
-		'certificadovencidad' =>$convocator[$i]->getCertificadovencindad(),
-		'documentoestudiante' =>$convocator[$i]->getDocumentoidentidad(),
-		'documentoacudiente' =>$convocator[$i]->getDocumentoAcudiente(),
-		'formatosolicitudbeneficio' =>$convocator[$i]->getFormatosolicitud(),
-		'diagnosticomedico' =>$convocator[$i]->getDiagnostico(),
-		'recibopagomatricula' =>$convocator[$i]->getRecibomatricula(),
-		'certificadoingresos' =>$convocator[$i]->getCertificadoIngresos());
+		'beca'         => $convocator[$i]->getConsecutivoBeca()->getDescripcion());
 }
 
 

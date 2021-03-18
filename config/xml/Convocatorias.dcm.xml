@@ -11,22 +11,6 @@
           <field name="fecha_incio" type="datetime" />
           <field name="fecha_fin" type="datetime" />
           <field name="estado_convocatoria" type="string" />
-          <field name="d10" type="string" />
-          <field name="factserv" type="string" />
-          <field name="cartapeti" type="string" />
-          <field name="carnetest" type="string" />
-          <field name="cedulapadre" type="string" />
-          <field name="cedulamadre" type="string" />
-          <field name="promedio" type="string" />
-          <field name="tabulado" type="string" />
-          <field name="constanciaweb" type="string" />
-          <field name="certificadovencidad" type="string" />
-          <field name="documentoidenti" type="string" />
-          <field name="documentoacudiente" type="string" />
-          <field name="formatosolicitud" type="string" />
-          <field name="diagnostico" type="string" />
-          <field name="recibomatricula" type="string" />
-          <field name="certificadoingresos" type="string" />
         <many-to-one field="becas" target-entity="Becas">
             <join-column name="becasid" referenced-column-name="consecutivo_beca" />
         </many-to-one>
