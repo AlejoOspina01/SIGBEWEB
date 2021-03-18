@@ -28,24 +28,7 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'carrera' =>$Postulacionesresult[$i]->getUsuarioCarrera()->getCarrera()->getNombrecarrera(),
 		'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
 		'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() , 
-							  'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion()),
-
-		'd10' =>$Postulacionesresult[$i]->getD10(),
-		'factservicio' =>$Postulacionesresult[$i]->getFactservicio(),
-		'cartapeticion' =>$Postulacionesresult[$i]->getCartapeticion(),
-		'carnetestudiante' =>$Postulacionesresult[$i]->getCarnetestudiante(),
-		'cedulapadre' =>$Postulacionesresult[$i]->getCedulaPadre(),
-		'cedulamadre' =>$Postulacionesresult[$i]->getCedulamadre(),
-		'promedioacumulado' =>$Postulacionesresult[$i]->getPromedioacumulado(),
-		'tabulado' =>$Postulacionesresult[$i]->getTabulado(),
-		'constanciaweb' =>$Postulacionesresult[$i]->getConstanciaweb(),
-		'certificadovencidad' =>$Postulacionesresult[$i]->getCertificadovencindad(),
-		'documentoestudiante' =>$Postulacionesresult[$i]->getDocumentoidentidad(),
-		'documentoacudiente' =>$Postulacionesresult[$i]->getDocumentoAcudiente(),
-		'formatosolicitudbeneficio' =>$Postulacionesresult[$i]->getFormatosolicitud(),
-		'diagnosticomedico' =>$Postulacionesresult[$i]->getDiagnostico(),
-		'recibopagomatricula' =>$Postulacionesresult[$i]->getRecibomatricula(),
-		'certificadoingresos' =>$Postulacionesresult[$i]->getCertificadoIngresos());
+							  'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion()));
 }
 
 if ($postulaciones === null) {

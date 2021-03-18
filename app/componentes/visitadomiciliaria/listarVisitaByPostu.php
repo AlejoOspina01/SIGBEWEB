@@ -8,9 +8,9 @@ ini_set("display_errors", 1);
 
 require_once "../../../bootstrap.php";
 
-$idVisita = $_GET['idvisita'];
+$idVisita = $_GET['idpostu'];
 
-$visitasBuscada = $entityManager->createQuery('SELECT vd FROM VisitaDomiciliaria vd where  vd.idvisita = ?1')
+$visitasBuscada = $entityManager->createQuery('SELECT vd FROM VisitaDomiciliaria vd where  vd.postulacion = ?1')
 ->setParameter(1, $idVisita)
 ->getSingleResult();
 
@@ -43,12 +43,7 @@ $visitaarray =  array(
     'serviciopublico'     =>  $visitasBuscada->getServicioPublico(),
     'cuartosolicitante'     =>  $visitasBuscada->getCuartoSolicitante(),
     'cantidadpersonas'          => $visitasBuscada->getCantidadPersonas(),
-    'descripcionfinal'     =>  $visitasBuscada->getDescripcionFinal(),
-    
-  
-    
-    
-  
+    'descripcionfinal'     =>  $visitasBuscada->getDescripcionFinal(),  
   );
 
 echo json_encode($visitaarray);

@@ -2,9 +2,11 @@
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+require_once "../../../bootstrap.php";
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-require_once "../../../bootstrap.php";
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
@@ -27,23 +29,6 @@ $postulacion->setFechapostulacion( new \DateTime('now'));
 $postulacion->setSemestre($propiedadesPostu['semestre']);
 $postulacion->setEstado_postulacion('En espera');
 $postulacion->setComentPsicologa('');
-// Booleanos
-$postulacion->setD10($propiedadesPostu['d10']);
-$postulacion->setFactservicio($propiedadesPostu['factservicio']);
-$postulacion->setCartapeticion($propiedadesPostu['cartapeticion']);
-$postulacion->setCarnetestudiante($propiedadesPostu['carnetestudiante']);
-$postulacion->setCedulaPadre($propiedadesPostu['cedulapadre']);
-$postulacion->setCedulamadre($propiedadesPostu['cedulamadre']);
-$postulacion->setPromedioacumulado($propiedadesPostu['promedioacumulado']);
-$postulacion->setTabulado($propiedadesPostu['tabulado']);
-$postulacion->setConstanciaweb($propiedadesPostu['constanciaweb']);
-$postulacion->setCertificadovencindad($propiedadesPostu['certificadovencidad']);
-$postulacion->setDocumentoidentidad($propiedadesPostu['documentoestudiante']);
-$postulacion->setDocumentoAcudiente($propiedadesPostu['documentoacudiente']);
-$postulacion->setFormatosolicitud($propiedadesPostu['formatosolicitudbeneficio']);
-$postulacion->setDiagnostico($propiedadesPostu['diagnosticomedico']);
-$postulacion->setRecibomatricula($propiedadesPostu['recibopagomatricula']);
-$postulacion->setCertificadoIngresos($propiedadesPostu['certificadoingresos']);
 
 $postulacion->setUsuarioCarrera($Userfound);
 $postulacion->setConvocatoria($encontrarConvo);
@@ -52,3 +37,19 @@ $postulacion->setCantmodificaciones(0);
 
 $entityManager->persist($postulacion);
 $entityManager->flush();
+
+$archivoseparacion;
+// var_dump($propiedadesPostu['listDocumentos']);
+if(sizeof($propiedadesPostu['listDocumentos']) != 0){
+	for ($i=0; $i <  sizeof($propiedadesPostu['listDocumentos']); $i++) { 
+		$archivoseparacion = explode("|-|",$propiedadesPostu['listDocumentos'][$i]);
+		$encontrarDoc = $entityManager->find('Documentos',$archivoseparacion[0]);
+		$documentPostu = new DocumentoPostulacion();
+		$documentPostu->setDocumento($encontrarDoc);
+		$documentPostu->setPostulacion($postulacion);
+		$documentPostu->setArchivo($archivoseparacion[1]);
+		$documentPostu->setEstado(0);
+		$entityManager->persist($documentPostu);
+		$entityManager->flush();
+	}
+}
