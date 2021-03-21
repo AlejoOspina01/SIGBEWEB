@@ -7,7 +7,7 @@ ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
 
 $idest = $_GET['idest'];
-$postulaciones = $entityManager->createQuery("SELECT p FROM Postulacion p, UsuariosCarreras uc, Usuarios u WHERE uc.usuario=u.identificacion AND uc.usuario=?1");
+$postulaciones = $entityManager->createQuery("SELECT p FROM Postulacion p, UsuariosCarreras uc, Usuarios u WHERE uc.idusuariocarrera=p.usuariocarrera AND uc.usuario=?1");
 //("SELECT p FROM Postulacion p, Usuarios u, UsuariosCarreras uc 
 //WHERE p.usuariocarrera=uc.idusuariocarrera AND uc.usuario = u.identificacion AND p.usuario = ?1");
 $postulaciones->setParameter(1,$idest);
@@ -27,16 +27,6 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
 		'comentpsicologa' =>$Postulacionesresult[$i]->getComentPsicologa() , 
 		'cantmodificaciones' =>$Postulacionesresult[$i]->getCantmodificaciones() , 
-		'documentos' => array(
-			'd10' => $Postulacionesresult[$i]->getD10(),
-			'factservicio' => $Postulacionesresult[$i]->getFactservicio(),
-			'cartapeticion' => $Postulacionesresult[$i]->getCartapeticion(),
-			'carnetestudiante' => $Postulacionesresult[$i]->getCarnetestudiante(),
-			'cedulapadre' => $Postulacionesresult[$i]->getCedulaPadre(),
-			'cedulamadre' => $Postulacionesresult[$i]->getCedulamadre(),
-			'promedioacumulado' => $Postulacionesresult[$i]->getPromedioacumulado(),
-			'tabulado' => $Postulacionesresult[$i]->getTabulado()
-		),
 		'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
 			'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion() ,
 			'correoest' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getCorreo()));
