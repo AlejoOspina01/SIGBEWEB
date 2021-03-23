@@ -40,6 +40,10 @@ class Postulacion
      *@ORM\Column(type="string") 
      */
     protected $comentpsicologa;
+        /** 
+     *@ORM\Column(type="integer",nullable=true) 
+     */
+    protected $estadopromedio;
 
     /**
      * @ORM\ManyToOne(targetEntity="UsuariosCarreras", inversedBy="Postulacion", cascade={"persist", "remove" })
@@ -89,7 +93,9 @@ class Postulacion
     public function getComentPsicologa(){
         return $this->comentpsicologa;
     }
-
+    public function getEstadoPromedio(){
+        return $this->estadopromedio;
+    }
     //nuevos
 
 
@@ -124,6 +130,8 @@ class Postulacion
     public function setComentPsicologa($comentpsicologa){
         $this->comentpsicologa = $comentpsicologa;
     }   
-
-
+    public function setEstadoPromedio($estadopromedio){
+        $this->estadopromedio = $estadopromedio;
+    }  
+    
 }
