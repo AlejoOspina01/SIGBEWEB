@@ -12,7 +12,7 @@ LIMIT 5
 "    
 );
 
-$ultuimosusuarios
+//$ultuimosusuarios
 
 
 

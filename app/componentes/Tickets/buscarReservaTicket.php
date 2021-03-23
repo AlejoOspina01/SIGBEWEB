@@ -25,12 +25,13 @@ if($valticket){
 
 	$convocatoriasEncontradas=null;
 
+
 	if($ticketencontrado->getTipoTicket() == 'Ticket Refrigerio'){
-	$convocatoriasEncontradas = $entityManager->createQuery('SELECT c FROM Convocatorias c WHERE c.periodosacademicos = ?1 AND c.becas = 1')//
+	$convocatoriasEncontradas = $entityManager->createQuery('SELECT c FROM Convocatorias c WHERE c.periodosacademicos = ?1 AND c.becas = 2')//
 	->setParameter(1, $periodoencontrado->getConsecutivo_periodo())
 	->getSingleResult();
 }else{
-	$convocatoriasEncontradas = $entityManager->createQuery('SELECT c FROM Convocatorias c WHERE c.periodosacademicos = ?1 AND c.becas = 2')
+	$convocatoriasEncontradas = $entityManager->createQuery('SELECT c FROM Convocatorias c WHERE c.periodosacademicos = ?1 AND c.becas = 1')
 	->setParameter(1, $periodoencontrado->getConsecutivo_periodo())
 	->getSingleResult();
 }
@@ -48,7 +49,6 @@ try {
 		'fecha'         => $postulacionesEncontradas->getFechapostulacion(),
 		'estrato'    => $postulacionesEncontradas->getEstrato(),
 		'nombreest' =>  $ticketencontrado->getUsuario()->getNombre(),
-		'codigoest' => $ticketencontrado->getUsuario()->getCodigoEst(),
 		'beneficiario' => 1
 
 	);
@@ -58,7 +58,6 @@ try {
 		'tipoTicket'     => $ticketencontrado->getTipoTicket(),
 		'fechaticket'         => $ticketencontrado->getFechaCompra(),
 		'nombreest' =>  $ticketencontrado->getUsuario()->getNombre(),
-		'codigoest' => $ticketencontrado->getUsuario()->getCodigoEst(),
 		'beneficiario' => 0
 
 	);
