@@ -23,6 +23,10 @@ if ($visitasBuscada === null) {
 $visitaarray =  array(
     'idvisita'      => $visitasBuscada->getIdVisita(),
     'postulacionid'     => $visitasBuscada->getPostulacion()->getConsecutivo_postulacion(),
+    'codigoestpostu' => $visitasBuscada->getPostulacion()->getUsuarioCarrera()->getCodigoEstudiante(),
+    'plancarrera' => $visitasBuscada->getPostulacion()->getUsuarioCarrera()->getCarrera()->getConsecutivoCarrera(),
+    'ccvisita' => $visitasBuscada->getPostulacion()->getUsuarioCarrera()->getUsuario()->getIdentifacion(),
+    'direccion' => $visitasBuscada->getPostulacion()->getUsuarioCarrera()->getUsuario()->getDireccion(),
     'estamento'     =>  $visitasBuscada->getEstamento(),
     'barrio'         => $visitasBuscada->getBarrio(),
     'comuna'         => $visitasBuscada->getComuna(),
