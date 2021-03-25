@@ -70,7 +70,10 @@ protected $identificacion;
     *@ORM\Column(type="integer") 
     */
     protected $estrato;
-
+    /** 
+    *@ORM\Column(type="boolean",nullable=true) 
+    */
+    protected $estadoactualizadodatos;
     /**
     *  
     *
@@ -124,6 +127,9 @@ protected $identificacion;
     public function getUsuarioHasCarrera(){
         return $this->usuarioHasCarreras;
     }
+    public function getEstadoActualizadoDatos(){
+        return $this->estadoactualizadodatos;
+    }
 
 
 
@@ -170,7 +176,11 @@ protected $identificacion;
     public function setEstrato($estrato){
         $this->estrato = $estrato;
     }
+    public function setEstadoActualizadoDatos($estadoactualizadodatos){
+        $this->estadoactualizadodatos = $estadoactualizadodatos;
+    }
     public function setUsuarioHasCarrera($usuarioHasCarreras){
         $this->usuarioHasCarreras = $usuarioHasCarreras;
     }
+    
 }
