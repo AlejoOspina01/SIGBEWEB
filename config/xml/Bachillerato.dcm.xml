@@ -1,0 +1,25 @@
+<!-- config/xml/Roles.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+  https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+  <entity name="Bachillerato" table="bachillerato">
+    <id name="idbachillerato" type="integer">
+    <generator strategy="AUTO" />
+    </id>
+
+    <field name="colegio" type="string" />
+    <field name="municipio" type="string" />
+    <field name="añogrado" type="integer" />
+    <field name="pais" type="string" />
+    <field name="bachillericfes" type="integer" />
+    <field name="añoicfes" type="integer" />
+    <field name="caractercolegio" type="string" />
+    <field name="valormatricula" type="integer" />
+    <field name="valorpension" type="integer" />
+    
+    <many-to-one field="informacionbachiller" target-entity="InformacionGeneral">
+      <join-column name="informacionbachiller" referenced-column-name="idinformaciongeneral" />
+  </entity>
+</doctrine-mapping>

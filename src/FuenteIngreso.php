@@ -17,7 +17,7 @@ class FuenteIngreso
     protected $idfuenteingreso;
     /**
 	 * @ORM\ManyToOne(targetEntity="InformacionGeneral", inversedBy="FuenteIngreso", cascade={"persist", "remove" })
-	 * @ORM\JoinColumn(name="informacionfuente", referencedColumnName="idinformaciongeneral",nullable=true)
+	 * @ORM\JoinColumn(name="informacionfuente", referencedColumnName="idinformaciongeneral")
 	 */
     private $informacionfuente;
     /** 
@@ -26,7 +26,7 @@ class FuenteIngreso
     protected $nombre;
     /**
 	 * @ORM\ManyToOne(targetEntity="TipoNecesidad", inversedBy="FuenteIngreso", cascade={"persist", "remove" })
-	 * @ORM\JoinColumn(name="tiponecesidad", referencedColumnName="idtiponecesidad",nullable=true)
+	 * @ORM\JoinColumn(name="tiponecesidad", referencedColumnName="idtiponecesidad")
 	 */
     protected $tiponecesidad;
 
@@ -40,15 +40,23 @@ class FuenteIngreso
     public function getNombre(){
     	return $this->nombre;
     }
+    public function getTipoNecesidad(){
+    	return $this->tiponecesidad;
+    }
+    
     
 	//Establecer valores
-    public function setNecesidad($idfuenteingreso)
+    public function setIdFuenteIngreso($idfuenteingreso)
     {
         $this->idfuenteingreso = $idfuenteingreso;
     }
     public function setInformacionFuente($informacionfuente)
     {
         $this->informacionfuente = $informacionfuente;
+    }
+    public function setTipoNecesidad($tiponecesidad)
+    {
+        $this->tiponecesidad = $tiponecesidad;
     }
     public function setNombre($nombre)
     {

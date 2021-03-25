@@ -17,7 +17,7 @@ class Bachillerato
     protected $idbachillerato;
     /**
 	 * @ORM\ManyToOne(targetEntity="InformacionGeneral", inversedBy="Bachillerato", cascade={"persist", "remove" })
-	 * @ORM\JoinColumn(name="informacionbachiller", referencedColumnName="idinformaciongeneral",nullable=true)
+	 * @ORM\JoinColumn(name="informacionbachiller", referencedColumnName="idinformaciongeneral")
 	 */
     private $informacionbachiller;   
     /** 
@@ -59,13 +59,10 @@ class Bachillerato
 
     //Getters
     public function getIdBachillerato(){
-    	return $this->idBachillerato;
+    	return $this->idbachillerato;
     }
     public function getInformacionBachiller(){
     	return $this->informacionbachiller;
-    }
-    public function getIdVisitaColegio(){
-    	return $this->idvisitacolegio;
     }
     public function getColegio(){
     	return $this->colegio;
@@ -105,10 +102,6 @@ class Bachillerato
     {
         $this->informacionbachiller = $informacionbachiller;
     }
-    
-    public function setIdVisitaColegio($idvisitacolegio){
-    	 $this->idvisitacolegio = $idvisitacolegio;
-    }
     public function setColegio($colegio){
     	 $this->colegio = $colegio;
     }
@@ -124,6 +117,9 @@ class Bachillerato
     public function setBachillerIcfes($bachillericfes){
     	 $this->bachillericfes = $bachillericfes;
     }
+    public function setAñoIcfes($añoicfes){
+        $this->añoicfes = $añoicfes;
+   }
     public function setCaracterColegio($caractercolegio){
     	 $this->caractercolegio = $caractercolegio;
     }

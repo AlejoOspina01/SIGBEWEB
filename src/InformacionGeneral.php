@@ -18,7 +18,7 @@ class InformacionGeneral
     
     /**
      * @ORM\OneToOne(targetEntity="Postulacion")
-     * @ORM\JoinColumn(name="idpostulaciongeneral", referencedColumnName="consecutivo_postulacion")
+     * @ORM\JoinColumn(name="idpostulaciongeneral", referencedColumnName="consecutivo_postulacion",nullable=true)
      */
     private $idpostulaciongeneral;
   
@@ -27,7 +27,7 @@ class InformacionGeneral
      */
     protected $lugarnacimiento;
     /** 
-     *@ORM\Column(type="string") 
+     *@ORM\Column(type="date") 
      */
     protected $expedicioncedula;
     /** 
@@ -51,7 +51,7 @@ class InformacionGeneral
      */
     protected $barrio;
     /** 
-     *@ORM\Column(type="string") 
+     *@ORM\Column(type="integer") 
      */
     protected $telefono;
     /** 
@@ -103,22 +103,17 @@ class InformacionGeneral
      *@ORM\Column(type="string") 
      */
     protected $observacion;
+     /** 
+     *@ORM\Column(type="date") 
+     */
+    protected $fecharegistro;
 
     //Getters
-    public function getIdInformacionEstudiante(){
-    	return $this->idinformacionestudiante;
+    public function getIdinformacionGeneral(){
+    	return $this->idinformaciongeneral;
     }
     public function getPostulacion(){
     	return $this->idpostulaciongeneral;
-    }
-    public function getParienteEstudiante(){
-    	return $this->idparienteestudiante;
-    }
-    public function getIdFuenteNecesidad(){
-    	return $this->idfuentenecesidad;
-    }
-    public function getIdBachiller(){
-    	return $this->idbachiller;
     }
     public function getLugarNacimiento(){
     	return $this->lugarnacimiento;
@@ -180,27 +175,21 @@ class InformacionGeneral
     public function getObservacion(){
     	return $this->observacion;
     }
+    public function getFechaRegistro(){
+    	return $this->fecharegistro;
+    }
 
  
     
 
 	//Establecer valores
-    public function setIdInformacionEstudiante($idinformacionestudiante)
+    public function setIdInformacionGeneral($idinformaciongeneral)
     {
-        $this->idinformacionestudiante = $idinformacionestudiante;
+        $this->idinformaciongeneral = $idinformaciongeneral;
     }
 
     public function setPostulacion($idpostulaciongeneral){
     	 $this->idpostulaciongeneral = $idpostulaciongeneral;
-    }
-    public function setPariente($idpariente){
-        $this->idpariente = $idpariente;
-    }
-    public function setIdFuenteNecesidad($idfuentenecesidad){
-        $this->idfuentenecesidad = $idfuentenecesidad;
-    }
-    public function setIdBachiller($idbachiller){
-        $this->idbachiller = $idbachiller;
     }
     public function setLugarNacimiento($lugarnacimiento){
     	 $this->lugarnacimiento = $lugarnacimiento;
@@ -220,6 +209,9 @@ class InformacionGeneral
     public function setDireccion($direccion){
     	 $this->direccion = $direccion;
     }
+    public function setBarrio($barrio){
+        $this->barrio = $barrio;
+   }
     public function setTelefono($telefono){
     	 $this->telefono = $telefono;
     }
@@ -259,5 +251,8 @@ class InformacionGeneral
     public function setObservacion($observacion){
     	 $this->observacion = $observacion;
     }
+    public function setFechaRegistro($fecharegistro){
+        $this->fecharegistro = $fecharegistro;
+   }
     
 }
