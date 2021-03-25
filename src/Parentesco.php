@@ -11,18 +11,19 @@ class Parentesco
     /** 
      *@ORM\Id
      *@ORM\Column(type="integer")
+     *@ORM\GeneratedValue
      */
     protected $idparentesco;
      /**
 	 * @ORM\ManyToOne(targetEntity="TipoParentesco", inversedBy="Parentesco", cascade={"persist", "remove" })
-	 * @ORM\JoinColumn(name="tipoparentesco", referencedColumnName="idtipoparentesco",nullable=true)
+	 * @ORM\JoinColumn(name="tipoparentesco", referencedColumnName="idtipoparentesco")
 	 */
     protected $tipoparentesco;
       /**
 	 * @ORM\ManyToOne(targetEntity="InformacionGeneral", inversedBy="Parentesco", cascade={"persist", "remove" })
-	 * @ORM\JoinColumn(name="informacionpariente", referencedColumnName="idinformaciongeneral",nullable=true)
+	 * @ORM\JoinColumn(name="informacionparentesco", referencedColumnName="idinformaciongeneral")
 	 */
-    private $informacionparentesco;
+    protected $informacionparentesco;
     /** 
      *@ORM\Column(type="string") 
      */
@@ -44,17 +45,21 @@ class Parentesco
      */
     protected $ocupacion;
     /** 
-     *@ORM\Column(type="string") 
+     *@ORM\Column(type="integer") 
      */
     protected $ingresos;
 
     public function getIdPariente()
     {
-        return $this->idpariente;
+        return $this->idparentesco;
     }
-    public function getInformacionPariente()
+    public function getInformacionParentesco()
     {
-        return $this->informacionpariente;
+        return $this->informacionparentesco;
+    }
+    public function getTipoParentesco()
+    {
+        return $this->tipoparentesco;
     }
     public function getNombre()
     {
@@ -81,14 +86,19 @@ class Parentesco
         return $this->ingresos;
     }
 
-    public function setIdPariente($idpariente)
+    public function setIdParentesco($idparentesco)
     {
-        $this->idpariente = $idpariente;
+        $this->idparentesco = $idparentesco;
     }
-    public function setIdInfoEstudiante($informacionpariente)
+    public function setInformacionParentesco($informacionparentesco)
     {
-        $this->informacionpariente = $informacionpariente;
+        $this->informacionparentesco = $informacionparentesco;
     }
+    public function setTipoParentesco($tipoparentesco)
+    {
+        $this->tipoparentesco = $tipoparentesco;
+    }
+    
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;

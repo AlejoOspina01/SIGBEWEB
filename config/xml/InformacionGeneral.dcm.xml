@@ -1,0 +1,37 @@
+<!-- config/xml/Roles.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+  https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+  <entity name="InformacionGeneral" table="informaciongeneral">
+    <id name="idinformaciongeneral" type="integer" >
+    <generator strategy="AUTO" />
+    </id>
+    <field name="lugarnacimiento" type="string" />
+    <field name="expedicioncedula" type="string" />
+    <field name="estadocivil" type="string" />
+    <field name="numerohijos" type="integer" />
+    <field name="municipioprocedencia" type="string" />
+    <field name="direccion" type="string" />
+    <field name="barrio" type="string" />
+    <field name="telefono" type="string" />
+    <field name="direccioncali" type="string" />
+    <field name="barriocali" type="integer" />
+    <field name="telefonocali" type="string" />
+    <field name="residencia" type="string" />
+    <field name="trabaja" type="string" />
+    <field name="cargotrabajador" type="string" />
+    <field name="nombreempresa" type="string" />
+    <field name="antiguedad" type="string" />
+    <field name="ciudadempresa" type="date" />
+    <field name="direccionempresa" type="string" />
+    <field name="valortotalingreso" type="integer" />
+    <field name="observacion" type="string" />
+     <field name="fecharegistro" type="date" />
+    
+    <one-to-one field="idpostulaciongeneral" target-entity="Postulacion">
+      <join-column name="idpostulaciongeneral" referenced-column-name="consecutivo_postulacion" />
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

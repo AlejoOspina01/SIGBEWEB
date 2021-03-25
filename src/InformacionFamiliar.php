@@ -17,7 +17,7 @@ class InformacionFamiliar
     protected $idinformacionfamiliar;
     /**
 	 * @ORM\ManyToOne(targetEntity="InformacionGeneral", inversedBy="InformacionFamiliar", cascade={"persist", "remove" })
-	 * @ORM\JoinColumn(name="informaciongeneral", referencedColumnName="idinformaciongeneral",nullable=true)
+	 * @ORM\JoinColumn(name="informaciongeneral", referencedColumnName="idinformaciongeneral")
 	 */
     private $informaciongeneral;   
     /** 
@@ -61,7 +61,7 @@ class InformacionFamiliar
      */
     protected $ocupacionjefe;
     /** 
-     *@ORM\Column(type="string") 
+     *@ORM\Column(type="integer") 
      */
     protected $ingresojefe;
     /** 
@@ -73,7 +73,7 @@ class InformacionFamiliar
      */
     protected $ciudadjefe;
     /** 
-     *@ORM\Column(type="string") 
+     *@ORM\Column(type="integer") 
      */
     protected $telefono;
 
@@ -121,7 +121,7 @@ class InformacionFamiliar
     	return $this->direccionempresajefe;
     }
     public function getCiudad(){
-    	return $this->ciudad;
+    	return $this->ciudadjefe;
     }
     public function getTelefono(){
     	return $this->telefono;
@@ -141,6 +141,9 @@ class InformacionFamiliar
     public function setCasaPropia($casapropia){
     	 $this->casapropia = $casapropia;
     }
+    public function setHipoteca($hipoteca){
+        $this->hipoteca = $hipoteca;
+   }
     public function setValorMensualAmortizacion($valormensualamortizacion){
     	 $this->valormensualamortizacion = $valormensualamortizacion;
     }     
@@ -171,8 +174,8 @@ class InformacionFamiliar
     public function setDireccionEmpresaJefe($direccionempresajefe){
         $this->direccionempresajefe = $direccionempresajefe;
    }
-    public function setCiudad($ciudad){
-        $this->ciudad = $ciudad;
+    public function setCiudad($ciudadjefe){
+        $this->ciudadjefe = $ciudadjefe;
    }
     public function setTelefono($telefono){
         $this->telefono = $telefono;
