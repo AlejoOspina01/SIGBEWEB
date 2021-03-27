@@ -17,11 +17,11 @@ $informacionGeneral = $entityManager->createQuery('SELECT ig FROM InformacionGen
 
 $informacionParentesco = $entityManager->createQuery('SELECT p FROM Parentesco p WHERE p.informacionparentesco =?1')
 ->setParameter(1, $idInformacion)
-->getSingleResult();
+->getResult();
 
 $informacionIngreso = $entityManager->createQuery('SELECT i FROM FuenteIngreso i WHERE i.informacionfuente =?1')
 ->setParameter(1, $idInformacion)
-->getSingleResult();
+->getResult();
 
 $informacionBachillerato = $entityManager->createQuery('SELECT b FROM Bachillerato b WHERE b.informacionbachiller =?1')
 ->setParameter(1, $idInformacion)
@@ -42,6 +42,9 @@ if ($informacionGeneral === null) {
     echo "No found.\n";
     exit(1);
   }
+
+  $infoParentescto;
+  $infoFuente;
   $informacionarray =  array(
     'idinformaciongeneral'      => $informacionGeneral->getIdinformacionGeneral(),
     'idpostulaciongeneral'     => $informacionGeneral->getPostulacion()->getConsecutivo_postulacion(),
@@ -65,18 +68,7 @@ if ($informacionGeneral === null) {
     'direccionempresa'     =>  $informacionGeneral->getDireccionEmpresa(),
     'valortotalingreso'     =>  $informacionGeneral->getValorTotalIngreso(),
     'observacion'     =>  $informacionGeneral->getObservacion(),
-    'fecharegistro'          => $informacionGeneral->getFechaRegistro(), 
-    'idparentesco'          => $informacionParentesco->getIdPariente(),
-    'idgeneral'          => $informacionParentesco->getInformacionParentesco()->getIdinformacionGeneral(),
-    'tipoparentesco'          => $informacionParentesco->getTipoParentesco()->getNombreParentesco(),
-    'nombre'          => $informacionParentesco->getNombre(),
-    'edad'          => $informacionParentesco->getEdad(),
-    'direccion'          => $informacionParentesco->getDireccion(),
-    'ciudad'          => $informacionParentesco->getCiudad(),
-    'ocupacion'          => $informacionParentesco->getOcupacion(),
-    'idfuenteingreso'          => $informacionIngreso->getIdFuenteIngreso(), 
-    'nombreayuda'          => $informacionIngreso->getNombre(),
-    'tiponecesidad'          => $informacionIngreso->getTipoNecesidad()->getNombre(),
+    'fecharegistro'          => $informacionGeneral->getFechaRegistro(),
     'idbachillerato'          => $informacionBachillerato->getIdBachillerato(),
     'colegio'          => $informacionBachillerato->getColegio(),
     'municipio'          => $informacionBachillerato->getMunicipioColegio(),
@@ -101,30 +93,24 @@ if ($informacionGeneral === null) {
     'ingresojefe'          => $informacionFamiliar->getIngresoJefe(),
     'direccionempresajefe'          => $informacionFamiliar->getDireccionEmpresaJefe(),
     'ciudadjefe'          => $informacionFamiliar->getCiudad(),
-    'telefono'          => $informacionFamiliar->getTelefono(),
+    'telefono'          => $informacionFamiliar->getTelefono());
 
-    
-  );
-
-
-echo json_encode($informacionarray);
-/*$infoByIdGeneral;
-
-for ($i=0; $i < sizeof($informacionresultado); $i++) { 
-	$infoByIdGeneral[$i] =  array(
-		'idinformaciongeneral'     => $informacionresultado[$i]->getIdinformacionGeneral(),
-		'idpostulaciongeneral'         => $informacionresultado[$i]->getPostulacion()->getConsecutivo_postulacion(),
-		'lugarnacimiento' => $informacionresultado[$i]->getLugarNacimiento(),
-		'expedicioncedula' =>$informacionresultado[$i]->getExpedicionCedula(),
-		'estadocivil' =>$informacionresultado[$i]->getEstadoCivil(),
-		'numerohijos' =>$informacionresultado[$i]->getNumeroHijos(),
-		'municipioprocedencia' =>$informacionresultado[$i]->getMunicipioProcedencia(),
-		'direccion' =>$informacionresultado[$i]->getDireccion(),
-		'barrio' =>$informacionresultado[$i]->getBarrio(),
-        'nombre'          => $informacionresultado[$i]->getNombre());
+  for ($i=0; $i < sizeof($informacionParentesco); $i++) {
+    $infoParentescto[$i] =  array(
+      'idparentesco'          => $informacionParentesco[$i]->getIdPariente(),
+      'idgeneral'          => $informacionParentesco[$i]->getInformacionParentesco()->getIdinformacionGeneral(),
+      'tipoparentesco'          => $informacionParentesco[$i]->getTipoParentesco()->getNombreParentesco(),
+      'nombre'          => $informacionParentesco[$i]->getNombre(),
+      'edad'          => $informacionParentesco[$i]->getEdad(),
+      'direccion'          => $informacionParentesco[$i]->getDireccion(),
+      'ciudad'          => $informacionParentesco[$i]->getCiudad(),
+      'ocupacion'          => $informacionParentesco[$i]->getOcupacion());
     }
-
-    echo json_encode($infoByIdGeneral);*/
-
-
-
+    for ($i=0; $i < sizeof($informacionIngreso); $i++) {
+      $infoFuente[$i] =  array(
+      'idfuenteingreso'          => $informacionIngreso[$i]->getIdFuenteIngreso(), 
+      'nombreayuda'          => $informacionIngreso[$i]->getNombre(),
+      'tiponecesidad'          => $informacionIngreso[$i]->getTipoNecesidad()->getNombre());
+    }
+    array_push($informacionarray, array($infoParentescto),array($infoFuente));
+    echo json_encode($informacionarray);
