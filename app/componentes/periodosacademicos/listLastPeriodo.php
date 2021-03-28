@@ -15,11 +15,47 @@ if ($periodoencontrado === null) {
 	exit(1);
 }
 
+function compararFechas($primera, $segunda)
+ {
+  $valoresPrimera = explode ("/", $primera);   
+  $valoresSegunda = explode ("/", $segunda); 
+
+  $diaPrimera    = $valoresPrimera[0];  
+  $mesPrimera  = $valoresPrimera[1];  
+  $anyoPrimera   = $valoresPrimera[2]; 
+
+  $diaSegunda   = $valoresSegunda[0];  
+  $mesSegunda = $valoresSegunda[1];  
+  $anyoSegunda  = $valoresSegunda[2];
+
+  $diasPrimeraJuliano = gregoriantojd($mesPrimera, $diaPrimera, $anyoPrimera);  
+  $diasSegundaJuliano = gregoriantojd($mesSegunda, $diaSegunda, $anyoSegunda);     
+
+  if(!checkdate($mesPrimera, $diaPrimera, $anyoPrimera)){
+    // "La fecha ".$primera." no es v&aacute;lida";
+    return 0;
+  }elseif(!checkdate($mesSegunda, $diaSegunda, $anyoSegunda)){
+    // "La fecha ".$segunda." no es v&aacute;lida";
+    return 0;
+  }else{
+    return  $diasPrimeraJuliano - $diasSegundaJuliano;
+  } 
+
+}
+$primera = $periodoencontrado->getFechaFin()->format('d/m/Y');
+$segunda = date('d/m/Y');
+
+if(compararFechas ($primera,$segunda) <= 7){
+	$convertfechainicial = true;
+}else{
+	$convertfechainicial = false;
+}
 $periodofound =  array(
 	'consecutivo_periodo'     => $periodoencontrado->getConsecutivo_periodo(),
 	'descripcion'         => $periodoencontrado->getDescripcion(),
 	'fechainicial'    => $periodoencontrado->getFechaInicio(),
-	'fechafinal'    => $periodoencontrado->getFechaFin()
+	'fechafinal'    => $periodoencontrado->getFechaFin(),
+	'menossietedias' => $convertfechainicial
 );
 
 echo json_encode($periodofound);
