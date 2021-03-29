@@ -20,7 +20,12 @@ $convosActivas;
 for ($i=0; $i < sizeof($convocator); $i++) { 
 	$convosActivas[$i] =  array(
 		'consecutivoconvo'     => $convocator[$i]->getConsecutivoConvocatoria(),
-		'beca'         => $convocator[$i]->getConsecutivoBeca()->getDescripcion());
+		'beca'         => $convocator[$i]->getConsecutivoBeca()->getDescripcion(),
+		'fechainicio' => $convocator[$i]->getFechaInicio()->format('Y-m-d H:i'),
+		'fechafin' => $convocator[$i]->getFechaFin()->format('Y-m-d H:i'),
+		'cupos' => $convocator[$i]->getCupo(),
+		'periodonombre' => $convocator[$i]->getConsecutivoPeriodo()->getDescripcion()
+	);
 }
 
 

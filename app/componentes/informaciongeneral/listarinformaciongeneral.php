@@ -8,28 +8,28 @@ ini_set("display_errors", 1);
 
 require_once "../../../bootstrap.php";
 
-$idInformacion = $_GET['idinformaciongeneral'];
+$idInformacion = $_GET['idpostu'];
 
 
-$informacionGeneral = $entityManager->createQuery('SELECT ig FROM InformacionGeneral ig WHERE ig.idinformaciongeneral =?1')
+$informacionGeneral = $entityManager->createQuery('SELECT ig FROM InformacionGeneral ig WHERE ig.idpostulaciongeneral =?1')
 ->setParameter(1, $idInformacion)
 ->getSingleResult();
 
 $informacionParentesco = $entityManager->createQuery('SELECT p FROM Parentesco p WHERE p.informacionparentesco =?1')
-->setParameter(1, $idInformacion)
+->setParameter(1, $informacionGeneral->getIdinformacionGeneral())
 ->getResult();
 
 $informacionIngreso = $entityManager->createQuery('SELECT i FROM FuenteIngreso i WHERE i.informacionfuente =?1')
-->setParameter(1, $idInformacion)
+->setParameter(1, $informacionGeneral->getIdinformacionGeneral())
 ->getResult();
 
 $informacionBachillerato = $entityManager->createQuery('SELECT b FROM Bachillerato b WHERE b.informacionbachiller =?1')
-->setParameter(1, $idInformacion)
+->setParameter(1, $informacionGeneral->getIdinformacionGeneral())
 ->getSingleResult();
 
 
 $informacionFamiliar = $entityManager->createQuery('SELECT f FROM InformacionFamiliar f WHERE f.informaciongeneral =?1')
-->setParameter(1, $idInformacion)
+->setParameter(1, $informacionGeneral->getIdinformacionGeneral())
 ->getSingleResult();
 
 /*$informacionBuscada = $entityManager->createQuery("SELECT ig FROM InformacionGeneral ig WHERE ig.idinformaciongeneral =?1 IN (SELECT edad  FROM Parentesco p WHERE p.informacionparentesco=?1)");
@@ -49,7 +49,12 @@ if ($informacionGeneral === null) {
     'idinformaciongeneral'      => $informacionGeneral->getIdinformacionGeneral(),
     'idpostulaciongeneral'     => $informacionGeneral->getPostulacion()->getConsecutivo_postulacion(),
     'lugarnacimiento'     =>  $informacionGeneral->getLugarNacimiento(),
-    'expedicioncedula'         => $informacionGeneral->getExpedicionCedula(),
+    'nombrepostulante' => $informacionGeneral->getPostulacion()->getUsuarioCarrera()->getUsuario()->getNombre() . " " .  $informacionGeneral->getPostulacion()->getUsuarioCarrera()->getUsuario()->getApellido() ,
+    'codigopostulante' => $informacionGeneral->getPostulacion()->getUsuarioCarrera()->getCodigoEstudiante(),
+    'codigocarrerapostulante' => $informacionGeneral->getPostulacion()->getUsuarioCarrera()->getCarrera()->getConsecutivoCarrera(),
+    'fechanacimientopostulante' => $informacionGeneral->getPostulacion()->getUsuarioCarrera()->getUsuario()->getFechanacimiento()->format('Y-m-d'),
+    'cedulapostulante' => $informacionGeneral->getPostulacion()->getUsuarioCarrera()->getUsuario()->getIdentifacion(),
+    'expedicioncedula'         => $informacionGeneral->getExpedicionCedula()->format('Y-m-d'),
     'estadocivil'         => $informacionGeneral->getEstadoCivil(),
     'numerohijos'         => $informacionGeneral->getNumeroHijos(),
     'municipioprocedencia'      => $informacionGeneral->getMunicipioProcedencia(),
@@ -68,14 +73,14 @@ if ($informacionGeneral === null) {
     'direccionempresa'     =>  $informacionGeneral->getDireccionEmpresa(),
     'valortotalingreso'     =>  $informacionGeneral->getValorTotalIngreso(),
     'observacion'     =>  $informacionGeneral->getObservacion(),
-    'fecharegistro'          => $informacionGeneral->getFechaRegistro(),
+    'fecharegistro'          => $informacionGeneral->getFechaRegistro()->format('Y-m-d'),
     'idbachillerato'          => $informacionBachillerato->getIdBachillerato(),
     'colegio'          => $informacionBachillerato->getColegio(),
     'municipio'          => $informacionBachillerato->getMunicipioColegio(),
-    'añogrado'          => $informacionBachillerato->getAñoGrado(),
+    'aniogrado'          => $informacionBachillerato->getAñoGrado(),
     'pais'          => $informacionBachillerato->getPaisColegio(),
     'bachillericfes'          => $informacionBachillerato->getBachillerIcfes(),
-    'añoicfes'          => $informacionBachillerato->getAñoIcfes(),
+    'anioicfes'          => $informacionBachillerato->getAñoIcfes(),
     'caractercolegio'          => $informacionBachillerato->getCaracterColegio(),
     'valormatricula'          => $informacionBachillerato->getValorMatricula(),
     'valorpension'          => $informacionBachillerato->getValorPension(),
