@@ -31,9 +31,13 @@ class Encuesta
      */
     protected $frecuencia;
     /** 
-     *@ORM\Column(type="string") 
+     *@ORM\Column(type="integer") 
      */
     protected $calidad;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $calidadcomentario;
     /** 
      *@ORM\Column(type="integer") 
      */
@@ -43,17 +47,30 @@ class Encuesta
      */
     protected $variedad;    
     /** 
-     *@ORM\Column(type="string") 
+     *@ORM\Column(type="integer") 
      */
-    protected $horario;   
+    protected $horario;  
     /** 
      *@ORM\Column(type="string") 
+     */
+    protected $horariocomentario;       
+    /** 
+     *@ORM\Column(type="integer") 
      */
     protected $espacio;   
     /** 
      *@ORM\Column(type="string") 
      */
-    protected $calificacionservicio;    
+    protected $espaciocomentario;     
+    /** 
+     *@ORM\Column(type="integer") 
+     */
+    protected $calificacionservicio; 
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $calificacionserviciocomentario; 
+       
     /** 
      *@ORM\Column(type="string", nullable=true) 
      */
@@ -81,6 +98,10 @@ class Encuesta
     {
         return $this->calidad;
     }
+    public function getCalidadComentario()
+    {
+        return $this->calidadcomentario;
+    }
     public function getCantidad()
     {
         return $this->cantidad;
@@ -93,19 +114,32 @@ class Encuesta
     {
         return $this->espacio;
     }
+    public function getEspacioComentario()
+    {
+        return $this->espaciocomentario;
+    }    
     public function getHorario()
     {
         return $this->horario;
     }
+    public function getHorarioComentario()
+    {
+        return $this->horariocomentario;
+    }    
     public function getCalificacion()
     {
-        return $this->califacion;
+        return $this->califacionservicio;
     }
+    public function getCalificacionComentario()
+    {
+        return $this->calificacionserviciocomentario;
+    }    
     public function getComentario()
     {
         return $this->comentario;
     }
 
+    //SETTERS
     public function setPeriodo($periodoacademico)
     {
         $this->periodoacademico = $periodoacademico;
@@ -138,10 +172,28 @@ class Encuesta
     {
         $this->horario = $horario;
     }
-    public function setCalificacion($califacion)
+    public function setCalificacion($calificacionservicio)
     {
-        $this->califacion = $califacion;
+        $this->calificacionservicio = $calificacionservicio;
     }
+
+    public function setCalidadComentario($calidadcomentario)
+    {
+        $this->calidadcomentario = $calidadcomentario;
+    }
+    public function setEspacioComentario($espaciocomentario)
+    {
+        $this->espaciocomentario = $espaciocomentario;
+    }
+    public function setHorarioComentario($horariocomentario)
+    {
+        $this->horariocomentario = $horariocomentario;
+    }
+    public function setCalificacionComentario($calificacionserviciocomentario)
+    {
+        $this->calificacionserviciocomentario = $calificacionserviciocomentario;
+    }            
+
     public function setComentario($comentario)
     {
         $this->comentario = $comentario;
