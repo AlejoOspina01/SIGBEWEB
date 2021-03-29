@@ -6,6 +6,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
+date_default_timezone_set("America/Bogota");
 
 $email = $_GET["email"];
 $usuario = $entityManager->createQuery('select u from Usuarios u where u.correo = ?1')
@@ -23,7 +24,10 @@ $userarray =  array(
   'apellido'      => $usuario->getApellido(),
   'correo'         => $usuario->getCorreo(),
   'contrasena'     => $usuario->getContrasena(),
-  'saldo'     => $usuario->getSaldo(),
+  'estrato'     => $usuario->getEstrato(),
+  'direccion'     => $usuario->getDireccion(),
+  'zonaresidencial'     => $usuario->getZonaresidencial(),
+  'fechanacimiento'     => $usuario->getFechanacimiento()->format('Y-m-d'),
   'roles'  => $usuario->getIdRol()->getIdRol(),
   'estadouser' => $usuario->getEstadouser()
 );
