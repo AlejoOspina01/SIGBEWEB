@@ -19,6 +19,7 @@ $postByIdConvo;
 for ($i=0; $i < sizeof($Postulacionesresult); $i++) { 
 	$postByIdConvo[$i] =  array(
 		'consecutivo_postulacion'     => $Postulacionesresult[$i]->getConsecutivo_postulacion(),
+		'estadopromedio' => $Postulacionesresult[$i]->getEstadoPromedio(),
 		'promedio'         => $Postulacionesresult[$i]->getPromedio(),
 		'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d H:i'),
 		'semestre' =>$Postulacionesresult[$i]->getSemestre(),
