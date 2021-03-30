@@ -21,8 +21,17 @@ $encontrarUser = $entityManager->createQuery("SELECT  u FROM UsuariosCarreras u 
 )->setParameter(1,$propiedadesPostu['carrera']);
 $Userfound = $encontrarUser->getSingleResult();
 
-$encontrarConvo = $entityManager->find('Convocatorias', $convoProperty['consecutivoconvo']);
+// $encontrarConvo = $entityManager->find('Convocatorias', $convoProperty['consecutivoconvo']);
+$encontrarConvo = $entityManager->createQuery("SELECT  u FROM Convocatorias u  WHERE u.consecutivo_convocatoria = ?1")->setParameter(1,$convoProperty['consecutivoconvo']);
+$convofound = $encontrarConvo->getSingleResult();
 
+$fechaactual = strtotime(date("Y-m-d H:i",time()));
+$fechaconvosel = strtotime($convofound->getFechaFin()->format("Y-m-d H:i"));
+
+if($fechaactual > $fechaconvosel){
+	echo " ERROR: La fecha de esa convocatoria ya paso.";
+}else{
+	
 $postulacion = new Postulacion();
 $postulacion->setPromedio($propiedadesPostu['promedio']);
 $postulacion->setFechapostulacion( new \DateTime('now'));
@@ -31,7 +40,7 @@ $postulacion->setEstado_postulacion('En espera');
 $postulacion->setComentPsicologa('');
 
 $postulacion->setUsuarioCarrera($Userfound);
-$postulacion->setConvocatoria($encontrarConvo);
+$postulacion->setConvocatoria($convofound);
 $postulacion->setCantmodificaciones(0);
 
 
@@ -52,4 +61,5 @@ if(sizeof($propiedadesPostu['listDocumentos']) != 0){
 		$entityManager->persist($documentPostu);
 		$entityManager->flush();
 	}
+}
 }

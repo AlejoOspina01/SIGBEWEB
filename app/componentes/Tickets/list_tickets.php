@@ -7,7 +7,6 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
 
-$identificacion=$_GET["identificacion"];
 
 $tickets =$entityManager->createQuery('select u from Tickets u')
 ->getResult();
@@ -19,20 +18,14 @@ if ($tickets === null) {
 
 
 for($i=0; $i< sizeof($tickets); $i++){
-  
-
-	if($tickets[$i]->getUsuario()->getIdentifacion() == $identificacion){
     $arraytickets[] =  array(
      'consecutivoticket' =>  $tickets[$i]->getConsecutivoTicket(),
-     'fecha_compra' => $tickets[$i]-> getFechaCompra(), 
+     'fecha_compra' => $tickets[$i]-> getFechaCompra()->format("Y-m-d h:i"), 
+     'tipoticket' => $tickets[$i]->getTipoTicket(),
      'identificacion_estudiante' => $tickets[$i]->getUsuario()->getIdentifacion(),
      'nombre_estudiate' =>  $tickets[$i]->getUsuario()->getNombre(),
      'apellido_estudiate' =>  $tickets[$i]->getUsuario()->getApellido(),
-
-
-     
-     
+     'estadoticket' => $tickets[$i]->getEstado()
    );
-  }
 }
 echo json_encode($arraytickets);
