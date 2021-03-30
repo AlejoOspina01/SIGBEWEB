@@ -37,6 +37,7 @@ $usuario->setFechanacimiento($convertfechainicial);
 $usuario->setEstrato($propiedadesUser['estrato']);
 $usuario->setIdRol($roluser);
 $usuario->setEstadouser($propiedadesUser['estadouser']);
+$usuario->setEstadoActualizadoDatos(1);
 $usuario->setSaldo($saldo);
 $usuario->setPdf($pdf);
 
