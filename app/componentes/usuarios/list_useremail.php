@@ -29,7 +29,8 @@ $userarray =  array(
   'zonaresidencial'     => $usuario->getZonaresidencial(),
   'fechanacimiento'     => $usuario->getFechanacimiento()->format('Y-m-d'),
   'roles'  => $usuario->getIdRol()->getIdRol(),
-  'estadouser' => $usuario->getEstadouser()
+  'estadouser' => $usuario->getEstadouser(),
+  'estadodatos' => $usuario->getEstadoActualizadoDatos()
 );
 
 echo json_encode($userarray);
