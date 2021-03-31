@@ -66,7 +66,16 @@ if(sizeof($stdConvo['documentossel']) != 0){
 
 
 if($stdConvo['enviarCorreo'] == 1){
+	$textoArchivo = file("../configuracion/config.txt");
+	$variables= array();
+	// Mostrar el contenido del archivo:
+	for ($i=0; $i < sizeof($textoArchivo); $i++) { 
+		array_push($variables, explode("|",$textoArchivo[$i]));
+	}
 
+	for ($i=0; $i < sizeof($variables); $i++) { 
+		$variables[$i][1] = trim($variables[$i][1]);
+	}
 
 	$message = "<!DOCTYPE html>
 	<html >
@@ -127,8 +136,8 @@ if($stdConvo['enviarCorreo'] == 1){
 		$oMail->SMTPSecure='tls';
 		$oMail->SMTPAutoTLS = false;
 		$oMail->SMTPAuth=true;
-		$oMail->Username='haloalejo@gmail.com';
-		$oMail->Password='Mrdark123';
+		$oMail->Username=$variables[8][1];
+		$oMail->Password=$variables[9][1];
 		$oMail->setFrom($correosbd[$i]["correo"],'SIGBE - Gestion de becas UV');
 		$oMail->addAddress($correosbd[$i]["correo"],'SIGBE - Gestion de becas UV');
 		$oMail->Subject=$stdConvo['asuntocorreo'];

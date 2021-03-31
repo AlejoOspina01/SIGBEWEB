@@ -6,3 +6,5 @@ horainicioVentaRefrigerio|16:00
 horaFinVentaRefrigerio|18:00
 valorticketalmuerzobeneficiario|500
 valorticketrefrigeriobeneficiario|1000
+correoestablecido|haloalejo@gmail.com
+contrasenaestablecida|Mrdark123
