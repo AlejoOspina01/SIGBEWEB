@@ -65,7 +65,7 @@ if(sizeof($stdConvo['documentossel']) != 0){
 
 
 
-if($propiedadesConvo['enviarCorreo'] == 1){
+if($stdConvo['enviarCorreo'] == 1){
 
 
 	$message = "<!DOCTYPE html>
@@ -88,8 +88,8 @@ if($propiedadesConvo['enviarCorreo'] == 1){
 	<ul>
 	<li> Beca: <strong>" . $encontrarBeca->getDescripcion() .  "</strong> </li>
 	<li> Fecha Convocatoria: <strong>" . $fechainicial->format('Y-m-d H:i:s') .  " hasta el " . $fechafin->format('Y-m-d H:i:s') . " </strong></li>
-	<li> Cantidad de cupos: <strong>" . $propiedadesConvo['cupo'] .  " </strong></li>
-	<li> <strong>". $propiedadesConvo['contenidocorreo'] . " </strong></li>
+	<li> Cantidad de cupos: <strong>" . $stdConvo['cupo'] .  " </strong></li>
+	<li> <strong>". $stdConvo['contenidocorreo'] . " </strong></li>
 	<li> Inicia sesión para postularte YA: <strong> SIGBE </strong></li>
 
 
@@ -131,7 +131,7 @@ if($propiedadesConvo['enviarCorreo'] == 1){
 		$oMail->Password='Mrdark123';
 		$oMail->setFrom($correosbd[$i]["correo"],'SIGBE - Gestion de becas UV');
 		$oMail->addAddress($correosbd[$i]["correo"],'SIGBE - Gestion de becas UV');
-		$oMail->Subject=$propiedadesConvo['asuntocorreo'];
+		$oMail->Subject=$stdConvo['asuntocorreo'];
 		$oMail->msgHTML($message);
 
 		if(!$oMail->Send()) {
