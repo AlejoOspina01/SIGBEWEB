@@ -21,6 +21,7 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'nombreConv'         => $Postulacionesresult[$i]-> getConvocatoria()->getConsecutivoBeca()->getDescripcion(),
 		'idConvo'         => $Postulacionesresult[$i]-> getConvocatoria()->getConsecutivoConvocatoria(),
 		'promedio'         => $Postulacionesresult[$i]->getPromedio(),
+		'estadopromedio' => $Postulacionesresult[$i]->getEstadoPromedio(),
 		'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d H:i'),
 		'semestre' =>$Postulacionesresult[$i]->getSemestre(),
 		'estrato' =>$Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getEstrato() ,
