@@ -41,6 +41,16 @@ if ($postulacionUpdate === null) {
 
 try{
 
+	$textoArchivo = file("../configuracion/config.txt");
+	$variables= array();
+	// Mostrar el contenido del archivo:
+	for ($i=0; $i < sizeof($textoArchivo); $i++) { 
+		array_push($variables, explode("|",$textoArchivo[$i]));
+	}
+
+	for ($i=0; $i < sizeof($variables); $i++) { 
+		$variables[$i][1] = trim($variables[$i][1]);
+	}
 
 	$message = "<!DOCTYPE html>
 	<html >
@@ -57,7 +67,7 @@ try{
 	</div>";
 	$message .= "<div style='padding-top: 4em;padding-bottom: 4em;" . ">";
 	$message .="
-	<h2 align='center'>El estado de su postulación fue actualizado</h2>
+	<h2 align='center'>El estado de su postulacion fue actualizado</h2>
 	<ul>
 	<li > Buen dia usuario : ". $postuFound->getUsuarioCarrera()->getUsuario()->getCorreo() . " </li>
 	<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $postuFound->getEstado_postulacion()  . " ', para mas información ingrese a SIGBE.</li>
@@ -77,8 +87,8 @@ try{
 		$oMail->SMTPSecure='tls';
 		$oMail->SMTPAutoTLS = false;
 		$oMail->SMTPAuth=true;
-		$oMail->Username='haloalejo@gmail.com';
-		$oMail->Password='Mrdark123';
+		$oMail->Username=$variables[8][1];
+		$oMail->Password=$variables[9][1];
 		$oMail->setFrom($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
 		$oMail->addAddress($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
 		$oMail->Subject='Estado de la postulación a sido actualizada';

@@ -43,6 +43,16 @@ $query = $usuarioUpdate->update('Usuarios', 'u')
 ->getQuery();        
 $execute = $query->execute();
 
+	$textoArchivo = file("../configuracion/config.txt");
+	$variables= array();
+	// Mostrar el contenido del archivo:
+	for ($i=0; $i < sizeof($textoArchivo); $i++) { 
+		array_push($variables, explode("|",$textoArchivo[$i]));
+	}
+
+	for ($i=0; $i < sizeof($variables); $i++) { 
+		$variables[$i][1] = trim($variables[$i][1]);
+	}
 
 	$message = "<!DOCTYPE html>
 	<html >
@@ -59,7 +69,7 @@ $execute = $query->execute();
 	</div>";
 	$message .= "<div style='font-family:". "'Google Sans'" . ">";
 	$message .="
-	<h2 align='center'>Se ha generado una nueva contraseña para su cuenta</h2>
+	<h2 align='center'>Se ha generado una nueva contrasena para su cuenta</h2>
 	<ul>
 	<li > Buen dia usuario : ". $emailFound['email'] . " </li>
 	<li > Nueva contraseña : ". $password . " </li>
@@ -94,8 +104,8 @@ $execute = $query->execute();
 		$oMail->SMTPSecure='tls';
 		$oMail->SMTPAutoTLS = false;
 		$oMail->SMTPAuth=true;
-		$oMail->Username='haloalejo@gmail.com';
-		$oMail->Password='Mrdark123';
+		$oMail->Username=$variables[8][1];
+		$oMail->Password=$variables[9][1];
 		$oMail->setFrom($emailFound['email'],'SIGBE - Gestion de becas UV');
 		$oMail->addAddress($emailFound['email'],'SIGBE - Gestion de becas UV');
 		$oMail->Subject='Nueva contraseña - SIGBE';
