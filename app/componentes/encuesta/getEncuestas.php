@@ -11,20 +11,145 @@ require_once "../../../bootstrap.php";
 $encuestas =$entityManager->createQuery('select u from Encuesta u')
 ->getResult();
 
-
+function verificarFrecuencia($primera)
+ {
+    switch ($primera) {
+        case 0:
+            return "Todos los dias";
+            break;
+        case 1:
+            return "1-3 veces a la semana";
+            break;
+        case 2:
+            return "3-4 veces a la semana";
+            break;                        
+        
+        default:
+            # code...
+            break;
+    }
+ }
+function verificarCalidad($primera)
+ {
+    switch ($primera) {
+        case 0:
+            return "Excelente";
+            break;
+        case 1:
+            return "Bueno";
+            break;
+        case 2:
+            return "Regular";
+            break;                        
+        case 3:
+            return "Malo";
+            break;          
+        default:
+            # code...
+            break;
+    }
+ }
+function verificarCantidad($primera)
+ {
+        switch ($primera) {
+        case 0:
+            return "Si";
+            break;
+        case 1:
+            return "No";
+            break;
+        case 2:
+            return "A veces";
+            break;                        
+        
+        default:
+            # code...
+            break;
+    }
+ }
+function verificarVariedad($primera)
+ {
+        switch ($primera) {
+        case 0:
+            return "Si";
+            break;
+        case 1:
+            return "No";
+            break;
+        case 2:
+            return "A veces";
+            break;                        
+        
+        default:
+            # code...
+            break;
+    }
+ }
+function verificarHorario($primera)
+ {
+    switch ($primera) {
+        case 0:
+            return "Si";
+            break;
+        case 1:
+            return "No";
+            break;                      
+        
+        default:
+            # code...
+            break;
+    }
+ }
+function verificarEspacio($primera)
+ {
+    switch ($primera) {
+        case 0:
+            return "Si";
+            break;
+        case 1:
+            return "No";
+            break;                      
+        
+        default:
+            # code...
+            break;
+    }
+ }
+function verificarCalificacion($primera)
+ {
+    switch ($primera) {
+        case 0:
+            return "Excelente";
+            break;
+        case 1:
+            return "Bueno";
+            break;
+        case 2:
+            return "Regular";
+            break;                        
+        case 3:
+            return "Malo";
+            break;          
+        default:
+            # code...
+            break;
+    }
+ }
+ 
 for($i=0; $i< sizeof($encuestas); $i++){
+    
     $arrayencuestas[] =  array(
      'idencuesta' =>  $encuestas[$i]->getIdEncuesta(),
-     'frecuencia' => $encuestas[$i]->getFrecuencia(),
-     'calidad' => $encuestas[$i]->getCalidad(),
+     'frecuencia' => verificarFrecuencia($encuestas[$i]->getFrecuencia()),
+     'calidad' => verificarCalidad($encuestas[$i]->getCalidad()),
      'calidadcomentario' => $encuestas[$i]->getCalidadComentario(),
-     'cantidad' => $encuestas[$i]->getCantidad(),
-     'variedad' => $encuestas[$i]->getVariedad(),
-     'horario' => $encuestas[$i]->getHorario(),
+     'cantidad' => verificarCantidad($encuestas[$i]->getCantidad()),
+     'variedad' =>  verificarVariedad($encuestas[$i]->getVariedad()),
+     'horario' => verificarHorario($encuestas[$i]->getHorario()),
      'horariocomentario' => $encuestas[$i]->getHorarioComentario(),
-     'espacio' => $encuestas[$i]->getEspacio(),
+     'espacio' => verificarEspacio($encuestas[$i]->getEspacio()),
      'espaciocomentario' => $encuestas[$i]->getEspacioComentario(),
-     'calificacionservicio' => $encuestas[$i]->getCalificacion(),
+     'calificacionservicio' => verificarCalificacion($encuestas[$i]->getCalificacion()),
      'calificacionserviciocomentario' => $encuestas[$i]->getCalificacionComentario(),
      'comentario' => $encuestas[$i]->getComentario(),
      'idperiodo' => $encuestas[$i]->getPeriodo()->getConsecutivo_periodo(),
