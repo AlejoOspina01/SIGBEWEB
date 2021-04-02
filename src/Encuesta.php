@@ -128,7 +128,7 @@ class Encuesta
     }    
     public function getCalificacion()
     {
-        return $this->califacionservicio;
+        return $this->calificacionservicio;
     }
     public function getCalificacionComentario()
     {
