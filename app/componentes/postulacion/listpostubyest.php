@@ -28,6 +28,8 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
 		'comentpsicologa' =>$Postulacionesresult[$i]->getComentPsicologa() , 
 		'cantmodificaciones' =>$Postulacionesresult[$i]->getCantmodificaciones() , 
+		'nombre estudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
+		'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion(),
 		'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
 			'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion() ,
 			'correoest' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getCorreo()));

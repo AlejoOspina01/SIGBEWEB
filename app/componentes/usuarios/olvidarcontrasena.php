@@ -106,6 +106,7 @@ $execute = $query->execute();
 		$oMail->SMTPAuth=true;
 		$oMail->Username=$variables[8][1];
 		$oMail->Password=$variables[9][1];
+		$oMail->isHTML(true);
 		$oMail->setFrom($emailFound['email'],'SIGBE - Gestion de becas UV');
 		$oMail->addAddress($emailFound['email'],'SIGBE - Gestion de becas UV');
 		$oMail->Subject='Nueva contraseña - SIGBE';

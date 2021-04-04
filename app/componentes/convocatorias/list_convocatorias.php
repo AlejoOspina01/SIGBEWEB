@@ -17,8 +17,8 @@ for ($i=0; $i < sizeof($convocator); $i++) {
     'consecutivo_convocatoria'  => $convocator[$i]->getConsecutivoConvocatoria(),
     'beca'  => $convocator[$i]->getConsecutivoBeca()->getDescripcion(),
     'periodosacademicos' => $convocator[$i]->getConsecutivoPeriodo()->getDescripcion(),
-    'fecha_inicio'=>$convocator[$i]->getFechaInicio()->format('Y-m-d H:i'),
-    'fecha_fin' =>$convocator[$i]->getFechaFin()->format('Y-m-d H:i'),
+    'fecha_inicio'=>$convocator[$i]->getFechaInicio()->format('Y-m-d h:i'),
+    'fecha_fin' =>$convocator[$i]->getFechaFin()->format('Y-m-d h:i'),
     'estado_convocatoria'=> $convocator[$i]->getEstadoConvocatoria(),
     'cupo'=> $convocator[$i]-> getCupo());
 }

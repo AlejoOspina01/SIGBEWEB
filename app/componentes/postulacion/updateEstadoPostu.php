@@ -87,11 +87,12 @@ try{
 		$oMail->SMTPSecure='tls';
 		$oMail->SMTPAutoTLS = false;
 		$oMail->SMTPAuth=true;
+		$oMail->isHTML(true);
 		$oMail->Username=$variables[8][1];
 		$oMail->Password=$variables[9][1];
 		$oMail->setFrom($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
 		$oMail->addAddress($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
-		$oMail->Subject='Estado de la postulación a sido actualizada';
+		$oMail->Subject='Estado de la postulacion a sido actualizada';
 		$oMail->msgHTML($message);
 
 		if(!$oMail->Send()) {
