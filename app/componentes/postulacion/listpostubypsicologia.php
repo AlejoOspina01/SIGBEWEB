@@ -9,9 +9,10 @@ ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
 
 $idConvo = $_GET['idconvo'];
-$postulaciones = $entityManager->createQuery("SELECT p FROM Postulacion p , UsuariosCarreras uc, Carreras c, Usuarios u where p.usuariocarrera=uc.idusuariocarrera AND uc.usuario = u.identificacion AND uc.carrera=c.codigocarrera AND p.convocatoria = ?1");
-//("SELECT p FROM Postulacion p, Usuarios u , UsuariosCarreras uc, Carreras c WHERE p.usuariocarrera=u.identificacion AND u.identificacion=uc.usuario AND uc.carrera=c.codigocarrera AND p.convocatoria = ?1");
-$postulaciones->setParameter(1,$idConvo);
+$postulaciones = $entityManager->createQuery("SELECT p FROM Postulacion p , UsuariosCarreras uc, Carreras c, Usuarios u where p.usuariocarrera=uc.idusuariocarrera AND uc.usuario = u.identificacion AND uc.carrera=c.codigocarrera AND p.convocatoria = ?1 AND (p.estado_postulacion = ?2 OR p.estado_postulacion = ?3)");
+$postulaciones->setParameter(1,$idConvo)
+->setParameter(2,'Entrevista')
+->setParameter(3,'Visita');
 $Postulacionesresult = $postulaciones->getResult();
 
 $postByIdConvo;
@@ -21,9 +22,7 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'consecutivo_postulacion'     => $Postulacionesresult[$i]->getConsecutivo_postulacion(),
 		'estadopromedio' => $Postulacionesresult[$i]->getEstadoPromedio(),
 		'promedio'         => $Postulacionesresult[$i]->getPromedio(),
-		'ciudadresidencia' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getCiudad()->getNombre(),
-		'direccionresidencia' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getDireccion(),
-		'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d'),
+		'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d H:i'),
 		'semestre' =>$Postulacionesresult[$i]->getSemestre(),
 		'coments' =>$Postulacionesresult[$i]->getComentPsicologa(),
 		'estrato' =>$Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getEstrato(),

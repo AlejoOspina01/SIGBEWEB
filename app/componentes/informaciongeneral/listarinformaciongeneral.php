@@ -109,7 +109,9 @@ if ($informacionGeneral === null) {
       'edad'          => $informacionParentesco[$i]->getEdad(),
       'direccion'          => $informacionParentesco[$i]->getDireccion(),
       'ciudad'          => $informacionParentesco[$i]->getCiudad(),
-      'ocupacion'          => $informacionParentesco[$i]->getOcupacion());
+      'ocupacion'          => $informacionParentesco[$i]->getOcupacion(),
+      'ingresos' => $informacionParentesco[$i]->getIngresos()
+    );
     }
     for ($i=0; $i < sizeof($informacionIngreso); $i++) {
       $infoFuente[$i] =  array(

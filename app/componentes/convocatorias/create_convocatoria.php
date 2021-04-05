@@ -136,6 +136,7 @@ if($stdConvo['enviarCorreo'] == 1){
 		$oMail->SMTPSecure='tls';
 		$oMail->SMTPAutoTLS = false;
 		$oMail->SMTPAuth=true;
+		$oMail->isHTML(true);
 		$oMail->Username=$variables[8][1];
 		$oMail->Password=$variables[9][1];
 		$oMail->setFrom($correosbd[$i]["correo"],'SIGBE - Gestion de becas UV');
