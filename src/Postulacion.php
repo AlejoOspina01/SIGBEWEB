@@ -63,6 +63,14 @@ class Postulacion
     *
     */
     private $PostulacionHasDocumento;
+    /**
+    *  
+    *
+    * @ORM\OneToMany(targetEntity="Beneficiarios", mappedBy="Postulacion", cascade={"all"})
+    *
+    */
+    private $beneficiario;
+
 
     // Getters
 

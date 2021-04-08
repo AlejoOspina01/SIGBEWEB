@@ -31,6 +31,11 @@ $entityManager->flush();
 $usuariosest =$entityManager->createQuery('SELECT u FROM Usuarios u WHERE u.roles = 1')
 ->getResult();
 
+try{
+$beneficiariosactualizar =$entityManager->createQuery('SELECT u FROM Beneficiarios u, Postulacion p WHERE u.postulacion = p.consecutivo_postulacion AND p.estado_postulacion = ?1 AND u.tiempobeneficiario > 0')
+->setParameter(1,'Aprobado')
+->getResult();
+
 echo json_encode($usuariosest);
 
 for ($i=0; $i < sizeof($usuariosest); $i++) { 
@@ -43,5 +48,37 @@ for ($i=0; $i < sizeof($usuariosest); $i++) {
 	->getQuery();
 	$execute = $query->execute();
 }
+
+for ($i=0; $i < sizeof($beneficiariosactualizar); $i++) { 
+	$beneficiarioUpdate = $entityManager->createQueryBuilder();
+	$query = $beneficiarioUpdate->update('Beneficiarios', 'u') 
+	->set('u.tiempobeneficiario', '?1')
+	->where('u.postulacion = ?2')
+	->andWhere('u.convocatoria = ?3')
+	->setParameter(1, $beneficiariosactualizar[$i]->getTiempoBeneficiario() - 1 )
+	->setParameter(2, $beneficiariosactualizar[$i]->getPostulacion()->getConsecutivo_postulacion())
+	->setParameter(3,$beneficiariosactualizar[$i]->getConvocatoria()->getConsecutivoConvocatoria())
+	->getQuery();
+	$execute = $query->execute();
+}
+
+
+}catch(Doctrine\ORM\NoResultException $ex){
+echo json_encode($usuariosest);
+
+for ($i=0; $i < sizeof($usuariosest); $i++) { 
+	$usuarioUpdate = $entityManager->createQueryBuilder();
+	$query = $usuarioUpdate->update('Usuarios', 'u') 
+	->set('u.estadoactualizadodatos', '?3')
+	->where('u.identificacion = ?2')
+	->setParameter(2, $usuariosest[$i]->getIdentifacion())
+	->setParameter(3, 0)
+	->getQuery();
+	$execute = $query->execute();
+}
+}
+
+
+
 
 

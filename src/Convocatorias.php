@@ -50,6 +50,14 @@ class Convocatorias
     *
     */
     private $ConvocatoriaHasDocumento;
+    /**
+    *  
+    *
+    * @ORM\OneToMany(targetEntity="Beneficiarios", mappedBy="Convocatorias", cascade={"all"})
+    *
+    */
+    private $convocatoriaHasBeneficiario;
+    
 
     //Datos Convocatoria
     public function getConsecutivoConvocatoria()
