@@ -28,6 +28,14 @@ class Beneficiarios
      */
     protected $tiempobeneficiario;
     /** 
+     *@ORM\Column(type="integer") 
+     */
+    protected $tiempobeneficiariorestante;    
+    /** 
+     *@ORM\Column(type="date") 
+     */
+    protected $fechabeneficiario;    
+    /** 
      *@ORM\Column(type="string") 
      */
     protected $observacion;
@@ -53,10 +61,18 @@ class Beneficiarios
     {
         return $this->postulacion;
     }
+    public function getFechaBeneficiario()
+    {
+        return $this->fechabeneficiario;
+    }    
     public function getTiempoBeneficiario()
     {
         return $this->tiempobeneficiario;
     }
+    public function getTiempoBeneficiarioRestante()
+    {
+        return $this->tiempobeneficiariorestante;
+    }    
     public function getObservacion()
     {
         return $this->observacion;
@@ -76,10 +92,18 @@ class Beneficiarios
     {
         $this->postulacion = $postulacion;
     }
+    public function setFechaBeneficiario($fechabeneficiario)
+    {
+        $this->fechabeneficiario = $fechabeneficiario;
+    }  
     public function setTiempoBeneficiario($tiempobeneficiario)
     {
         $this->tiempobeneficiario = $tiempobeneficiario;
     }
+    public function setTiempoBeneficiarioRestante($tiempobeneficiariorestante)
+    {
+        $this->tiempobeneficiariorestante = $tiempobeneficiariorestante;
+    }    
     public function setObservacion($observacion)
     {
         $this->observacion = $observacion;

@@ -25,6 +25,10 @@ class Postulacion
      */
     protected $fechapostulacion;
     /** 
+     *@ORM\Column(type="date",nullable=true) 
+     */
+    protected $fecharevision;        
+    /** 
      *@ORM\Column(type="integer") 
      */
     protected $semestre;
@@ -37,7 +41,15 @@ class Postulacion
      */
     protected $cantModificaciones;
     /** 
-     *@ORM\Column(type="string") 
+     *@ORM\Column(type="string",nullable=true) 
+     */
+    protected $imagencocina;    
+    /** 
+     *@ORM\Column(type="string",nullable=true) 
+     */
+    protected $imagencuarto;        
+    /** 
+     *@ORM\Column(type="string",nullable=true) 
      */
     protected $comentpsicologa;
         /** 
@@ -83,6 +95,9 @@ class Postulacion
     public function getFechapostulacion(){
         return $this->fechapostulacion;
     }
+    public function getFechaRevisión(){
+        return $this->fecharevision;
+    }    
     public function getSemestre(){
         return $this->semestre;
     }
@@ -104,11 +119,15 @@ class Postulacion
     public function getEstadoPromedio(){
         return $this->estadopromedio;
     }
-    //nuevos
+    public function getImagenCocina(){
+        return $this->imagencocina;
+    }
+    public function getImagenCuarto(){
+        return $this->imagencuarto;
+    }    
 
 
-
-
+    
     // Setters
 
     public function setConsecutivo_postulacion($consecutivo_postulacion){
@@ -120,6 +139,9 @@ class Postulacion
     public function setFechapostulacion($fechapostulacion){
         $this->fechapostulacion = $fechapostulacion;
     }
+    public function setFechaRevisió($fecharevision){
+        $this->fecharevision = $fecharevision;
+    }  
     public function setSemestre($semestre){
         $this->semestre = $semestre;
     }
@@ -141,5 +163,11 @@ class Postulacion
     public function setEstadoPromedio($estadopromedio){
         $this->estadopromedio = $estadopromedio;
     }  
+    public function setImagenCocina($imagencocina){
+         $this->imagencocina = $imagencocina;
+    }
+    public function setImagenCuarto($imagencuarto){
+         $this->imagencuarto = $imagencuarto;
+    }    
     
 }

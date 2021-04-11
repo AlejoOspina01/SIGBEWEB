@@ -3,6 +3,8 @@ header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
+date_default_timezone_set("America/Bogota");
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
@@ -71,6 +73,7 @@ if ($informacionGeneral === null) {
     'antiguedad'     =>  $informacionGeneral->getAntiguedad(),
     'ciudadempresa'     =>  $informacionGeneral->getCiudadEmpresa(),
     'direccionempresa'     =>  $informacionGeneral->getDireccionEmpresa(),
+    'telefenoempresa' => $informacionGeneral->getTelefonoTrabaja(),
     'valortotalingreso'     =>  $informacionGeneral->getValorTotalIngreso(),
     'observacion'     =>  $informacionGeneral->getObservacion(),
     'fecharegistro'          => $informacionGeneral->getFechaRegistro()->format('Y-m-d'),
@@ -98,7 +101,7 @@ if ($informacionGeneral === null) {
     'ingresojefe'          => $informacionFamiliar->getIngresoJefe(),
     'direccionempresajefe'          => $informacionFamiliar->getDireccionEmpresaJefe(),
     'ciudadjefe'          => $informacionFamiliar->getCiudad(),
-    'telefono'          => $informacionFamiliar->getTelefono());
+    'telefonojefe'          => $informacionFamiliar->getTelefono());
 
   for ($i=0; $i < sizeof($informacionParentesco); $i++) {
     $infoParentescto[$i] =  array(

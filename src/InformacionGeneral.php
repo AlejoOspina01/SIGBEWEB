@@ -97,8 +97,11 @@ class InformacionGeneral
     /** 
      *@ORM\Column(type="integer") 
      */
+    protected $telefonotrabaja;    
+    /** 
+     *@ORM\Column(type="integer") 
+     */
     protected $valortotalingreso;
-    
     /** 
      *@ORM\Column(type="string") 
      */
@@ -169,6 +172,9 @@ class InformacionGeneral
     public function getDireccionEmpresa(){
     	return $this->direccionempresa;
     }
+    public function getTelefonoTrabaja(){
+        return $this->telefonotrabaja;
+    }    
     public function getValorTotalIngreso(){
     	return $this->valortotalingreso;
     }
@@ -179,8 +185,7 @@ class InformacionGeneral
     	return $this->fecharegistro;
     }
 
- 
-    
+
 
 	//Establecer valores
     public function setIdInformacionGeneral($idinformaciongeneral)
@@ -245,6 +250,9 @@ class InformacionGeneral
     public function setDireccionEmpresa($direccionempresa){
     	 $this->direccionempresa = $direccionempresa;
     }
+    public function setTelefonoTrabaja($telefonotrabaja){
+         $this->telefonotrabaja = $telefonotrabaja;
+    }  
     public function setValorTotalIngreso($valortotalingreso){
     	 $this->valortotalingreso = $valortotalingreso;
     }
@@ -253,6 +261,7 @@ class InformacionGeneral
     }
     public function setFechaRegistro($fecharegistro){
         $this->fecharegistro = $fecharegistro;
-   }
+    }
+
     
 }

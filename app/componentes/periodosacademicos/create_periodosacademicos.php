@@ -2,6 +2,9 @@
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+date_default_timezone_set("America/Bogota");
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
@@ -32,7 +35,7 @@ $usuariosest =$entityManager->createQuery('SELECT u FROM Usuarios u WHERE u.role
 ->getResult();
 
 try{
-$beneficiariosactualizar =$entityManager->createQuery('SELECT u FROM Beneficiarios u, Postulacion p WHERE u.postulacion = p.consecutivo_postulacion AND p.estado_postulacion = ?1 AND u.tiempobeneficiario > 0')
+$beneficiariosactualizar =$entityManager->createQuery('SELECT u FROM Beneficiarios u, Postulacion p WHERE u.postulacion = p.consecutivo_postulacion AND p.estado_postulacion = ?1 AND u.tiempobeneficiariorestante > 0')
 ->setParameter(1,'Aprobado')
 ->getResult();
 
@@ -52,10 +55,10 @@ for ($i=0; $i < sizeof($usuariosest); $i++) {
 for ($i=0; $i < sizeof($beneficiariosactualizar); $i++) { 
 	$beneficiarioUpdate = $entityManager->createQueryBuilder();
 	$query = $beneficiarioUpdate->update('Beneficiarios', 'u') 
-	->set('u.tiempobeneficiario', '?1')
+	->set('u.tiempobeneficiariorestante', '?1')
 	->where('u.postulacion = ?2')
 	->andWhere('u.convocatoria = ?3')
-	->setParameter(1, $beneficiariosactualizar[$i]->getTiempoBeneficiario() - 1 )
+	->setParameter(1, $beneficiariosactualizar[$i]->getTiempoBeneficiarioRestante() - 1 )
 	->setParameter(2, $beneficiariosactualizar[$i]->getPostulacion()->getConsecutivo_postulacion())
 	->setParameter(3,$beneficiariosactualizar[$i]->getConvocatoria()->getConsecutivoConvocatoria())
 	->getQuery();
