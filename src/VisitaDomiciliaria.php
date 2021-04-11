@@ -105,6 +105,11 @@ class VisitaDomiciliaria
      *@ORM\Column(type="string") 
      */
     protected $descripcionfinal;
+     /** 
+     *@ORM\Column(type="date") 
+     */
+    protected $fecharegistro;
+    
 
     //Getters
     public function getIdVisita(){
@@ -176,8 +181,10 @@ class VisitaDomiciliaria
     public function getDescripcionFinal(){
     	return $this->descripcionfinal;
     }
- 
-    
+    public function getFechaRegistro(){
+        return $this->fecharegistro;
+    } 
+
 
 	//Establecer valores
     public function setIdVisita($idvisita)
@@ -251,4 +258,8 @@ class VisitaDomiciliaria
     public function setDescripcionFinal($descripcionfinal){
     	 $this->descripcionfinal = $descripcionfinal;
     }
+    public function setFechaRegistro($fecharegistro){
+        $this->fecharegistro = $fecharegistro;
+    }    
+
 }

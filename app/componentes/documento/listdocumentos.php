@@ -2,6 +2,9 @@
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+date_default_timezone_set("America/Bogota");
+
 require_once "../../../bootstrap.php";
 /* include_once"../../../src/Periodos_academicos.php"; */
 

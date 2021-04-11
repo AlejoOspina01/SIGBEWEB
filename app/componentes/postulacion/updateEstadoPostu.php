@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Methods: PUT");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
+date_default_timezone_set("America/Bogota");
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
@@ -47,6 +47,8 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 			$beneficiarioNew->setConvocatoria($convoFound);
 			$beneficiarioNew->setPostulacion($postuFound);
 			$beneficiarioNew->setTiempoBeneficiario(0);
+			$beneficiarioNew->setTiempoBeneficiarioRestante(0);
+			$beneficiarioNew->setFechaBeneficiario(new \DateTime('now'));
 			$beneficiarioNew->setObservacion($propiedadesPostu['observacionbene']);
 			$beneficiarioNew->setEstado('Inactivo');
 
@@ -56,7 +58,9 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 			$beneficiarioNew = new Beneficiarios();
 			$beneficiarioNew->setConvocatoria($convoFound);
 			$beneficiarioNew->setPostulacion($postuFound);
+			$beneficiarioNew->setFechaBeneficiario(new \DateTime('now'));
 			$beneficiarioNew->setTiempoBeneficiario($propiedadesPostu['tiempobene']);
+			$beneficiarioNew->setTiempoBeneficiarioRestante($propiedadesPostu['tiempobene']);
 			$beneficiarioNew->setObservacion($propiedadesPostu['observacionbene']);
 			$beneficiarioNew->setEstado('Activo');
 
@@ -108,7 +112,7 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 		<h2 align='center'>El estado de su postulacion fue actualizado</h2>
 		<ul>
 		<li > Buen dia usuario : ". $postuFound->getUsuarioCarrera()->getUsuario()->getCorreo() . " </li>
-		<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $postuFound->getEstado_postulacion()  . " ', para mas información ingrese a SIGBE.</li>
+		<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $propiedadesPostu['estadopostu']  . " ', para mas información ingrese a SIGBE.</li>
 		</ul>
 		</div>
 		<footer align='center' style='background:url(https://tlr.stripocdn.email/content/guids/CABINET_3a7a698c62586f3eb3e12df4199718b8/images/75021564382669317.png);background-repeat: no-repeat;background-position: right; height: 65px;padding-top: 15px;'>
@@ -153,6 +157,8 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 			$beneficiarioNew->setConvocatoria($convoFound);
 			$beneficiarioNew->setPostulacion($postuFound);
 			$beneficiarioNew->setTiempoBeneficiario(0);
+			$beneficiarioNew->setTiempoBeneficiarioRestante(0);
+			$beneficiarioNew->setFechaBeneficiario(new \DateTime('now'));
 			$beneficiarioNew->setObservacion($propiedadesPostu['observacionbene']);
 			$beneficiarioNew->setEstado(0);
 
@@ -162,7 +168,9 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 			$beneficiarioNew = new Beneficiarios();
 			$beneficiarioNew->setConvocatoria($convoFound);
 			$beneficiarioNew->setPostulacion($postuFound);
+			$beneficiarioNew->setFechaBeneficiario(new \DateTime('now'));
 			$beneficiarioNew->setTiempoBeneficiario($propiedadesPostu['tiempobene']);
+			$beneficiarioNew->setTiempoBeneficiarioRestante($propiedadesPostu['tiempobene']);
 			$beneficiarioNew->setObservacion($propiedadesPostu['observacionbene']);
 			$beneficiarioNew->setEstado(1);
 
@@ -214,7 +222,7 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 		<h2 align='center'>El estado de su postulacion fue actualizado</h2>
 		<ul>
 		<li > Buen dia usuario : ". $postuFound->getUsuarioCarrera()->getUsuario()->getCorreo() . " </li>
-		<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $postuFound->getEstado_postulacion()  . " ', para mas información ingrese a SIGBE.</li>
+		<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $propiedadesPostu['estadopostu']  . " ', para mas información ingrese a SIGBE.</li>
 		</ul>
 		</div>
 		<footer align='center' style='background:url(https://tlr.stripocdn.email/content/guids/CABINET_3a7a698c62586f3eb3e12df4199718b8/images/75021564382669317.png);background-repeat: no-repeat;background-position: right; height: 65px;padding-top: 15px;'>
@@ -263,8 +271,24 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 		->getSingleResult();
 		$entityManager->remove($beneficiarioFound);
 		$entityManager->flush();
-
+if($propiedadesPostu['estadopostu'] == 'Revision'){
 	$postulacionUpdate = $entityManager->createQueryBuilder();
+	$query = $postulacionUpdate->update('Postulacion', 'p') 
+	->set('p.estado_postulacion', '?2')
+	->set('p.fecharevision', '?3')
+	->where('p.consecutivo_postulacion = ?1')
+	->setParameter(1,$propiedadesPostu['idpostu'] )
+	->setParameter(2,$propiedadesPostu['estadopostu'])
+	->setParameter(3,date('Y-m-d'))
+	->getQuery();
+	$execute = $query->execute();
+	if ($postulacionUpdate === null) {
+		echo "No postulacion found.\n";
+		echo "Fallo";    
+		exit(1);
+	}  
+}else{
+		$postulacionUpdate = $entityManager->createQueryBuilder();
 	$query = $postulacionUpdate->update('Postulacion', 'p') 
 	->set('p.estado_postulacion', '?2')
 	->where('p.consecutivo_postulacion = ?1')
@@ -277,6 +301,8 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 		echo "Fallo";    
 		exit(1);
 	}  
+}
+
 	try{
 
 		$textoArchivo = file("../configuracion/config.txt");
@@ -308,7 +334,7 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 		<h2 align='center'>El estado de su postulacion fue actualizado</h2>
 		<ul>
 		<li > Buen dia usuario : ". $postuFound->getUsuarioCarrera()->getUsuario()->getCorreo() . " </li>
-		<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $postuFound->getEstado_postulacion()  . " ', para mas información ingrese a SIGBE.</li>
+		<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $propiedadesPostu['estadopostu']  . " ', para mas información ingrese a SIGBE.</li>
 		</ul>
 		</div>
 		<footer align='center' style='background:url(https://tlr.stripocdn.email/content/guids/CABINET_3a7a698c62586f3eb3e12df4199718b8/images/75021564382669317.png);background-repeat: no-repeat;background-position: right; height: 65px;padding-top: 15px;'>
@@ -345,14 +371,30 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 		echo $exs;
 	}		
 	}catch(Doctrine\ORM\NoResultException $ex){
-	$postulacionUpdate = $entityManager->createQueryBuilder();
-	$query = $postulacionUpdate->update('Postulacion', 'p') 
-	->set('p.estado_postulacion', '?2')
-	->where('p.consecutivo_postulacion = ?1')
-	->setParameter(1,$propiedadesPostu['idpostu'] )
-	->setParameter(2,$propiedadesPostu['estadopostu'] )
-	->getQuery();
-	$execute = $query->execute();
+
+	if($propiedadesPostu['estadopostu'] == 'Revision'){
+		$postulacionUpdate = $entityManager->createQueryBuilder();
+		$query = $postulacionUpdate->update('Postulacion', 'p') 
+		->set('p.estado_postulacion', '?2')
+		->set('p.fecharevision', '?3')		
+		->where('p.consecutivo_postulacion = ?1')
+		->setParameter(1,$propiedadesPostu['idpostu'] )
+		->setParameter(2,$propiedadesPostu['estadopostu'] )
+		->setParameter(3,date('Y-m-d'))
+		->getQuery();
+		$execute = $query->execute();	
+	}else{
+		$postulacionUpdate = $entityManager->createQueryBuilder();
+		$query = $postulacionUpdate->update('Postulacion', 'p') 
+		->set('p.estado_postulacion', '?2')
+		->where('p.consecutivo_postulacion = ?1')
+		->setParameter(1,$propiedadesPostu['idpostu'] )
+		->setParameter(2,$propiedadesPostu['estadopostu'] )
+		->getQuery();
+		$execute = $query->execute();
+	}
+
+
 	if ($postulacionUpdate === null) {
 		echo "No postulacion found.\n";
 		echo "Fallo";    
@@ -387,7 +429,7 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 		<h2 align='center'>El estado de su postulacion fue actualizado</h2>
 		<ul>
 		<li > Buen dia usuario : ". $postuFound->getUsuarioCarrera()->getUsuario()->getCorreo() . " </li>
-		<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $postuFound->getEstado_postulacion()  . " ', para mas información ingrese a SIGBE.</li>
+		<li > Su postulación con codigo #  : ". $postuFound->getConsecutivo_postulacion() . " fue actualizada el estado a ' " . $propiedadesPostu['estadopostu']  . " ', para mas información ingrese a SIGBE.</li>
 		</ul>
 		</div>
 		<footer align='center' style='background:url(https://tlr.stripocdn.email/content/guids/CABINET_3a7a698c62586f3eb3e12df4199718b8/images/75021564382669317.png);background-repeat: no-repeat;background-position: right; height: 65px;padding-top: 15px;'>

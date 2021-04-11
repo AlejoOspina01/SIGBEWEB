@@ -2,6 +2,9 @@
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+date_default_timezone_set("America/Bogota");
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
@@ -40,6 +43,11 @@ $visita->setCuartoSolicitante($propiedadesVisita['cuartosolicitante']);
 $visita->setCantidadPersonas($propiedadesVisita['cantidadpersonas']);
 $visita->setDescripcionFinal($propiedadesVisita['descripcionfinal']);
 $visita->setNombreAtencion($propiedadesVisita['nombreatencion']);
+
+$visita->setImagenCocina($propiedadesGeneral['imagencocina']);
+$visita->setImagenCuarto($propiedadesGeneral['imagencuarto']);
+
+$visita->setFechaRegistro(new \DateTime('now'));
 
 
 $entityManager->persist($visita);

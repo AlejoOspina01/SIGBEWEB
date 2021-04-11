@@ -8,33 +8,23 @@ date_default_timezone_set("America/Bogota");
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
-require '../../../lib/PhpMailer/Exception.php';
-require '../../../lib/PhpMailer/PHPMailer.php';
-require '../../../lib/PhpMailer/SMTP.php';
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
-
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 $stdUser = get_object_vars($request);
+$properties = get_object_vars($stdUser['data']);
 
 $postuFound = $entityManager->createQuery('SELECT u FROM Postulacion u WHERE u.consecutivo_postulacion = ?1')
-->setParameter(1, $stdUser['idpostu'])
+->setParameter(1, $properties['idpostu'])
 ->getSingleResult();
 
 $postulacionUpdate = $entityManager->createQueryBuilder();
 $query = $postulacionUpdate->update('Postulacion', 'p') 
-->set('p.estadopromedio', '?2')
+->set('p.imagencocina', '?2')
+->set('p.imagencuarto', '?3')
 ->where('p.consecutivo_postulacion = ?1')
-->setParameter(1,$stdUser['idpostu'] )
-->setParameter(2,$stdUser['valsel'] )
+->setParameter(1,$properties['idpostu'] )
+->setParameter(2,$properties['imagencocina'] )
+->setParameter(3,$properties['imagencuarto'] )
 ->getQuery();
 $execute = $query->execute();
-if ($postulacionUpdate === null) {
-	echo "No postulacion found.\n";
-	echo "Fallo";    
-	exit(1);
-}  

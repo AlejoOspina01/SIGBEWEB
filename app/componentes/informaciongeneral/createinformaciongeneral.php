@@ -2,6 +2,9 @@
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+date_default_timezone_set("America/Bogota");
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once "../../../bootstrap.php";
@@ -37,8 +40,13 @@ $general->setAntiguedad($propiedadesGeneral['antiguedad']);
 $general->setCiudadEmpresa($propiedadesGeneral['ciudadempresa']);
 $general->setDireccionEmpresa($propiedadesGeneral['direccionempresa']);
 $general->setValorTotalIngreso($propiedadesGeneral['valortotalingreso']);
-$general->setObservacion($propiedadesGeneral['observacion']);
+$general->setTelefonoTrabaja($propiedadesGeneral['valortotalingreso']);
+
 $general->setFechaRegistro(new \DateTime('now'));
+$general->setTelefonoTrabaja($propiedadesGeneral['telefonotrabajo']);
+
+$general->setObservacion($propiedadesGeneral['observacion']);
+
 
 
 $entityManager->persist($general);
