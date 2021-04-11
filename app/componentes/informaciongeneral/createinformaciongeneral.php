@@ -40,7 +40,6 @@ $general->setAntiguedad($propiedadesGeneral['antiguedad']);
 $general->setCiudadEmpresa($propiedadesGeneral['ciudadempresa']);
 $general->setDireccionEmpresa($propiedadesGeneral['direccionempresa']);
 $general->setValorTotalIngreso($propiedadesGeneral['valortotalingreso']);
-$general->setTelefonoTrabaja($propiedadesGeneral['valortotalingreso']);
 
 $general->setFechaRegistro(new \DateTime('now'));
 $general->setTelefonoTrabaja($propiedadesGeneral['telefonotrabajo']);

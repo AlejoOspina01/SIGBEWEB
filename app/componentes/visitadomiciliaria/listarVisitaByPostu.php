@@ -50,7 +50,7 @@ $visitaarray =  array(
     'cuartosolicitante'     =>  $visitasBuscada->getCuartoSolicitante(),
     'cantidadpersonas'          => $visitasBuscada->getCantidadPersonas(),
     'descripcionfinal'     =>  $visitasBuscada->getDescripcionFinal(),  
-    'fechavisita' => $visitasBuscada->getFechaRegistro()
+    'fechavisita' => $visitasBuscada->getFechaRegistro()->format('d-m-Y')
   );
 
 echo json_encode($visitaarray);

@@ -25,6 +25,7 @@ for($i=0; $i< sizeof($tickets); $i++){
      'fecha_compra' => $tickets[$i]-> getFechaCompra()->format("Y-m-d h:i"), 
      'tipoticket' => $tickets[$i]->getTipoTicket(),
      'identificacion_estudiante' => $tickets[$i]->getUsuario()->getIdentifacion(),
+     'valorticket' =>$tickets[$i]->getValor(),
      'nombre_estudiate' =>  $tickets[$i]->getUsuario()->getNombre(),
      'apellido_estudiate' =>  $tickets[$i]->getUsuario()->getApellido(),
      'estadoticket' => $tickets[$i]->getEstado()
