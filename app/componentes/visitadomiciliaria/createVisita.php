@@ -44,9 +44,6 @@ $visita->setCantidadPersonas($propiedadesVisita['cantidadpersonas']);
 $visita->setDescripcionFinal($propiedadesVisita['descripcionfinal']);
 $visita->setNombreAtencion($propiedadesVisita['nombreatencion']);
 
-$visita->setImagenCocina($propiedadesGeneral['imagencocina']);
-$visita->setImagenCuarto($propiedadesGeneral['imagencuarto']);
-
 $visita->setFechaRegistro(new \DateTime('now'));
 
 
