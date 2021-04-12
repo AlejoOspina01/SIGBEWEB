@@ -1,6 +1,6 @@
 valorticketalmuerzo|1500
 valorticketrefrigerio|1500
-horainicioVentaAlmuerzo|09:00
+horainicioVentaAlmuerzo|00:08
 horaFinVentaAlmuerzo|14:03
 horainicioVentaRefrigerio|16:00
 horaFinVentaRefrigerio|18:00

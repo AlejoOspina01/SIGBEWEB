@@ -22,11 +22,12 @@ $postByIdConvo;
 
 
 
-try {
+
 
 
 
 for ($i=0; $i < sizeof($Postulacionesresult); $i++) { 
+	try {
 		$beneficiarioFound = $entityManager->createQuery('SELECT u FROM Beneficiarios u WHERE u.postulacion = ?1')
 		->setParameter(1, $Postulacionesresult[$i]->getConsecutivo_postulacion())
 		->getSingleResult();
@@ -52,14 +53,8 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
 		'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() , 
 							  'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion()));
-}
-
-echo json_encode($postByIdConvo);
-
-} catch (Doctrine\ORM\NoResultException $ex) {
-	
-for ($i=0; $i < sizeof($Postulacionesresult); $i++) { 
-	$postByIdConvo[$i] =  array(
+	} catch (Doctrine\ORM\NoResultException $ex) {
+			$postByIdConvo[$i] =  array(
 		'consecutivo_postulacion'     => $Postulacionesresult[$i]->getConsecutivo_postulacion(),
 		'estadopromedio' => $Postulacionesresult[$i]->getEstadoPromedio(),
 		'promedio'         => $Postulacionesresult[$i]->getPromedio(),
@@ -68,6 +63,10 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d'),
 		'imagencocina' => $Postulacionesresult[$i]->getImagenCocina(),
 		'imagencuarto' => $Postulacionesresult[$i]->getImagenCuarto(),		
+		'tiemporestantebene' => null,
+		'tiempototalbene' => null,
+		'observacionbene' => null,	
+		'fechabeneficio' => null,			
 		'fecharevision' => $Postulacionesresult[$i]->getFechaRevisión(),
 		'semestre' =>$Postulacionesresult[$i]->getSemestre(),
 		'coments' =>$Postulacionesresult[$i]->getComentPsicologa(),
@@ -77,10 +76,13 @@ for ($i=0; $i < sizeof($Postulacionesresult); $i++) {
 		'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
 		'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() , 
 							  'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion()));
+	}
 }
 
 echo json_encode($postByIdConvo);
-}
+
+
+
 
 
 

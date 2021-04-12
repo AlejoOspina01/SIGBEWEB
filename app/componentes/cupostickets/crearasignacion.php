@@ -17,12 +17,19 @@ $stdAsign = get_object_vars($request);
 $propiedadesAsign = get_object_vars($stdAsign['data']);
 
 $fecha = new DateTime($propiedadesAsign['fecha']);
+$fechaformat = $fecha->format("Y-m-d");
+try{
+	$cupoasignacion = $entityManager->createQuery('select u from CuposTickets u where u.fechaasignacion = ?1')
+	->setParameter(1, $fechaformat)
+	->getSingleResult();
+	echo "Ya hay una asignación con esa fecha ingresada";
+}catch(Doctrine\ORM\NoResultException $ex){
+	$cupoTicket = new CuposTickets();
+	$cupoTicket->setFechaAsignacion($fecha);
+	$cupoTicket->setCuposDisponiblesAlmuerzo($propiedadesAsign['cuposalmuerzo']);
+	$cupoTicket->setCuposDisponiblesRefrigerio($propiedadesAsign['cuposrefrigerio']);
 
+	$entityManager->persist($cupoTicket);
+	$entityManager->flush();
+}
 
-$cupoTicket = new CuposTickets();
-$cupoTicket->setFechaAsignacion($fecha);
-$cupoTicket->setCuposDisponiblesAlmuerzo($propiedadesAsign['cuposalmuerzo']);
-$cupoTicket->setCuposDisponiblesRefrigerio($propiedadesAsign['cuposrefrigerio']);
-
-$entityManager->persist($cupoTicket);
-$entityManager->flush();

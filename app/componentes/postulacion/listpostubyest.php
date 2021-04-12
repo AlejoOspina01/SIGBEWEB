@@ -18,23 +18,55 @@ $Postulacionesresult = $postulaciones->getResult();
 $postByIdEst;
 
 for ($i=0; $i < sizeof($Postulacionesresult); $i++) { 
-	$postByIdEst[$i] =  array(
-		'consecutivo_postulacion'     => $Postulacionesresult[$i]->getConsecutivo_postulacion(),
-		'nombreConv'         => $Postulacionesresult[$i]-> getConvocatoria()->getConsecutivoBeca()->getDescripcion(),
-		'idConvo'         => $Postulacionesresult[$i]-> getConvocatoria()->getConsecutivoConvocatoria(),
-		'promedio'         => $Postulacionesresult[$i]->getPromedio(),
-		'estadopromedio' => $Postulacionesresult[$i]->getEstadoPromedio(),
-		'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d H:i'),
-		'semestre' =>$Postulacionesresult[$i]->getSemestre(),
-		'estrato' =>$Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getEstrato() ,
-		'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
-		'comentpsicologa' =>$Postulacionesresult[$i]->getComentPsicologa() , 
-		'cantmodificaciones' =>$Postulacionesresult[$i]->getCantmodificaciones() , 
-		'nombre estudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
-		'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion(),
-		'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
-			'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion() ,
-			'correoest' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getCorreo()));
+	try{
+		$beneficiarioFound = $entityManager->createQuery('SELECT u FROM Beneficiarios u WHERE u.postulacion = ?1')
+		->setParameter(1, $Postulacionesresult[$i]->getConsecutivo_postulacion())
+		->getSingleResult();		
+		$postByIdEst[$i] =  array(
+			'consecutivo_postulacion'     => $Postulacionesresult[$i]->getConsecutivo_postulacion(),
+			'nombreConv'         => $Postulacionesresult[$i]-> getConvocatoria()->getConsecutivoBeca()->getDescripcion(),
+			'idConvo'         => $Postulacionesresult[$i]-> getConvocatoria()->getConsecutivoConvocatoria(),
+			'promedio'         => $Postulacionesresult[$i]->getPromedio(),
+			'estadopromedio' => $Postulacionesresult[$i]->getEstadoPromedio(),
+			'fechabeneficio' => $beneficiarioFound->getFechaBeneficiario(),			
+			'tiemporestantebene' => $beneficiarioFound-> getTiempoBeneficiarioRestante(),
+			'tiempototalbene' => $beneficiarioFound->getTiempoBeneficiario(),
+			'observacionbene' => $beneficiarioFound->getObservacion(),
+			'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d H:i'),
+			'semestre' =>$Postulacionesresult[$i]->getSemestre(),
+			'estrato' =>$Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getEstrato() ,
+			'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
+			'comentpsicologa' =>$Postulacionesresult[$i]->getComentPsicologa() , 
+			'cantmodificaciones' =>$Postulacionesresult[$i]->getCantmodificaciones() , 
+			'nombre estudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
+			'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion(),
+			'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
+				'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion() ,
+				'correoest' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getCorreo()));
+	}catch(Doctrine\ORM\NoResultException $ex){
+		$postByIdEst[$i] =  array(
+			'consecutivo_postulacion'     => $Postulacionesresult[$i]->getConsecutivo_postulacion(),
+			'nombreConv'         => $Postulacionesresult[$i]-> getConvocatoria()->getConsecutivoBeca()->getDescripcion(),
+			'idConvo'         => $Postulacionesresult[$i]-> getConvocatoria()->getConsecutivoConvocatoria(),
+			'promedio'         => $Postulacionesresult[$i]->getPromedio(),
+			'estadopromedio' => $Postulacionesresult[$i]->getEstadoPromedio(),
+			'tiemporestantebene' => null,
+			'tiempototalbene' => null,
+			'observacionbene' => null,	
+			'fechabeneficio' => null,				
+			'fechapostulacion' => $Postulacionesresult[$i]->getFechapostulacion()->format('Y-m-d H:i'),
+			'semestre' =>$Postulacionesresult[$i]->getSemestre(),
+			'estrato' =>$Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getEstrato() ,
+			'estado_postulacion' =>$Postulacionesresult[$i]->getEstado_postulacion() , 
+			'comentpsicologa' =>$Postulacionesresult[$i]->getComentPsicologa() , 
+			'cantmodificaciones' =>$Postulacionesresult[$i]->getCantmodificaciones() , 
+			'nombre estudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
+			'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion(),
+			'estudiante' => array('nombreestudiante' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getNombre() . " " . $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getApellido() ,
+				'identificacion' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getIdentifacion() ,
+				'correoest' => $Postulacionesresult[$i]->getUsuarioCarrera()->getUsuario()->getCorreo()));
+	}
+
 }
 
 if ($postulaciones === null) {
