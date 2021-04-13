@@ -104,23 +104,33 @@ if ($informacionGeneral === null) {
     'telefonojefe'          => $informacionFamiliar->getTelefono());
 
   for ($i=0; $i < sizeof($informacionParentesco); $i++) {
-    $infoParentescto[$i] =  array(
-      'idparentesco'          => $informacionParentesco[$i]->getIdPariente(),
-      'idgeneral'          => $informacionParentesco[$i]->getInformacionParentesco()->getIdinformacionGeneral(),
-      'tipoparentesco'          => $informacionParentesco[$i]->getTipoParentesco()->getNombreParentesco(),
-      'nombre'          => $informacionParentesco[$i]->getNombre(),
-      'edad'          => $informacionParentesco[$i]->getEdad(),
-      'direccion'          => $informacionParentesco[$i]->getDireccion(),
-      'ciudad'          => $informacionParentesco[$i]->getCiudad(),
-      'ocupacion'          => $informacionParentesco[$i]->getOcupacion(),
-      'ingresos' => $informacionParentesco[$i]->getIngresos()
-    );
+    try{
+      $infoParentescto[$i] =  array(
+        'idparentesco'          => $informacionParentesco[$i]->getIdPariente(),
+        'idgeneral'          => $informacionParentesco[$i]->getInformacionParentesco()->getIdinformacionGeneral(),
+        'tipoparentesco'          => $informacionParentesco[$i]->getTipoParentesco()->getNombreParentesco(),
+        'nombre'          => $informacionParentesco[$i]->getNombre(),
+        'edad'          => $informacionParentesco[$i]->getEdad(),
+        'direccion'          => $informacionParentesco[$i]->getDireccion(),
+        'ciudad'          => $informacionParentesco[$i]->getCiudad(),
+        'ocupacion'          => $informacionParentesco[$i]->getOcupacion(),
+        'ingresos' => $informacionParentesco[$i]->getIngresos()
+      );
+    }catch(Doctrine\ORM\NoResultException $ex){
+
+    }
+
     }
     for ($i=0; $i < sizeof($informacionIngreso); $i++) {
+      try{
       $infoFuente[$i] =  array(
-      'idfuenteingreso'          => $informacionIngreso[$i]->getIdFuenteIngreso(), 
-      'nombreayuda'          => $informacionIngreso[$i]->getNombre(),
-      'tiponecesidad'          => $informacionIngreso[$i]->getTipoNecesidad()->getNombre());
+        'idfuenteingreso'          => $informacionIngreso[$i]->getIdFuenteIngreso(), 
+        'nombreayuda'          => $informacionIngreso[$i]->getNombre(),
+        'tiponecesidad'          => $informacionIngreso[$i]->getTipoNecesidad()->getNombre());
+      }catch(Doctrine\ORM\NoResultException $ex){
+      
+      }
+
     }
     array_push($informacionarray, array($infoParentescto),array($infoFuente));
     echo json_encode($informacionarray);
