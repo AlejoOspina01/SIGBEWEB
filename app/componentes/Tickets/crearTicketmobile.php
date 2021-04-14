@@ -14,13 +14,14 @@ $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
 
+
 $stdPropTickets = get_object_vars($request);
-$propiedadesTickets = get_object_vars($stdPropTickets['data']);
+// $propiedadesTickets = get_object_vars($stdPropTickets['data']);
 
 
 $fechaactual = date("Y-m-d");
 
-$encontrarUsr = $entityManager->find('Usuarios',$propiedadesTickets['idUser']);
+$encontrarUsr = $entityManager->find('Usuarios',$stdPropTickets['idUser']);
 // $encontrarAsign = $entityManager->find('CuposTickets',$propiedadesTickets['idAsign']);
 
 $cupoasignacion = $entityManager->createQuery('select u from CuposTickets u where u.fechaasignacion = ?1')
@@ -29,8 +30,8 @@ $cupoasignacion = $entityManager->createQuery('select u from CuposTickets u wher
 
 $tickets = new Tickets();
 $tickets->setFechaCompra(new \DateTime( 'now',  new DateTimeZone( 'America/Bogota' ) ));
-$tickets->setValor($propiedadesTickets['valorticket'] );
-$tickets->setTipoTicket($propiedadesTickets['tipoTicket']);
+$tickets->setValor($stdPropTickets['valorticket'] );
+$tickets->setTipoTicket($stdPropTickets['tipoTicket']);
 $tickets->setEstado('Sin usar');
 $tickets->setUsuario($encontrarUsr);
 $tickets->setCupostickets($cupoasignacion);

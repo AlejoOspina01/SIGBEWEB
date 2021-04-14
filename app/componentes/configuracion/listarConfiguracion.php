@@ -3,12 +3,13 @@ header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-
+date_default_timezone_set("America/Bogota");
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 $textoArchivo = file("config.txt");
 $variables= array();
+$horaactual = date("H:i");
 // Mostrar el contenido del archivo:
 for ($i=0; $i < sizeof($textoArchivo); $i++) { 
 	array_push($variables, explode("|",$textoArchivo[$i]));
@@ -28,6 +29,7 @@ $arrayResultante= array(
 	"valorticketrefrigeriobeneficiario" => $variables[7][1],
 	"correoestablecido" => $variables[8][1],
 	"contrasenaestablecido" => $variables[9][1],
+	"horaactualserver" =>$horaactual
 );
 
 echo json_encode($arrayResultante);

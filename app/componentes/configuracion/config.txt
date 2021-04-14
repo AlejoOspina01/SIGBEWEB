@@ -3,8 +3,8 @@ valorticketrefrigerio|1500
 horainicioVentaAlmuerzo|00:08
 horaFinVentaAlmuerzo|14:03
 horainicioVentaRefrigerio|16:00
-horaFinVentaRefrigerio|18:00
+horaFinVentaRefrigerio|19:33
 valorticketalmuerzobeneficiario|500
 valorticketrefrigeriobeneficiario|1000
-correoestablecido|haloalejo@gmail.com
-contrasenaestablecida|Mrdark123
+correoestablecido|quintero.gustavo@correounivalle.edu.co
+contrasenaestablecida|2421249275Gus

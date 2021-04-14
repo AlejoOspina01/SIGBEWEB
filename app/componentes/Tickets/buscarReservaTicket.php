@@ -31,13 +31,40 @@ if($valticket){
 
 
 	if($ticketencontrado->getTipoTicket() == 'Ticket Refrigerio'){
-	$convocatoriasEncontradas = $entityManager->createQuery('SELECT c FROM Convocatorias c WHERE c.periodosacademicos = ?1 AND c.becas = 2')//
+try {
+		$convocatoriasEncontradas = $entityManager->createQuery('SELECT c FROM Convocatorias c WHERE c.periodosacademicos = ?1 AND c.becas = 2')//
 	->setParameter(1, $periodoencontrado->getConsecutivo_periodo())
 	->getSingleResult();
+} catch (Doctrine\ORM\NoResultException $e) {
+		$postulacionfound =  array(
+		'tipoTicket'     => $ticketencontrado->getTipoTicket(),
+		'fechaticket'         => $ticketencontrado->getFechaCompra()->format("Y-m-d h:i"),
+		'nombreest' =>  $ticketencontrado->getUsuario()->getNombre(),
+		'beneficiario' => 0
+
+	);
+	echo json_encode($postulacionfound);
+	return;
+}
+
+
 }else{
-	$convocatoriasEncontradas = $entityManager->createQuery('SELECT c FROM Convocatorias c WHERE c.periodosacademicos = ?1 AND c.becas = 1')
+	try {
+			$convocatoriasEncontradas = $entityManager->createQuery('SELECT c FROM Convocatorias c WHERE c.periodosacademicos = ?1 AND c.becas = 1')
 	->setParameter(1, $periodoencontrado->getConsecutivo_periodo())
 	->getSingleResult();
+	} catch (Doctrine\ORM\NoResultException $e) {
+		$postulacionfound =  array(
+		'tipoTicket'     => $ticketencontrado->getTipoTicket(),
+		'fechaticket'         => $ticketencontrado->getFechaCompra()->format("Y-m-d h:i"),
+		'nombreest' =>  $ticketencontrado->getUsuario()->getNombre(),
+		'beneficiario' => 0
+
+	);
+	echo json_encode($postulacionfound);
+	return;
+	}
+
 }
 
 try {
@@ -48,19 +75,19 @@ try {
 	->getSingleResult();
 	$postulacionfound =  array(
 		'tipoTicket'     => $ticketencontrado->getTipoTicket(),
-		'fechaticket'         => $ticketencontrado->getFechaCompra(),
+		'fechaticket'         => $ticketencontrado->getFechaCompra()->format("Y-m-d h:i"),
 		'consecutivo_postulacion'     => $postulacionesEncontradas->getConsecutivo_postulacion(),
-		'fecha'         => $postulacionesEncontradas->getFechapostulacion(),
+		'fecha'         => $postulacionesEncontradas->getFechapostulacion()->format("Y-m-d h:i"),
 		'estrato'    => $postulacionesEncontradas->getEstrato(),
 		'nombreest' =>  $ticketencontrado->getUsuario()->getNombre(),
 		'beneficiario' => 1
 
 	);
 	echo json_encode($postulacionfound);
-} catch (Exception $e) {
+} catch (Doctrine\ORM\NoResultException $e) {
 	$postulacionfound =  array(
 		'tipoTicket'     => $ticketencontrado->getTipoTicket(),
-		'fechaticket'         => $ticketencontrado->getFechaCompra(),
+		'fechaticket'         => $ticketencontrado->getFechaCompra()->format("Y-m-d h:i"),
 		'nombreest' =>  $ticketencontrado->getUsuario()->getNombre(),
 		'beneficiario' => 0
 
