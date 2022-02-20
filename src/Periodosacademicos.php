@@ -10,24 +10,36 @@ use Doctrine\ORM\Mapping as ORM;
 */
 class Periodosacademicos
 {
-/** 
-    *@ORM\Id
-    *@ORM\Column(type="integer")
-    *@ORM\GeneratedValue
-*/
+    /** 
+        *@ORM\Id
+        *@ORM\Column(type="integer")
+        *@ORM\GeneratedValue
+    */
     protected $consecutivo_periodo;
+    /** 
+     *@ORM\Column(type="string") 
+     */
+    protected $descripcion;
      /** 
     *@ORM\Column(type="datetime") 
     */
-    protected $fecha_inicio;
-     /** 
+     protected $fecha_inicio;
+    /** 
     *@ORM\Column(type="datetime") 
     */
     protected $fecha_fin;
+    /**
+     * @ORM\Column(type="boolean", options={"default":"0"})
+     */
+    protected $estadoperiodo;
 
     public function getConsecutivo_periodo()
     {
         return $this->consecutivo_periodo;
+    }
+
+    public function getDescripcion(){
+        return $this->descripcion;
     }
 
     public function getFechaInicio()
@@ -38,7 +50,15 @@ class Periodosacademicos
     {
         return $this->fecha_fin;
     }
+    public function getEstadoPeriodo()
+    {
+        return $this->estadoperiodo;
+    }
 
+    //Establecer valores
+    public function setDescripcion($descripcion){
+        $this->descripcion = $descripcion;
+    }
     public function setFechaInicio($fechaInicio)
     {
         $this->fecha_inicio = $fechaInicio;
@@ -46,5 +66,9 @@ class Periodosacademicos
     public function setFechaFin($fechaFin)
     {
         $this->fecha_fin = $fechaFin;
+    }
+    public function setEstadoPeriodo($estadoperiodo)
+    {
+        $this->estadoperiodo = $estadoperiodo;
     }
 }

@@ -1,0 +1,14 @@
+<!-- config/xml/Documentos.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+      <entity name="Documentos" table="documentos">
+          <id name="iddocumento" type="integer">
+              <generator strategy="AUTO" />
+          </id>
+
+          <field name="descripcion" type="string" />
+      </entity>
+</doctrine-mapping>

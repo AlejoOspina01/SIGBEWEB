@@ -28,57 +28,83 @@ class Convocatorias
      *@ORM\Column(type="string") 
      */
     protected $estado_convocatoria;
+     /** 
+     *@ORM\Column(type="integer") 
+     */
+     protected $cupo;
     /**
-     * @ORM\ManyToOne(targetEntity="Becas", inversedBy="becas", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="becas", referencedColumnName="consecutivo_beca",nullable=true)
+     * @ORM\ManyToOne(targetEntity="Becas", inversedBy="Convocatorias", cascade={"persist", "remove" })
+     * @ORM\JoinColumn(name="becasid", referencedColumnName="consecutivo_beca",nullable=true)
      */
     protected $becas;
     /**
-     * @ORM\ManyToOne(targetEntity="Periodosacademicos", inversedBy="periodosacademicos", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="periodosacademicos", referencedColumnName="consecutivo_periodo",nullable=true)
+     * @ORM\ManyToOne(targetEntity="Periodosacademicos", inversedBy="Convocatorias", cascade={"persist", "remove" })
+     * @ORM\JoinColumn(name="periodosacademicosid", referencedColumnName="consecutivo_periodo",nullable=true)
      */
     protected $periodosacademicos;
 
+    /**
+    *  
+    *
+    * @ORM\OneToMany(targetEntity="DocumentoConvocatoria", mappedBy="Convocatorias", cascade={"all"})
+    *
+    */
+    private $ConvocatoriaHasDocumento;
+    /**
+    *  
+    *
+    * @ORM\OneToMany(targetEntity="Beneficiarios", mappedBy="Convocatorias", cascade={"all"})
+    *
+    */
+    private $convocatoriaHasBeneficiario;
+    
+
+    //Datos Convocatoria
     public function getConsecutivoConvocatoria()
     {
-        return $this->consecutivo_convocatoria;
+      return $this->consecutivo_convocatoria;
     }
 
     public function getFechaInicio()
     {
-        return $this->fecha_inicio;
+      return $this->fecha_inicio;
     }
     public function getFechaFin()
     {
-        return $this->fecha_fin;
+      return $this->fecha_fin;
     }
     public function getEstadoConvocatoria()
     {
-        return $this->estado_convocatoria;
+      return $this->estado_convocatoria;
+    }
+    public function getCupo(){
+      return $this->cupo;
     }
     public function getConsecutivoBeca(){
-		return $this->consecutivo_beca;
+      return $this->becas;
     }
     public function getConsecutivoPeriodo(){
-		return $this->consecutivo_periodo;
-	}
+      return $this->periodosacademicos;
+    }
 
     //Establecer valores
     public function setEstadoConvocatoria($estadoconvocatoria){
       $this->estado_convocatoria = $estadoconvocatoria;
-  }
+    }
     public function setFechaInicio($fechaInicio){
-        $this->fecha_inicio = $fechaInicio;
+      $this->fecha_inicio = $fechaInicio;
     }
     public function setFechaFin($fechaFin){
-        $this->fecha_fin = $fechaFin;
+      $this->fecha_fin = $fechaFin;
+    }
+    public function setCupo($cupo){
+      $this->cupo = $cupo;
     }
     public function setConsecutivoBeca($consecutivoBeca){
-		return $this->becas = $consecutivoBeca;
+      return $this->becas = $consecutivoBeca;
     }
     public function setConsecutivoPeriodo($consecutivoPeriodo){
-		return $this->periodosacademicos = $consecutivoPeriodo;
-	}
-
+      return $this->periodosacademicos = $consecutivoPeriodo;
+    }
     
-}
+  }

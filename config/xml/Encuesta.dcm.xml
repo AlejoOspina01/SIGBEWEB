@@ -1,0 +1,28 @@
+<!-- config/xml/Roles.dcm.xml -->
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+  https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+  <entity name="Encuesta" table="encuesta">
+    <id name="idencuesta" type="integer" >
+    <generator strategy="AUTO" />
+    </id>
+    <many-to-one field="periodoacademico" target-entity="Periodosacademico">
+            <join-column name="periodosacademicos" referenced-column-name="periodoacademico" />
+    </many-to-one>
+    <many-to-one field="usuario" target-entity="Usuarios">
+            <join-column name="usuarios" referenced-column-name="usuario" />
+    </many-to-one>    
+
+    <field name="frecuencia" type="integer" />
+    <field name="calidad" type="string" />
+    <field name="cantidad" type="integer" />
+    <field name="variedad" type="integer" />
+    <field name="horario" type="string" />
+    <field name="espacio" type="string" />
+    <field name="calificacionservicio" type="string" />
+    <field name="comentario" type="string" />
+    
+  </entity>
+</doctrine-mapping>

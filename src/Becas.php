@@ -21,8 +21,8 @@ class Becas
      */
     protected $descripcion;
     /**
-     * @ORM\ManyToOne(targetEntity="TipoBecas", inversedBy="tipobecas", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="tipobecas", referencedColumnName="consecutivo_TipoBeca",nullable=true)
+     * @ORM\ManyToOne(targetEntity="TipoBecas", inversedBy="Becas", cascade={"persist", "remove" })
+     * @ORM\JoinColumn(name="tipobecaid", referencedColumnName="consecutivo_TipoBeca",nullable=true)
      */
     protected $tipobecas;
 

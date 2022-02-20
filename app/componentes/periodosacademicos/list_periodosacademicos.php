@@ -1,21 +1,29 @@
 <?php
- header('Access-Control-Allow-Origin: *'); 
- header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
+use Doctrine\ORM\Mapping\OrderBy;
 
- 
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+date_default_timezone_set("America/Bogota");
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 require_once "../../../bootstrap.php";
 
 $periodo = $entityManager->createQueryBuilder()
-->select('pa')  
+->select('pa.consecutivo_periodo, pa.descripcion')  
 ->from('Periodosacademicos', 'pa') 
+->OrderBy('pa.consecutivo_periodo', 'DESC')
+->setMaxResults(1)
 ->getQuery()
 ->getArrayResult();
 
 if ($periodo === null) {
-    echo "No convomipana found.\n";
-    exit(1);
+	echo "No found.\n";
+	exit(1);
 }
 
 echo json_encode($periodo);
-header('Content-Type: application/json');

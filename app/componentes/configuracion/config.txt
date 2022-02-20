@@ -1,0 +1,10 @@
+valorticketalmuerzo|1500
+valorticketrefrigerio|1500
+horainicioVentaAlmuerzo|00:08
+horaFinVentaAlmuerzo|14:03
+horainicioVentaRefrigerio|16:00
+horaFinVentaRefrigerio|19:33
+valorticketalmuerzobeneficiario|500
+valorticketrefrigeriobeneficiario|1000
+correoestablecido|quintero.gustavo@correounivalle.edu.co
+contrasenaestablecida|Gus2421249275
