@@ -108,7 +108,7 @@ if ($informacionGeneral === null) {
       $infoParentescto[$i] =  array(
         'idparentesco'          => $informacionParentesco[$i]->getIdPariente(),
         'idgeneral'          => $informacionParentesco[$i]->getInformacionParentesco()->getIdinformacionGeneral(),
-        'tipoparentesco'          => $informacionParentesco[$i]->getTipoParentesco()->getNombreParentesco(),
+        // 'tipoparentesco'          => $informacionParentesco[$i]->getTipoParentesco()->getNombreParentesco() ? $informacionParentesco[$i]->getTipoParentesco()->getNombreParentesco() : "NULL",
         'nombre'          => $informacionParentesco[$i]->getNombre(),
         'edad'          => $informacionParentesco[$i]->getEdad(),
         'direccion'          => $informacionParentesco[$i]->getDireccion(),
@@ -126,7 +126,8 @@ if ($informacionGeneral === null) {
       $infoFuente[$i] =  array(
         'idfuenteingreso'          => $informacionIngreso[$i]->getIdFuenteIngreso(), 
         'nombreayuda'          => $informacionIngreso[$i]->getNombre(),
-        'tiponecesidad'          => $informacionIngreso[$i]->getTipoNecesidad()->getNombre());
+        'tiponecesidad'          => $informacionIngreso[$i]->getTipoNecesidad() ? $informacionIngreso[$i]->getTipoNecesidad()->getNombre() : "NULL"
+      );
       }catch(Doctrine\ORM\NoResultException $ex){
       
       }

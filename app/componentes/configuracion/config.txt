@@ -7,4 +7,4 @@ horaFinVentaRefrigerio|19:33
 valorticketalmuerzobeneficiario|500
 valorticketrefrigeriobeneficiario|1000
 correoestablecido|quintero.gustavo@correounivalle.edu.co
-contrasenaestablecida|2421249275Gus
+contrasenaestablecida|Gus2421249275
