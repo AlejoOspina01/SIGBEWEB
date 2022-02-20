@@ -28,6 +28,7 @@ class UnexpectedValueException extends BaseUnexpectedValueException implements P
      * @param string $className
      * @param string $methodName
      * @param string $parameterName
+     * @psalm-param class-string $className
      *
      * @return self
      */
@@ -52,6 +53,7 @@ class UnexpectedValueException extends BaseUnexpectedValueException implements P
     /**
      * @param string $className
      * @param string $methodName
+     * @psalm-param class-string $className
      *
      * @return self
      */

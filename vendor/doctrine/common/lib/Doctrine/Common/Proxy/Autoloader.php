@@ -34,6 +34,7 @@ class Autoloader
      * @param string $proxyDir
      * @param string $proxyNamespace
      * @param string $className
+     * @psalm-param class-string $className
      *
      * @return string
      *
