@@ -47,16 +47,17 @@ $usuario->setPdf($pdf);
 
 $entityManager->persist($usuario);
 $entityManager->flush();
-$carreraencontrada =  $entityManager->find('Carreras', $propiedadesUser['codigocarrera']);
-// $estudianteencontrod = $entityManager->find('Usuarios', $propiedadesUser['identificacion']);
-
-$usuariocarrera = new UsuariosCarreras();
 
 
+if($propiedadesUser['roles'] === 1){
+    $carreraencontrada =  $entityManager->find('Carreras', $propiedadesUser['codigocarrera']);
+    $usuariocarrera = new UsuariosCarreras();
+    $usuariocarrera->setCarrera($carreraencontrada);
+    $usuariocarrera->setUsuario($usuario);
+    $usuariocarrera->setCodigoEstudiante($propiedadesUser['codigo']);
+    $entityManager->persist($usuariocarrera);
+    $entityManager->flush();
+}
 
 
-$usuariocarrera->setCarrera($carreraencontrada);
-$usuariocarrera->setUsuario($usuario);
-$usuariocarrera->setCodigoEstudiante($propiedadesUser['codigo']);
-$entityManager->persist($usuariocarrera);
-$entityManager->flush();
+

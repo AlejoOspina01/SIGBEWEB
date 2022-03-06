@@ -134,7 +134,7 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 			$oMail->Password=$variables[9][1];
 			$oMail->setFrom($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
 			$oMail->addAddress($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
-			$oMail->Subject='Estado de la postulacion a sido actualizada';
+			$oMail->Subject='Estado de la postulación ha sido actualizada';
 			$oMail->msgHTML($message);
 
 			if(!$oMail->Send()) {
@@ -244,7 +244,7 @@ if(($propiedadesPostu['estadopostu'] == 'Aprobado') || ($propiedadesPostu['estad
 			$oMail->Password=$variables[9][1];
 			$oMail->setFrom($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
 			$oMail->addAddress($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
-			$oMail->Subject='Estado de la postulacion a sido actualizada';
+			$oMail->Subject='Estado de la postulación ha sido actualizada';
 			$oMail->msgHTML($message);
 
 			if(!$oMail->Send()) {
@@ -356,7 +356,7 @@ if($propiedadesPostu['estadopostu'] == 'Revision'){
 			$oMail->Password=$variables[9][1];
 			$oMail->setFrom($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
 			$oMail->addAddress($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
-			$oMail->Subject='Estado de la postulacion a sido actualizada';
+			$oMail->Subject='Estado de la postulación ha sido actualizada';
 			$oMail->msgHTML($message);
 
 			if(!$oMail->Send()) {
@@ -451,7 +451,7 @@ if($propiedadesPostu['estadopostu'] == 'Revision'){
 			$oMail->Password=$variables[9][1];
 			$oMail->setFrom($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
 			$oMail->addAddress($postuFound->getUsuarioCarrera()->getUsuario()->getCorreo(),'SIGBE - Gestion de becas UV');
-			$oMail->Subject='Estado de la postulacion a sido actualizada';
+			$oMail->Subject='Estado de la postulación ha sido actualizada';
 			$oMail->msgHTML($message);
 
 			if(!$oMail->Send()) {
